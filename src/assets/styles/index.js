@@ -125,6 +125,10 @@ const styles = StyleSheet.create({
   pdt40: {paddingTop: 40},
   pdt44: {paddingTop: 44},
   pdt48: {paddingTop: 48},
+  pdt52: {paddingTop: 52},
+  pdt56: {paddingTop: 56},
+  pdt60: {paddingTop: 60},
+  pdt64: {paddingTop: 64},
 
   pdb4: {paddingBottom: 4},
   pdb8: {paddingBottom: 8},
@@ -138,6 +142,10 @@ const styles = StyleSheet.create({
   pdb40: {paddingBottom: 40},
   pdb44: {paddingBottom: 44},
   pdb48: {paddingBottom: 48},
+  pdb52: {paddingBottom: 52},
+  pdb56: {paddingBottom: 56},
+  pdb60: {paddingBottom: 60},
+  pdb64: {paddingBottom: 64},
 
   pdl4: {paddingLeft: 4},
   pdl8: {paddingLeft: 8},

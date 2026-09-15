@@ -8,5 +8,10 @@ const images = {
     carSedan: require('./image/car_sedan.jpg'),
     carXl: require('./image/car_xl.jpg'),
     driverSearchMap: require('./image/driver_search_map.jpg'),
+    onboardingTaxi: require('./image/onboarding_taxi.jpg'),
+    xcabLogo: require('./image/xcab_brand_logo.png'),
+    onboardingRideWay: require('./image/onboarding_ride_way.png'),
+    onboardingSafeRides: require('./image/onboarding_safe_rides.png'),
+    onboardingLiveTracking: require('./image/onboarding_live_tracking.png'),
 };
 export default images;

@@ -1,46 +1,110 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
   ScrollView,
   TouchableOpacity,
-  Image,
   StatusBar,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import images from '../../assets/images';
 import COLORS from '../../assets/colors';
 import {
-  HeaderBell,
   SearchIcon,
   GpsTargetIcon,
-  HomeIcon,
-  WorkIcon,
-  StarIcon,
-  RefreshIcon,
   PromoDiscountIcon,
 } from '../../component/Home/Icons';
+import { AddHome, AddWork, Favorites } from '../../component/Home/QuickPlaces';
+import GoogleMap from '../../component/Home/GoogleMap';
 import RecentSearch from '../../component/Home/recentSearch';
 import { LocationSearch } from '../../component/Home/LocationSearch';
 import { TripBooking } from '../../component/Home/TripBooking';
 import { DriverSearching } from '../../component/Home/DriverSearching';
 import { CancelRide } from '../../component/Home/CancelRide';
-import Footer from '../../component/Footer';
+import { HomeSkeleton } from '../../component/Home/HomeSkeleton';
 
-const Home = ({ navigation }) => {
-  const insets = useSafeAreaInsets();
+const parseLocation = (locStr, fallbackTitle, fallbackSubtitle) => {
+  if (!locStr) {
+    return { title: fallbackTitle, subtitle: fallbackSubtitle };
+  }
+  const parts = locStr.split(',');
+  const title = parts[0]?.trim() || fallbackTitle;
+  const subtitle = parts.length > 1
+    ? parts.slice(1).join(',').trim()
+    : fallbackSubtitle;
+  return { title, subtitle };
+};
+
+const Home = ({ navigation, route, initialParams }) => {
+  const params = route?.params || initialParams;
+  const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState('HOME');
   const [isLocationModalVisible, setIsLocationModalVisible] = useState(false);
   const [isTripBookingVisible, setIsTripBookingVisible] = useState(false);
   const [isDriverSearchingVisible, setIsDriverSearchingVisible] = useState(false);
   const [isCancelRideVisible, setIsCancelRideVisible] = useState(false);
+  const [selectedVehicleId, setSelectedVehicleId] = useState('SEDAN');
   const [tripDetails, setTripDetails] = useState({
     pickup: 'Ranchi Railway Station',
     pickupSubtitle: 'Station Rd, Ranchi, Jharkhand 834001',
     destination: 'Lalpur Market',
     destinationSubtitle: 'Lalpur Chowk, Ranchi, Jharkhand 834001',
   });
+
+  // Simulate initial lazy loading / data fetching
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Handle rebook request coming from Rides.js
+  useEffect(() => {
+    if (params?.rebookTrip || params?.openTripBooking) {
+      if (params.rebookTrip) {
+        const ride = params.rebookTrip;
+        const pickupInfo = parseLocation(
+          ride.pickup,
+          'Ranchi Railway Station',
+          'Station Rd, Ranchi, Jharkhand 834001'
+        );
+        const dropoffInfo = parseLocation(
+          ride.dropoff,
+          'Lalpur Market',
+          'Lalpur Chowk, Ranchi, Jharkhand 834001'
+        );
+
+        setTripDetails({
+          pickup: pickupInfo.title,
+          pickupSubtitle: pickupInfo.subtitle,
+          destination: dropoffInfo.title,
+          destinationSubtitle: dropoffInfo.subtitle,
+        });
+
+        const typeUpper = (ride.carType || '').toUpperCase();
+        if (typeUpper.includes('MINI') || typeUpper.includes('AUTO')) {
+          setSelectedVehicleId('MINI');
+        } else if (typeUpper.includes('XL')) {
+          setSelectedVehicleId('XL');
+        } else {
+          setSelectedVehicleId('SEDAN');
+        }
+      } else if (params.savedPlace || params.destination) {
+        const destTitle = params.savedPlace?.title || params.destination || 'Home';
+        const destSubtitle =
+          params.savedPlace?.address ||
+          params.destinationSubtitle ||
+          'Station Rd, Ranchi, Jharkhand 834001';
+
+        setTripDetails({
+          pickup: 'Current Location',
+          pickupSubtitle: 'Lalpur Chowk, Circular Road, Ranchi 834001',
+          destination: destTitle,
+          destinationSubtitle: destSubtitle,
+        });
+      }
+      setIsTripBookingVisible(true);
+    }
+  }, [params]);
 
   const recentSearches = [
     {
@@ -60,12 +124,15 @@ const Home = ({ navigation }) => {
     },
   ];
 
+  if (isLoading) {
+    return <HomeSkeleton />;
+  }
+
   return (
     <View
       style={{
         flex: 1,
         backgroundColor: COLORS.background,
-        paddingTop: insets.top,
       }}
     >
       <StatusBar barStyle="dark-content" backgroundColor={COLORS.background} />
@@ -74,85 +141,10 @@ const Home = ({ navigation }) => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          paddingTop: 8,
-          paddingBottom: insets.bottom + 95,
+          paddingTop: 14,
+          paddingBottom: 24,
         }}
       >
-        {/* ================= HEADER ================= */}
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            paddingHorizontal: 20,
-            paddingVertical: 10,
-          }}
-        >
-          {/* Left: Brand + Divider + Location */}
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              flex: 1,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 24,
-                fontWeight: '900',
-                color: COLORS.textDark,
-                letterSpacing: 0.8,
-              }}
-            >
-              XCAB
-            </Text>
-          </View>
-
-          {/* Right: Notification Bell + Avatar */}
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}
-          >
-            <TouchableOpacity
-              style={{
-                padding: 6,
-                marginRight: 10,
-              }}
-              activeOpacity={0.7}
-              onPress={() => navigation?.navigate('Notification')}
-            >
-              <HeaderBell size={21} color={COLORS.textDark} hasBadge />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={{
-                width: 36,
-                height: 36,
-                borderRadius: 18,
-                borderWidth: 1.2,
-                borderColor: '#E2DDD0',
-                overflow: 'hidden',
-                backgroundColor: '#EAE5D8',
-              }}
-              activeOpacity={0.8}
-              onPress={() => {
-                navigation?.navigate?.('Profile');
-              }}
-            >
-              <Image
-                source={images.avatar}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                }}
-                resizeMode="cover"
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-
         {/* ================= SEARCH BAR ================= */}
         <View
           style={{
@@ -172,14 +164,14 @@ const Home = ({ navigation }) => {
               borderColor: COLORS.border,
               paddingHorizontal: 16,
               height: 54,
-              shadowColor: '#000',
+              shadowColor: COLORS.black,
               shadowOffset: { width: 0, height: 2 },
               shadowOpacity: 0.04,
               shadowRadius: 6,
               elevation: 2,
             }}
           >
-            <SearchIcon size={19} color="#2B2B2B" />
+            <SearchIcon size={19} color={COLORS.iconDark} />
             <View style={{ flex: 1, paddingHorizontal: 12 }}>
               <Text
                 style={{
@@ -195,16 +187,16 @@ const Home = ({ navigation }) => {
                 width: 36,
                 height: 36,
                 borderRadius: 10,
-                backgroundColor: '#FAF6ED',
+                backgroundColor: COLORS.iconBg,
                 borderWidth: 1,
-                borderColor: '#EFEAE0',
+                borderColor: COLORS.borderSoft,
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
               activeOpacity={0.7}
               onPress={() => setIsLocationModalVisible(true)}
             >
-              <GpsTargetIcon size={18} color="#2B2B2B" />
+              <GpsTargetIcon size={18} color={COLORS.iconDark} />
             </TouchableOpacity>
           </TouchableOpacity>
         </View>
@@ -218,297 +210,13 @@ const Home = ({ navigation }) => {
             marginBottom: 14,
           }}
         >
-          {/* Home */}
-          <TouchableOpacity
-            style={{
-              flex: 1,
-              marginHorizontal: 3.5,
-              backgroundColor: COLORS.cardBg,
-              borderRadius: 14,
-              borderWidth: 1.2,
-              borderColor: COLORS.border,
-              paddingVertical: 10,
-              paddingHorizontal: 8,
-              flexDirection: 'row',
-              alignItems: 'center',
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.03,
-              shadowRadius: 5,
-              elevation: 1,
-            }}
-            activeOpacity={0.8}
-            onPress={() => console.log('Add home')}
-          >
-            <View
-              style={{
-                width: 34,
-                height: 34,
-                borderRadius: 10,
-                backgroundColor: '#F9F5EC',
-                borderWidth: 1,
-                borderColor: '#ECE6D9',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <HomeIcon size={19} color={COLORS.textDark} />
-            </View>
-            <View style={{ marginLeft: 7, flex: 1 }}>
-              <Text
-                style={{
-                  fontSize: 13,
-                  fontWeight: '700',
-                  color: COLORS.textDark,
-                }}
-              >
-                Home
-              </Text>
-              <Text
-                style={{
-                  fontSize: 10.5,
-                  color: COLORS.textMuted,
-                  marginTop: 1,
-                }}
-              >
-                Add home
-              </Text>
-            </View>
-          </TouchableOpacity>
-
-          {/* Work */}
-          <TouchableOpacity
-            style={{
-              flex: 1,
-              marginHorizontal: 3.5,
-              backgroundColor: COLORS.cardBg,
-              borderRadius: 14,
-              borderWidth: 1.2,
-              borderColor: COLORS.border,
-              paddingVertical: 10,
-              paddingHorizontal: 8,
-              flexDirection: 'row',
-              alignItems: 'center',
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.03,
-              shadowRadius: 5,
-              elevation: 1,
-            }}
-            activeOpacity={0.8}
-            onPress={() => console.log('Add work')}
-          >
-            <View
-              style={{
-                width: 34,
-                height: 34,
-                borderRadius: 10,
-                backgroundColor: '#F9F5EC',
-                borderWidth: 1,
-                borderColor: '#ECE6D9',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <WorkIcon size={19} color={COLORS.textDark} />
-            </View>
-            <View style={{ marginLeft: 7, flex: 1 }}>
-              <Text
-                style={{
-                  fontSize: 13,
-                  fontWeight: '700',
-                  color: COLORS.textDark,
-                }}
-              >
-                Work
-              </Text>
-              <Text
-                style={{
-                  fontSize: 10.5,
-                  color: COLORS.textMuted,
-                  marginTop: 1,
-                }}
-              >
-                Add work
-              </Text>
-            </View>
-          </TouchableOpacity>
-
-          {/* Favorites */}
-          <TouchableOpacity
-            style={{
-              flex: 1,
-              marginHorizontal: 3.5,
-              backgroundColor: COLORS.cardBg,
-              borderRadius: 14,
-              borderWidth: 1.2,
-              borderColor: COLORS.border,
-              paddingVertical: 10,
-              paddingHorizontal: 8,
-              flexDirection: 'row',
-              alignItems: 'center',
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.03,
-              shadowRadius: 5,
-              elevation: 1,
-            }}
-            activeOpacity={0.8}
-            onPress={() => console.log('Saved places')}
-          >
-            <View
-              style={{
-                width: 34,
-                height: 34,
-                borderRadius: 10,
-                backgroundColor: '#F9F5EC',
-                borderWidth: 1,
-                borderColor: '#ECE6D9',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <StarIcon size={19} color={COLORS.textDark} />
-            </View>
-            <View style={{ marginLeft: 7, flex: 1 }}>
-              <Text
-                style={{
-                  fontSize: 13,
-                  fontWeight: '700',
-                  color: COLORS.textDark,
-                }}
-              >
-                Favorites
-              </Text>
-              <Text
-                style={{
-                  fontSize: 10.5,
-                  color: COLORS.textMuted,
-                  marginTop: 1,
-                }}
-              >
-                Saved places
-              </Text>
-            </View>
-          </TouchableOpacity>
+          <AddHome onPress={() => console.log('Add home')} />
+          <AddWork onPress={() => console.log('Add work')} />
+          <Favorites onPress={() => console.log('Saved places')} />
         </View>
 
         {/* ================= CURRENT LOCATION MAP CARD ================= */}
-        <View
-          style={{
-            marginHorizontal: 20,
-            marginBottom: 18,
-            backgroundColor: COLORS.cardBg,
-            borderRadius: 16,
-            borderWidth: 1.2,
-            borderColor: COLORS.border,
-            overflow: 'hidden',
-            shadowColor: '#000',
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.04,
-            shadowRadius: 6,
-            elevation: 2,
-          }}
-        >
-          {/* Header inside Map Card */}
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              paddingHorizontal: 14,
-              paddingVertical: 12,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}
-            >
-              <View
-                style={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 16,
-                  backgroundColor: '#F8F4EA',
-                  borderWidth: 1,
-                  borderColor: '#EDE7D9',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <GpsTargetIcon size={17} color={COLORS.textDark} />
-              </View>
-              <View style={{ marginLeft: 10 }}>
-                <Text
-                  style={{
-                    fontSize: 13.5,
-                    fontWeight: '700',
-                    color: COLORS.textDark,
-                  }}
-                >
-                  Current location
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 11,
-                    color: COLORS.textMuted,
-                    marginTop: 2,
-                  }}
-                >
-                  Detecting your location...
-                </Text>
-              </View>
-            </View>
-
-            <TouchableOpacity
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                backgroundColor: '#FCF5DF',
-                borderWidth: 1,
-                borderColor: '#EFE0B5',
-                paddingHorizontal: 10,
-                paddingVertical: 6.5,
-                borderRadius: 20,
-              }}
-              activeOpacity={0.7}
-              onPress={() => console.log('Updating location...')}
-            >
-              <RefreshIcon size={12} color={COLORS.textDark} />
-              <Text
-                style={{
-                  fontSize: 11,
-                  fontWeight: '700',
-                  color: COLORS.textDark,
-                  marginLeft: 5,
-                }}
-              >
-                Update location
-              </Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Map Preview Graphic */}
-          <View
-            style={{
-              width: '100%',
-              height: 155,
-              backgroundColor: '#121417',
-              overflow: 'hidden',
-            }}
-          >
-            <Image
-              source={images.mapPreview}
-              style={{
-                width: '100%',
-                height: '100%',
-              }}
-              resizeMode="cover"
-            />
-          </View>
-        </View>
+        <GoogleMap />
 
         {/* ================= RECENT SEARCHES ================= */}
         <RecentSearch
@@ -552,7 +260,7 @@ const Home = ({ navigation }) => {
             <Text
               style={{
                 fontSize: 11,
-                color: '#656056',
+                color: COLORS.mediumGrey,
                 marginTop: 2.5,
                 lineHeight: 15,
               }}
@@ -565,7 +273,7 @@ const Home = ({ navigation }) => {
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              backgroundColor: '#121314',
+              backgroundColor: COLORS.textDark,
               borderRadius: 20,
               paddingHorizontal: 12,
               paddingVertical: 8,
@@ -577,7 +285,7 @@ const Home = ({ navigation }) => {
               style={{
                 fontSize: 11,
                 fontWeight: '700',
-                color: '#FFFFFF',
+                color: COLORS.white,
               }}
             >
               View Offers
@@ -586,7 +294,7 @@ const Home = ({ navigation }) => {
               style={{
                 fontSize: 14,
                 fontWeight: '700',
-                color: '#FFFFFF',
+                color: COLORS.white,
                 marginLeft: 4,
                 marginTop: -1,
               }}
@@ -596,21 +304,6 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-
-      {/* ================= FIXED BOTTOM NAVIGATION ================= */}
-      <Footer
-        activeTab={activeTab}
-        onTabPress={(tab) => {
-          if (tab === 'ALERTS') {
-            navigation?.navigate('Notification');
-          } else if (tab === 'PROFILE') {
-            navigation?.navigate('Profile');
-          } else {
-            setActiveTab(tab);
-          }
-        }}
-        navigation={navigation}
-      />
 
       {/* Find Location Modal */}
       <LocationSearch
@@ -636,6 +329,7 @@ const Home = ({ navigation }) => {
         pickupSubtitle={tripDetails.pickupSubtitle}
         destination={tripDetails.destination}
         destinationSubtitle={tripDetails.destinationSubtitle}
+        initialVehicleId={selectedVehicleId}
         onEditPickup={() => {
           setIsTripBookingVisible(false);
           setIsLocationModalVisible(true);

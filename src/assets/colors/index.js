@@ -9,6 +9,15 @@ const COLORS = {
     mapBg: '#F8F5EC',
     background: '#F8F5EC',
 
+    // Onboarding Theme
+    onboardingBg: '#FAF7EE',
+    onboardingSplashBg: '#F4F1E2',
+    onboardingYellow: '#F8BF15',
+    onboardingDark: '#161719',
+    onboardingSubtext: '#6B7280',
+    onboardingDot: '#E5E0D4',
+    onboardingTrack: '#E5DFCD',
+
     // Neutrals & Cards
     cardBg: '#FFFFFF',
     white: '#FFFFFF',
@@ -21,6 +30,9 @@ const COLORS = {
     muted: '#8A8578',
     textMuted: '#848077',
     mediumGrey: '#656056',
+    iconDark: '#2B2B2B',
+    mapDarkBg: '#121417',
+    borderSoft: '#EFEAE0',
 
     // Borders & Dividers
     border: '#ECE6D8',

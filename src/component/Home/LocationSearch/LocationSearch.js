@@ -17,7 +17,7 @@ import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 import RecentSearch from './RecentSearch';
 import PickDrop from './PickDrop';
-import SavedPlaces from './SavedPlaces';
+import { AddHome, AddWork, Favorites } from '../QuickPlaces';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -235,12 +235,22 @@ const LocationSearch = ({
               onConfirmTrip={handleConfirmTrip}
             />
 
-            {/* ================= SAVED PLACES ================= */}
-            <SavedPlaces
-              onPressHome={onPressHome}
-              onPressWork={onPressWork}
-              onPressFavourites={onPressFavourites}
-            />
+            {/* ================= QUICK DESTINATIONS ================= */}
+            <View
+              style={[
+                styles.pdh20,
+                styles.mt16,
+                styles.mb20,
+                {
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                },
+              ]}
+            >
+              <AddHome onPress={onPressHome} />
+              <AddWork onPress={onPressWork} />
+              <Favorites onPress={onPressFavourites} />
+            </View>
 
             {/* ================= RECENT SEARCHES ================= */}
             <RecentSearch

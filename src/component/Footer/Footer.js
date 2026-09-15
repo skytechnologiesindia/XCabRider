@@ -14,7 +14,7 @@ const Footer = ({
   activeTab = 'HOME',
   onTabPress,
   navigation,
-  isAbsolute = true,
+  isAbsolute = false,
   firstTabLabel,
   alertsBadge = 2,
   style,
@@ -26,8 +26,14 @@ const Footer = ({
       onTabPress(tabName);
       return;
     }
-    if (tabName === 'ALERTS' && navigation) {
-      navigation.navigate('Notification');
+    if ((tabName === 'HOME' || tabName === 'BOOK') && navigation) {
+      navigation.navigate('Home');
+    } else if (tabName === 'RIDES' && navigation) {
+      navigation.navigate('Rides');
+    } else if (tabName === 'ALERTS' && navigation) {
+      navigation.navigate('Alerts');
+    } else if (tabName === 'PROFILE' && navigation) {
+      navigation.navigate('Profile');
     }
   };
 

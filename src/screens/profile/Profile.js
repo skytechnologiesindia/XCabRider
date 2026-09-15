@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -7,12 +7,12 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
 import images from '../../assets/images';
-import Footer from '../../component/Footer';
-import { HeaderBell } from '../../component/Home/Icons';
+import { ProfileSkeleton } from '../../component/Profile/ProfileSkeleton';
+import { SavedPlace } from '../../component/Profile/SavedPlace';
+import { EmergencyContact } from '../../component/Profile/EmergencyContact';
 
 // Vector Icon: Personal Details (User)
 const UserIcon = ({ size = 18, color = COLORS.textDark }) => (
@@ -202,7 +202,21 @@ const MENU_ITEMS = [
 ];
 
 const Profile = ({ navigation }) => {
-  const insets = useSafeAreaInsets();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSavedPlacesVisible, setIsSavedPlacesVisible] = useState(false);
+  const [isEmergencyContactsVisible, setIsEmergencyContactsVisible] = useState(false);
+
+  // Simulate initial lazy loading / fetch user profile data
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <ProfileSkeleton />;
+  }
 
   return (
     <View
@@ -213,56 +227,21 @@ const Profile = ({ navigation }) => {
     >
       <StatusBar barStyle="dark-content" backgroundColor={COLORS.background} />
 
-      {/* ================= TOP HEADER ================= */}
-      <View
-        style={[
-          styles.pdh20,
-          styles.pdv12,
-          {
-            paddingTop: Math.max(insets.top, 14),
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          },
-        ]}
-      >
-        <Text
-          style={{
-            fontSize: 22,
-            fontWeight: '900',
-            letterSpacing: -0.5,
-            color: COLORS.textDark,
-          }}
-        >
-          XCAB
-        </Text>
-
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: '800',
-            color: COLORS.textDark,
-          }}
-        >
-          Profile
-        </Text>
-
-        <TouchableOpacity
-          style={styles.p4}
-          activeOpacity={0.7}
-          onPress={() => navigation?.navigate?.('Notification')}
-        >
-          <HeaderBell size={21} color={COLORS.textDark} hasBadge />
-        </TouchableOpacity>
-      </View>
-
       {/* ================= MAIN CONTENT ================= */}
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          paddingBottom: 90 + Math.max(insets.bottom, 14),
+          paddingTop: 12,
+          paddingBottom: 24,
         }}
       >
+        {/* Page Title */}
+        <View style={[styles.mh20, styles.mb12]}>
+          <Text style={{ fontSize: 20, fontWeight: '800', color: COLORS.textDark }}>
+            Profile
+          </Text>
+        </View>
+
         {/* ================= PROFILE CARD ================= */}
         <View
           style={[
@@ -438,6 +417,10 @@ const Profile = ({ navigation }) => {
                 onPress={() => {
                   if (item.id === 'personal_details') {
                     navigation?.navigate?.('EditProfile');
+                  } else if (item.id === 'saved_places') {
+                    setIsSavedPlacesVisible(true);
+                  } else if (item.id === 'emergency_contacts') {
+                    setIsEmergencyContactsVisible(true);
                   }
                 }}
               >
@@ -509,41 +492,6 @@ const Profile = ({ navigation }) => {
           ))}
         </View>
 
-        {/* ================= ACTION BUTTONS ================= */}
-        <TouchableOpacity
-          style={[
-            styles.mh20,
-            styles.mt20,
-            {
-              height: 50,
-              borderRadius: 14,
-              backgroundColor: COLORS.yellow,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              shadowColor: COLORS.yellow,
-              shadowOffset: { width: 0, height: 3 },
-              shadowOpacity: 0.25,
-              shadowRadius: 5,
-              elevation: 3,
-            },
-          ]}
-          activeOpacity={0.8}
-          onPress={() => {
-            navigation?.navigate?.('EditProfile');
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 15,
-              fontWeight: '800',
-              color: COLORS.textDark,
-            }}
-          >
-            Edit Profile ›
-          </Text>
-        </TouchableOpacity>
-
         <TouchableOpacity
           style={[
             styles.mt12,
@@ -569,17 +517,37 @@ const Profile = ({ navigation }) => {
         </TouchableOpacity>
       </ScrollView>
 
-      {/* ================= BOTTOM NAVIGATION FOOTER ================= */}
-      <Footer
-        activeTab="PROFILE"
-        onTabPress={(tab) => {
-          if (tab === 'HOME' || tab === 'BOOK') {
-            navigation?.navigate?.('Home');
-          } else if (tab === 'ALERTS') {
-            navigation?.navigate?.('Notification');
-          }
-        }}
+      {/* ================= SAVED PLACES MODAL ================= */}
+      <SavedPlace
+        visible={isSavedPlacesVisible}
         navigation={navigation}
+        onClose={() => setIsSavedPlacesVisible(false)}
+        onSelectPlace={(place) => {
+          setIsSavedPlacesVisible(false);
+          navigation?.navigate('TripBooking', {
+            destination: place.title,
+            destinationSubtitle: place.address,
+            savedPlace: place,
+          });
+        }}
+        onSave={(place) => {
+          setIsSavedPlacesVisible(false);
+          navigation?.navigate('TripBooking', {
+            destination: place.title,
+            destinationSubtitle: place.address,
+            savedPlace: place,
+          });
+        }}
+      />
+
+      {/* ================= EMERGENCY CONTACTS MODAL ================= */}
+      <EmergencyContact
+        visible={isEmergencyContactsVisible}
+        onClose={() => setIsEmergencyContactsVisible(false)}
+        onSave={(data) => {
+          console.log('Saved emergency contacts:', data);
+          setIsEmergencyContactsVisible(false);
+        }}
       />
     </View>
   );
