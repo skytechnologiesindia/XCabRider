@@ -5,89 +5,14 @@ import {
   ScrollView,
   Animated,
   StatusBar,
-  TouchableOpacity,
-  StyleSheet,
   Dimensions,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../assets/colors';
+import styles from '../../../assets/styles';
+import { CarBadgeIcon } from '../AlertsCards';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
-
-// Circular Back Arrow Icon
-const BackArrowIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        position: 'absolute',
-        width: size * 0.75,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        left: 2,
-        width: size * 0.45,
-        height: size * 0.45,
-        borderLeftWidth: 2,
-        borderBottomWidth: 2,
-        borderColor: color,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-  </View>
-);
-
-// Mini Car Icon Silhouette for Notification Badge
-const CarBadgeIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size * 0.75, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.6,
-        height: size * 0.32,
-        backgroundColor: color,
-        borderTopLeftRadius: 3,
-        borderTopRightRadius: 3,
-      }}
-    />
-    <View
-      style={{
-        width: size,
-        height: size * 0.36,
-        backgroundColor: color,
-        borderRadius: 2.5,
-        marginTop: 1,
-      }}
-    />
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: size * 0.75,
-        marginTop: -1,
-      }}
-    >
-      <View
-        style={{
-          width: 3.5,
-          height: 2.5,
-          borderRadius: 1.2,
-          backgroundColor: COLORS.textDark,
-        }}
-      />
-      <View
-        style={{
-          width: 3.5,
-          height: 2.5,
-          borderRadius: 1.2,
-          backgroundColor: COLORS.textDark,
-        }}
-      />
-    </View>
-  </View>
-);
 
 /**
  * Sweeping Shimmer placeholder component
@@ -111,7 +36,7 @@ const ShimmerBlock = ({
           width,
           height,
           borderRadius,
-          backgroundColor: '#EDE7DC',
+          backgroundColor: COLORS.pillBg,
           overflow: 'hidden',
         },
         style,
@@ -124,7 +49,7 @@ const ShimmerBlock = ({
           bottom: 0,
           left: 0,
           width: SCREEN_WIDTH,
-          backgroundColor: '#FFFFFF',
+          backgroundColor: COLORS.white,
           opacity: 0.55,
           transform: [{ translateX }],
         }}
@@ -134,6 +59,7 @@ const ShimmerBlock = ({
 };
 
 const AlertsSkeleton = ({ navigation }) => {
+  const insets = useSafeAreaInsets();
   const shimmerAnim = useRef(new Animated.Value(0)).current;
   const pulseAnim = useRef(new Animated.Value(0.85)).current;
 
@@ -172,47 +98,82 @@ const AlertsSkeleton = ({ navigation }) => {
     };
   }, [shimmerAnim, pulseAnim]);
 
-  const handleBack = () => {
-    if (navigation?.goBack) {
-      navigation.goBack();
-    } else if (navigation?.navigate) {
-      navigation.navigate('Home');
-    }
-  };
-
   return (
-    <View style={uiStyles.container}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: COLORS.background,
+        paddingTop: Math.max(insets.top, 14),
+      }}
+    >
       <StatusBar barStyle="dark-content" backgroundColor={COLORS.background} />
 
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={uiStyles.scrollContent}
+        contentContainerStyle={[styles.pdt12, styles.pdb24]}
       >
-        {/* ================= 1. HEADER WITH BACK BUTTON ================= */}
-        <View style={uiStyles.headerRow}>
-          <TouchableOpacity
-            style={uiStyles.backButton}
-            activeOpacity={0.7}
-            onPress={handleBack}
+        {/* ================= 1. HEADER ================= */}
+        <View style={[styles.pdh20, styles.mb12]}>
+          <Text
+            style={[
+              styles.ts22,
+              {
+                fontWeight: '800',
+                color: COLORS.textDark,
+                letterSpacing: -0.3,
+              },
+            ]}
           >
-            <BackArrowIcon size={16} color={COLORS.textDark} />
-          </TouchableOpacity>
-
-          <Text style={uiStyles.headerTitle}>Alerts</Text>
+            Alerts
+          </Text>
         </View>
 
-        {/* ================= 2. SKELETON NOTIFICATION CARDS (Matches AlertsCards.js 1:1) ================= */}
+        {/* ================= 2. SKELETON NOTIFICATION CARDS ================= */}
         {[1, 2, 3, 4].map((itemIndex) => (
-          <View key={itemIndex} style={uiStyles.cardContainer}>
+          <View
+            key={itemIndex}
+            style={[
+              styles.mh20,
+              styles.mb12,
+              styles.p16,
+              {
+                marginTop: 6,
+                backgroundColor: COLORS.white,
+                borderRadius: 20,
+                borderWidth: 1.2,
+                borderColor: COLORS.border,
+                shadowColor: COLORS.black,
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.04,
+                shadowRadius: 6,
+                elevation: 2,
+              },
+            ]}
+          >
             {/* Top Row: Icon Badge + Title + Time / Dot */}
-            <View style={uiStyles.cardTopRow}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'flex-start',
+                justifyContent: 'space-between',
+              }}
+            >
               {/* Yellow Icon Badge with Car Silhouette */}
-              <View style={uiStyles.iconBadge}>
+              <View
+                style={{
+                  width: 38,
+                  height: 38,
+                  borderRadius: 19,
+                  backgroundColor: COLORS.yellow,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
                 <CarBadgeIcon size={18} color={COLORS.textDark} />
               </View>
 
               {/* Notification Title Shimmer */}
-              <View style={uiStyles.titleContainer}>
+              <View style={[styles.ml12, { flex: 1, paddingTop: 2 }]}>
                 <ShimmerBlock
                   width={
                     itemIndex === 1
@@ -230,8 +191,27 @@ const AlertsSkeleton = ({ navigation }) => {
               </View>
 
               {/* Time & Unread Status Dot */}
-              <View style={uiStyles.timeContainer}>
-                <View style={uiStyles.unreadDot} />
+              <View
+                style={[
+                  styles.ml8,
+                  {
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    paddingTop: 3,
+                  },
+                ]}
+              >
+                <View
+                  style={[
+                    styles.mr8,
+                    {
+                      width: 7,
+                      height: 7,
+                      borderRadius: 3.5,
+                      backgroundColor: COLORS.yellow,
+                    },
+                  ]}
+                />
                 <ShimmerBlock
                   width={42}
                   height={11}
@@ -242,7 +222,7 @@ const AlertsSkeleton = ({ navigation }) => {
             </View>
 
             {/* Subtitle / Details Shimmer Lines */}
-            <View style={uiStyles.descriptionContainer}>
+            <View style={[styles.mt12, { paddingLeft: 50 }]}>
               <ShimmerBlock
                 width={
                   itemIndex === 1
@@ -269,7 +249,7 @@ const AlertsSkeleton = ({ navigation }) => {
                 }
                 height={10}
                 borderRadius={4}
-                style={uiStyles.mt6}
+                style={styles.mt4}
                 shimmerAnim={shimmerAnim}
               />
             </View>
@@ -280,101 +260,5 @@ const AlertsSkeleton = ({ navigation }) => {
   );
 };
 
-const uiStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.background,
-  },
-  scrollContent: {
-    paddingTop: 12,
-    paddingBottom: 24,
-  },
-  mt6: {
-    marginTop: 6,
-  },
-
-  // Header Row (1:1 with Alerts.js)
-  headerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    marginBottom: 12,
-  },
-  backButton: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
-    backgroundColor: COLORS.white,
-    borderWidth: 1.2,
-    borderColor: COLORS.border,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 12,
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.04,
-    shadowRadius: 3,
-    elevation: 1,
-  },
-  headerTitle: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: COLORS.textDark,
-    letterSpacing: -0.3,
-  },
-
-  // Notification Card Container (1:1 with AlertsCards.js)
-  cardContainer: {
-    marginHorizontal: 20,
-    marginTop: 6,
-    marginBottom: 10,
-    paddingHorizontal: 16,
-    paddingVertical: 16,
-    backgroundColor: COLORS.white,
-    borderRadius: 20,
-    borderWidth: 1.2,
-    borderColor: COLORS.border,
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.04,
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  cardTopRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-  },
-  iconBadge: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
-    backgroundColor: COLORS.yellow,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  titleContainer: {
-    marginLeft: 12,
-    flex: 1,
-    paddingTop: 2,
-  },
-  timeContainer: {
-    marginLeft: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingTop: 3,
-  },
-  unreadDot: {
-    width: 7,
-    height: 7,
-    borderRadius: 3.5,
-    backgroundColor: COLORS.yellow,
-    marginRight: 6,
-  },
-  descriptionContainer: {
-    marginTop: 10,
-    paddingLeft: 50,
-  },
-});
-
+export { AlertsSkeleton };
 export default AlertsSkeleton;

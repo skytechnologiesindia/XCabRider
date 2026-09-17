@@ -7,6 +7,86 @@ import {
   StyleSheet,
 } from 'react-native';
 import COLORS from '../../../assets/colors';
+import images from '../../../assets/images';
+
+export const DEFAULT_RIDES_DATA = [
+  {
+    id: 'ride_1',
+    status: 'COMPLETED',
+    date: 'Today, 02:15 PM',
+    carName: 'Swift Dzire',
+    carType: 'Sedan',
+    carImage: images.carSedan,
+    pickup: 'Ranchi Railway Station, Station Rd',
+    dropoff: 'Lalpur Market, Lalpur Chowk',
+    metrics: '6.5 km • 20 mins',
+    paymentType: 'CASH',
+    fare: '₹190',
+    rating: 5,
+    cancellationReason: null,
+  },
+  {
+    id: 'ride_2',
+    status: 'CANCELLED',
+    date: 'Yesterday, 07:45 PM',
+    carName: 'WagonR',
+    carType: 'Mini',
+    carImage: images.carMini,
+    pickup: 'Harmu Housing Colony, Harmu',
+    dropoff: 'Kanke Road, Ranchi',
+    metrics: '8.2 km',
+    paymentType: null,
+    fare: '₹0',
+    rating: null,
+    cancellationReason: 'Cancelled by rider',
+  },
+  {
+    id: 'ride_3',
+    status: 'COMPLETED',
+    date: '11 Sep, 10:30 AM',
+    carName: 'Honda City',
+    carType: 'Prime Sedan',
+    carImage: images.carSedan,
+    pickup: 'Birsa Munda Airport (IXR), Hinoo',
+    dropoff: 'Doranda Bazar, Ranchi',
+    metrics: '11.4 km • 32 mins',
+    paymentType: 'UPI',
+    fare: '₹345',
+    rating: 5,
+    cancellationReason: null,
+  },
+  {
+    id: 'ride_4',
+    status: 'COMPLETED',
+    date: '09 Sep, 08:15 PM',
+    carName: 'XCAB Auto',
+    carType: 'Auto Rickshaw',
+    carImage: images.carMini,
+    pickup: 'Main Road, Overbridge',
+    dropoff: 'Ratu Road Chowk',
+    metrics: '4.1 km • 15 mins',
+    paymentType: 'CASH',
+    fare: '₹85',
+    rating: 4,
+    cancellationReason: null,
+  },
+  {
+    id: 'ride_5',
+    status: 'CANCELLED',
+    date: '06 Sep, 01:20 PM',
+    carName: 'Hyundai Aura',
+    carType: 'Sedan',
+    carImage: images.carSedan,
+    pickup: 'Nucleus Mall, Circular Road',
+    dropoff: 'Morabadi Ground, Morabadi',
+    metrics: '5.0 km',
+    paymentType: null,
+    fare: '₹0',
+    rating: null,
+    cancellationReason: 'Driver was unable to arrive',
+  },
+];
+
 
 // Vector Icon: Star Rating
 const StarRating = ({ rating = 5 }) => {
@@ -79,7 +159,7 @@ const RouteTimeline = ({ pickup, dropoff, metrics }) => (
   </View>
 );
 
-const RidesCards = ({ ride, onRebook }) => {
+const SingleRideCard = ({ ride, onRebook }) => {
   if (!ride) return null;
 
   const isCompleted = ride.status === 'COMPLETED';
@@ -173,6 +253,27 @@ const RidesCards = ({ ride, onRebook }) => {
     </View>
   );
 };
+
+const RidesCards = ({ ride, data, rides, onRebook }) => {
+  if (ride) {
+    return <SingleRideCard ride={ride} onRebook={onRebook} />;
+  }
+
+  const items = data || rides || DEFAULT_RIDES_DATA;
+
+  return (
+    <>
+      {items.map((item) => (
+        <SingleRideCard
+          key={item.id}
+          ride={item}
+          onRebook={onRebook}
+        />
+      ))}
+    </>
+  );
+};
+
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -423,4 +524,6 @@ const styles = StyleSheet.create({
   },
 });
 
+export { SingleRideCard };
 export default RidesCards;
+

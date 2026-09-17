@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {
   View,
-  Text,
   ScrollView,
-  TouchableOpacity,
   StatusBar,
 } from 'react-native';
 import COLORS from '../../assets/colors';
-import {
-  SearchIcon,
-  GpsTargetIcon,
-  PromoDiscountIcon,
-} from '../../component/Home/Icons';
-import { AddHome, AddWork, Favorites } from '../../component/Home/QuickPlaces';
+import QuickPlaces from '../../component/Home/QuickPlaces';
 import GoogleMap from '../../component/Home/GoogleMap';
-import RecentSearch from '../../component/Home/recentSearch';
+import PlaceNear from '../../component/Home/PlaceNear';
+import SearchTop from '../../component/Home/searchTop';
 import { LocationSearch } from '../../component/Home/LocationSearch';
 import { TripBooking } from '../../component/Home/TripBooking';
 import { DriverSearching } from '../../component/Home/DriverSearching';
 import { CancelRide } from '../../component/Home/CancelRide';
-import { HomeSkeleton } from '../../component/Home/HomeSkeleton';
+import { HomeSkeleton } from '../../component/Home/HomeSkeleton/HomeSkeleton';
 
 const parseLocation = (locStr, fallbackTitle, fallbackSubtitle) => {
   if (!locStr) {
@@ -36,7 +30,6 @@ const parseLocation = (locStr, fallbackTitle, fallbackSubtitle) => {
 const Home = ({ navigation, route, initialParams }) => {
   const params = route?.params || initialParams;
   const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
   const [isLocationModalVisible, setIsLocationModalVisible] = useState(false);
   const [isTripBookingVisible, setIsTripBookingVisible] = useState(false);
   const [isDriverSearchingVisible, setIsDriverSearchingVisible] = useState(false);
@@ -53,7 +46,7 @@ const Home = ({ navigation, route, initialParams }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -106,24 +99,6 @@ const Home = ({ navigation, route, initialParams }) => {
     }
   }, [params]);
 
-  const recentSearches = [
-    {
-      id: '1',
-      title: 'Lalpur Market',
-      subtitle: 'Lalpur, Ranchi, Jharkhand',
-    },
-    {
-      id: '2',
-      title: 'Kanke Road',
-      subtitle: 'Kanke, Ranchi, Jharkhand',
-    },
-    {
-      id: '3',
-      title: 'Harmu Chowk',
-      subtitle: 'Harmu, Ranchi, Jharkhand',
-    },
-  ];
-
   if (isLoading) {
     return <HomeSkeleton />;
   }
@@ -146,163 +121,29 @@ const Home = ({ navigation, route, initialParams }) => {
         }}
       >
         {/* ================= SEARCH BAR ================= */}
-        <View
-          style={{
-            paddingHorizontal: 20,
-            marginBottom: 14,
-          }}
-        >
-          <TouchableOpacity
-            activeOpacity={0.85}
-            onPress={() => setIsLocationModalVisible(true)}
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              backgroundColor: COLORS.cardBg,
-              borderRadius: 15,
-              borderWidth: 1.2,
-              borderColor: COLORS.border,
-              paddingHorizontal: 16,
-              height: 54,
-              shadowColor: COLORS.black,
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.04,
-              shadowRadius: 6,
-              elevation: 2,
-            }}
-          >
-            <SearchIcon size={19} color={COLORS.iconDark} />
-            <View style={{ flex: 1, paddingHorizontal: 12 }}>
-              <Text
-                style={{
-                  fontSize: 15.5,
-                  color: searchQuery ? COLORS.textDark : COLORS.textMuted,
-                }}
-              >
-                {searchQuery || 'Where are you going?'}
-              </Text>
-            </View>
-            <TouchableOpacity
-              style={{
-                width: 36,
-                height: 36,
-                borderRadius: 10,
-                backgroundColor: COLORS.iconBg,
-                borderWidth: 1,
-                borderColor: COLORS.borderSoft,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-              activeOpacity={0.7}
-              onPress={() => setIsLocationModalVisible(true)}
-            >
-              <GpsTargetIcon size={18} color={COLORS.iconDark} />
-            </TouchableOpacity>
-          </TouchableOpacity>
-        </View>
+        <SearchTop
+          onPress={() => setIsLocationModalVisible(true)}
+        />
 
         {/* ================= QUICK DESTINATIONS ================= */}
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            paddingHorizontal: 20,
-            marginBottom: 14,
-          }}
-        >
-          <AddHome onPress={() => console.log('Add home')} />
-          <AddWork onPress={() => console.log('Add work')} />
-          <Favorites onPress={() => console.log('Saved places')} />
-        </View>
+        <QuickPlaces />
 
         {/* ================= CURRENT LOCATION MAP CARD ================= */}
         <GoogleMap />
 
-        {/* ================= RECENT SEARCHES ================= */}
-        <RecentSearch
-          data={recentSearches}
-          onItemPress={item => console.log('Selected:', item.title)}
-          onSeeAllPress={() => console.log('See all')}
+        {/* ================= PLACES NEAR YOU ================= */}
+        <PlaceNear
+          onPlacePress={(place) => {
+            setTripDetails((prev) => ({
+              ...prev,
+              destination: place.title,
+              destinationSubtitle: place.subtitle,
+            }));
+            setIsTripBookingVisible(true);
+          }}
+          onSeeAllPress={() => setIsLocationModalVisible(true)}
         />
 
-        {/* ================= PROMO BANNER ================= */}
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginHorizontal: 20,
-            marginBottom: 16,
-            backgroundColor: COLORS.promoBg,
-            borderWidth: 1.2,
-            borderColor: COLORS.promoBorder,
-            borderRadius: 16,
-            padding: 13,
-          }}
-        >
-          <PromoDiscountIcon size={38} />
-
-          <View
-            style={{
-              flex: 1,
-              marginLeft: 12,
-              marginRight: 8,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 13.5,
-                fontWeight: '800',
-                color: COLORS.textDark,
-              }}
-            >
-              Ride More, Save More!
-            </Text>
-            <Text
-              style={{
-                fontSize: 11,
-                color: COLORS.mediumGrey,
-                marginTop: 2.5,
-                lineHeight: 15,
-              }}
-            >
-              Get up to ₹150 off on your next 3 rides
-            </Text>
-          </View>
-
-          <TouchableOpacity
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              backgroundColor: COLORS.textDark,
-              borderRadius: 20,
-              paddingHorizontal: 12,
-              paddingVertical: 8,
-            }}
-            activeOpacity={0.85}
-            onPress={() => console.log('View Offers')}
-          >
-            <Text
-              style={{
-                fontSize: 11,
-                fontWeight: '700',
-                color: COLORS.white,
-              }}
-            >
-              View Offers
-            </Text>
-            <Text
-              style={{
-                fontSize: 14,
-                fontWeight: '700',
-                color: COLORS.white,
-                marginLeft: 4,
-                marginTop: -1,
-              }}
-            >
-              ›
-            </Text>
-          </TouchableOpacity>
-        </View>
       </ScrollView>
 
       {/* Find Location Modal */}

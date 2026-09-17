@@ -74,6 +74,8 @@ const PickupIndicator = ({ size = 22 }) => (
 const PickDrop = ({
   pickup: initialPickup = 'Current location',
   destination: initialDestination = '',
+  activeField = 'destination',
+  onFocusField,
   onChangePickup,
   onChangeDestination,
   onConfirmTrip,
@@ -84,7 +86,7 @@ const PickDrop = ({
   const [destinationText, setDestinationText] = useState(initialDestination);
 
   useEffect(() => {
-    if (initialPickup) setPickupText(initialPickup);
+    if (initialPickup !== undefined) setPickupText(initialPickup);
   }, [initialPickup]);
 
   useEffect(() => {
@@ -144,6 +146,9 @@ const PickDrop = ({
           {
             flexDirection: 'row',
             alignItems: 'center',
+            backgroundColor: activeField === 'pickup' ? COLORS.yellowLight : 'transparent',
+            borderTopLeftRadius: 17,
+            borderTopRightRadius: 17,
           },
         ]}
       >
@@ -171,6 +176,7 @@ const PickDrop = ({
               },
             ]}
             value={pickupText}
+            onFocus={() => onFocusField?.('pickup')}
             onChangeText={(text) => {
               setPickupText(text);
               onChangePickup?.(text);
@@ -180,6 +186,33 @@ const PickDrop = ({
             returnKeyType="next"
           />
         </View>
+
+        {pickupText.length > 0 && pickupText !== 'Current location' && (
+          <TouchableOpacity
+            onPress={() => {
+              setPickupText('');
+              onChangePickup?.('');
+            }}
+            style={{
+              padding: 4,
+              marginRight: 4,
+            }}
+          >
+            <View
+              style={{
+                width: 18,
+                height: 18,
+                borderRadius: 9,
+                backgroundColor: COLORS.divider,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Text style={{ fontSize: 10, fontWeight: '700', color: COLORS.textMuted }}>✕</Text>
+            </View>
+          </TouchableOpacity>
+        )}
+
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => {
@@ -217,6 +250,9 @@ const PickDrop = ({
           {
             flexDirection: 'row',
             alignItems: 'center',
+            backgroundColor: activeField === 'destination' ? COLORS.yellowLight : 'transparent',
+            borderBottomLeftRadius: 17,
+            borderBottomRightRadius: 17,
           },
         ]}
       >
@@ -244,6 +280,7 @@ const PickDrop = ({
               },
             ]}
             value={destinationText}
+            onFocus={() => onFocusField?.('destination')}
             onChangeText={(text) => {
               setDestinationText(text);
               onChangeDestination?.(text);
@@ -254,6 +291,33 @@ const PickDrop = ({
             onSubmitEditing={handleConfirm}
           />
         </View>
+
+        {destinationText.length > 0 && (
+          <TouchableOpacity
+            onPress={() => {
+              setDestinationText('');
+              onChangeDestination?.('');
+            }}
+            style={{
+              padding: 4,
+              marginRight: 6,
+            }}
+          >
+            <View
+              style={{
+                width: 18,
+                height: 18,
+                borderRadius: 9,
+                backgroundColor: COLORS.divider,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Text style={{ fontSize: 10, fontWeight: '700', color: COLORS.textMuted }}>✕</Text>
+            </View>
+          </TouchableOpacity>
+        )}
+
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => {

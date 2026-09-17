@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StatusBar, Platform } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../assets/colors';
 import images from '../../../assets/images';
 import ProfileInfoCard from './ProfileInfoCard';
@@ -237,11 +238,19 @@ const EditProfile = ({
     },
   ];
 
+  const insets = useSafeAreaInsets();
+  const topInset = Math.max(
+    insets?.top || 0,
+    Platform.OS === 'android' ? (StatusBar.currentHeight || 0) : 0,
+    12,
+  );
+
   return (
     <View
       style={{
         flex: 1,
         backgroundColor: COLORS.background,
+        paddingTop: topInset,
       }}
     >
       <StatusBar barStyle="dark-content" backgroundColor={COLORS.background} />

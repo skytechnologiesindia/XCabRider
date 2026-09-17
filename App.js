@@ -12,6 +12,7 @@ import Rides from './src/screens/rides/Rides';
 import Alerts from './src/screens/alert/Alerts';
 import Profile from './src/screens/profile/Profile';
 import EditProfile from './src/component/Profile/EditProfile/EditProfile';
+import Setting from './src/component/Profile/Settings/Setting';
 
 const App = () => {
   const [currentScreen, setCurrentScreen] = useState('OnBoarding');
@@ -31,7 +32,7 @@ const App = () => {
     goBack: () => {
       setScreenParams(null);
       if (currentScreen === 'Rides' || currentScreen === 'Alerts') setCurrentScreen('Home');
-      else if (currentScreen === 'EditProfile') setCurrentScreen('Profile');
+      else if (currentScreen === 'EditProfile' || currentScreen === 'Setting') setCurrentScreen('Profile');
       else if (currentScreen === 'Profile') setCurrentScreen('Home');
       else if (currentScreen === 'Home') setCurrentScreen('Otp');
       else if (currentScreen === 'Otp') setCurrentScreen('Login');
@@ -55,6 +56,7 @@ const App = () => {
         return 'ALERTS';
       case 'Profile':
       case 'EditProfile':
+      case 'Setting':
         return 'PROFILE';
       default:
         return 'HOME';
@@ -100,10 +102,12 @@ const App = () => {
       ) : (
         <View style={{ flex: 1, backgroundColor: COLORS.background }}>
           {/* ================= FIXED STATIC HEADER ================= */}
-          <Header
-            navigation={navigation}
-            safeAreaTop
-          />
+          {currentScreen === 'Home' && (
+            <Header
+              navigation={navigation}
+              safeAreaTop
+            />
+          )}
 
           {/* ================= DYNAMIC MIDDLE SCREEN ================= */}
           <View style={{ flex: 1 }}>
@@ -131,6 +135,14 @@ const App = () => {
               <EditProfile
                 navigation={navigation}
                 onBack={() => setCurrentScreen('Profile')}
+              />
+            )}
+
+            {currentScreen === 'Setting' && (
+              <Setting
+                navigation={navigation}
+                onBack={() => setCurrentScreen('Profile')}
+                showFooter={false}
               />
             )}
           </View>

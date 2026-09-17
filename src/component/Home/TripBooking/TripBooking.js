@@ -57,7 +57,7 @@ const TripBooking = ({
 
             const timer = setTimeout(() => {
                 setIsLoading(false);
-            }, 1200);
+            }, 1000);
 
             return () => clearTimeout(timer);
         }

@@ -5,167 +5,29 @@ import {
   ScrollView,
   Animated,
   StatusBar,
-  StyleSheet,
   Dimensions,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../assets/colors';
+import styles from '../../../assets/styles';
+import {
+  UserIcon,
+  LocationPinIcon,
+  ReceiptIcon,
+  EmergencyIcon,
+  HelpIcon,
+  SettingsIcon,
+} from '../Icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
-// 1. Vector Icon: User / Personal Details
-const UserIcon = ({ size = 18, color = COLORS.textLight }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.44,
-        height: size * 0.44,
-        borderRadius: (size * 0.44) / 2,
-        borderWidth: 1.6,
-        borderColor: color,
-      }}
-    />
-    <View
-      style={{
-        width: size * 0.78,
-        height: size * 0.38,
-        borderTopLeftRadius: size * 0.38,
-        borderTopRightRadius: size * 0.38,
-        borderWidth: 1.6,
-        borderColor: color,
-        borderBottomWidth: 0,
-        marginTop: 1.5,
-      }}
-    />
-  </View>
-);
-
-// 2. Vector Icon: Location Pin
-const LocationPinIcon = ({ size = 18, color = COLORS.textLight }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.65,
-        height: size * 0.65,
-        borderRadius: (size * 0.65) / 2,
-        borderWidth: 1.6,
-        borderColor: color,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <View
-        style={{
-          width: size * 0.22,
-          height: size * 0.22,
-          borderRadius: (size * 0.22) / 2,
-          backgroundColor: color,
-        }}
-      />
-    </View>
-    <View
-      style={{
-        width: 0,
-        height: 0,
-        borderLeftWidth: 3,
-        borderRightWidth: 3,
-        borderTopWidth: 4,
-        borderLeftColor: 'transparent',
-        borderRightColor: 'transparent',
-        borderTopColor: color,
-        marginTop: -0.5,
-      }}
-    />
-  </View>
-);
-
-// 3. Vector Icon: Receipts & Invoices
-const ReceiptIcon = ({ size = 18, color = COLORS.textLight }) => (
-  <View
-    style={{
-      width: size * 0.7,
-      height: size * 0.85,
-      borderWidth: 1.6,
-      borderColor: color,
-      borderRadius: 3,
-      paddingHorizontal: 2.5,
-      paddingVertical: 3,
-      justifyContent: 'space-between',
-    }}
-  >
-    <View style={{ width: '80%', height: 1.4, backgroundColor: color, borderRadius: 0.7 }} />
-    <View style={{ width: '60%', height: 1.4, backgroundColor: color, borderRadius: 0.7 }} />
-    <View style={{ width: '70%', height: 1.4, backgroundColor: color, borderRadius: 0.7 }} />
-  </View>
-);
-
-// 4. Vector Icon: Emergency Contacts
-const EmergencyIcon = ({ size = 18, color = COLORS.textLight }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.75,
-        height: size * 0.65,
-        borderWidth: 1.6,
-        borderColor: color,
-        borderRadius: 4,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <View style={{ width: size * 0.35, height: 1.4, backgroundColor: color, borderRadius: 0.7 }} />
-    </View>
-  </View>
-);
-
-// 5. Vector Icon: Help & Safety
-const HelpIcon = ({ size = 18, color = COLORS.textLight }) => (
-  <View
-    style={{
-      width: size * 0.8,
-      height: size * 0.8,
-      borderRadius: (size * 0.8) / 2,
-      borderWidth: 1.6,
-      borderColor: color,
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}
-  >
-    <Text style={{ fontSize: 11, fontWeight: '800', color: color, marginTop: -1 }}>!</Text>
-  </View>
-);
-
-// 6. Vector Icon: Settings
-const SettingsIcon = ({ size = 18, color = COLORS.textLight }) => (
-  <View
-    style={{
-      width: size * 0.8,
-      height: size * 0.8,
-      borderRadius: (size * 0.8) / 2,
-      borderWidth: 1.8,
-      borderColor: color,
-      borderStyle: 'dashed',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}
-  >
-    <View
-      style={{
-        width: size * 0.28,
-        height: size * 0.28,
-        borderRadius: (size * 0.28) / 2,
-        backgroundColor: color,
-      }}
-    />
-  </View>
-);
-
 const SKELETON_MENU_ITEMS = [
-  { id: '1', titleWidth: 115, icon: <UserIcon /> },
-  { id: '2', titleWidth: 95, icon: <LocationPinIcon /> },
-  { id: '3', titleWidth: 135, icon: <ReceiptIcon /> },
-  { id: '4', titleWidth: 145, icon: <EmergencyIcon /> },
-  { id: '5', titleWidth: 100, icon: <HelpIcon /> },
-  { id: '6', titleWidth: 70, icon: <SettingsIcon /> },
+  { id: '1', titleWidth: 115, icon: <UserIcon size={18} color={COLORS.textLight} /> },
+  { id: '2', titleWidth: 95, icon: <LocationPinIcon size={18} color={COLORS.textLight} /> },
+  { id: '3', titleWidth: 135, icon: <ReceiptIcon size={18} color={COLORS.textLight} /> },
+  { id: '4', titleWidth: 145, icon: <EmergencyIcon size={18} color={COLORS.textLight} /> },
+  { id: '5', titleWidth: 100, icon: <HelpIcon size={18} color={COLORS.textLight} /> },
+  { id: '6', titleWidth: 70, icon: <SettingsIcon size={18} color={COLORS.textLight} /> },
 ];
 
 /**
@@ -190,7 +52,7 @@ const ShimmerBlock = ({
           width,
           height,
           borderRadius,
-          backgroundColor: '#EDE7DC',
+          backgroundColor: COLORS.pillBg,
           overflow: 'hidden',
         },
         style,
@@ -203,7 +65,7 @@ const ShimmerBlock = ({
           bottom: 0,
           left: 0,
           width: SCREEN_WIDTH,
-          backgroundColor: '#FFFFFF',
+          backgroundColor: COLORS.white,
           opacity: 0.55,
           transform: [{ translateX }],
         }}
@@ -213,6 +75,7 @@ const ShimmerBlock = ({
 };
 
 const ProfileSkeleton = () => {
+  const insets = useSafeAreaInsets();
   const shimmerAnim = useRef(new Animated.Value(0)).current;
   const pulseAnim = useRef(new Animated.Value(0.85)).current;
 
@@ -252,34 +115,79 @@ const ProfileSkeleton = () => {
   }, [shimmerAnim, pulseAnim]);
 
   return (
-    <View style={uiStyles.container}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: COLORS.background,
+        paddingTop: Math.max(insets.top, 14),
+      }}
+    >
       <StatusBar barStyle="dark-content" backgroundColor={COLORS.background} />
 
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={uiStyles.scrollContent}
+        contentContainerStyle={[styles.pdt12, styles.pdb24]}
       >
         {/* ================= PAGE TITLE ================= */}
-        <View style={uiStyles.titleContainer}>
-          <Text style={uiStyles.pageTitle}>Profile</Text>
+        <View style={[styles.mh20, styles.mb12]}>
+          <Text style={[styles.ts22, { fontWeight: '800', color: COLORS.textDark }]}>
+            Profile
+          </Text>
         </View>
 
         {/* ================= 1. PROFILE INFO CARD (1:1 with Profile.js) ================= */}
-        <View style={uiStyles.profileCard}>
-          <View style={uiStyles.profileCardLeft}>
+        <View
+          style={[
+            styles.mh20,
+            styles.mt8,
+            styles.mb16,
+            styles.p16,
+            {
+              backgroundColor: COLORS.cardBg,
+              borderRadius: 18,
+              borderWidth: 1.2,
+              borderColor: COLORS.border,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              shadowColor: COLORS.black,
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.04,
+              shadowRadius: 6,
+              elevation: 2,
+            },
+          ]}
+        >
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              flex: 1,
+            }}
+          >
             {/* Avatar with yellow ring */}
-            <View style={uiStyles.avatarWrapper}>
+            <View
+              style={{
+                width: 62,
+                height: 62,
+                borderRadius: 31,
+                borderWidth: 2.2,
+                borderColor: COLORS.yellow,
+                overflow: 'hidden',
+                backgroundColor: COLORS.pillBg,
+              }}
+            >
               <ShimmerBlock
                 width="100%"
                 height="100%"
                 borderRadius={31}
-                style={{ backgroundColor: '#EAE5D8' }}
+                style={{ backgroundColor: COLORS.pillBg }}
                 shimmerAnim={shimmerAnim}
               />
             </View>
 
             {/* User Details */}
-            <View style={uiStyles.userDetails}>
+            <View style={[styles.ml12, { flex: 1 }]}>
               {/* Name Line */}
               <ShimmerBlock
                 width={115}
@@ -292,43 +200,113 @@ const ProfileSkeleton = () => {
                 width={95}
                 height={11}
                 borderRadius={5}
-                style={uiStyles.mt6}
+                style={styles.mt4}
                 shimmerAnim={shimmerAnim}
               />
               {/* Rating Badge */}
-              <View style={uiStyles.ratingBadge}>
-                <Text style={uiStyles.starIcon}>★</Text>
-                <Text style={uiStyles.ratingValue}>4.9</Text>
-                <Text style={uiStyles.ratingLabel}>Rating</Text>
+              <View
+                style={[
+                  styles.mt8,
+                  styles.pdh8,
+                  styles.pdv4,
+                  {
+                    backgroundColor: COLORS.iconBg,
+                    borderRadius: 8,
+                    borderWidth: 1,
+                    borderColor: COLORS.border,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    alignSelf: 'flex-start',
+                  },
+                ]}
+              >
+                <Text style={[styles.ts12, { color: COLORS.yellowAccent, marginRight: 4 }]}>★</Text>
+                <Text style={[styles.ts12, { fontWeight: '800', color: COLORS.textDark }]}>4.9</Text>
+                <Text style={[styles.ts11, styles.ml4, { fontWeight: '600', color: COLORS.textMuted }]}>Rating</Text>
               </View>
             </View>
           </View>
 
           {/* Stat: Rides Completed */}
-          <View style={uiStyles.ridesStatColumn}>
+          <View style={{ alignItems: 'center', paddingLeft: 8 }}>
             <ShimmerBlock
               width={32}
               height={22}
               borderRadius={5}
               shimmerAnim={shimmerAnim}
             />
-            <Text style={uiStyles.ridesStatLabel}>Rides Completed</Text>
+            <Text
+              style={[
+                styles.mt4,
+                styles.ts10,
+                {
+                  fontWeight: '600',
+                  color: COLORS.textMuted,
+                  textAlign: 'center',
+                },
+              ]}
+            >
+              Rides Completed
+            </Text>
           </View>
         </View>
 
         {/* ================= 2. MENU LIST CARD (1:1 with Profile.js) ================= */}
-        <View style={uiStyles.menuCard}>
+        <View
+          style={[
+            styles.mh20,
+            {
+              backgroundColor: COLORS.cardBg,
+              borderRadius: 18,
+              borderWidth: 1.2,
+              borderColor: COLORS.border,
+              overflow: 'hidden',
+              shadowColor: COLORS.black,
+              shadowOffset: { width: 0, height: 2 },
+              shadowOpacity: 0.04,
+              shadowRadius: 6,
+              elevation: 2,
+            },
+          ]}
+        >
           {SKELETON_MENU_ITEMS.map((item, index) => (
             <React.Fragment key={item.id}>
-              <View style={uiStyles.menuRow}>
-                <View style={uiStyles.menuRowLeft}>
+              <View
+                style={[
+                  styles.pdh16,
+                  styles.pdv12,
+                  {
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    flex: 1,
+                  }}
+                >
                   {/* Icon in soft cream rounded box */}
-                  <View style={uiStyles.menuIconBox}>
+                  <View
+                    style={{
+                      width: 36,
+                      height: 36,
+                      borderRadius: 10,
+                      backgroundColor: COLORS.creamLight,
+                      borderWidth: 1,
+                      borderColor: COLORS.borderSoft,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
                     {item.icon}
                   </View>
 
                   {/* Title & Subtitle lines */}
-                  <View style={uiStyles.menuTextWrap}>
+                  <View style={[styles.ml12, { flex: 1 }]}>
                     <ShimmerBlock
                       width={item.titleWidth}
                       height={13.5}
@@ -339,196 +317,70 @@ const ProfileSkeleton = () => {
                       width={item.titleWidth * 0.75}
                       height={9}
                       borderRadius={4}
-                      style={uiStyles.mt6}
+                      style={styles.mt4}
                       shimmerAnim={shimmerAnim}
                     />
                   </View>
                 </View>
 
                 {/* Right Arrow */}
-                <Text style={uiStyles.menuChevron}>›</Text>
+                <Text
+                  style={[
+                    styles.ts18,
+                    {
+                      color: COLORS.textMuted,
+                      fontWeight: '600',
+                    },
+                  ]}
+                >
+                  ›
+                </Text>
               </View>
 
               {/* Divider between rows */}
               {index < SKELETON_MENU_ITEMS.length - 1 && (
-                <View style={uiStyles.menuDivider} />
+                <View
+                  style={[
+                    styles.mh16,
+                    {
+                      height: 1,
+                      backgroundColor: COLORS.divider,
+                    },
+                  ]}
+                />
               )}
             </React.Fragment>
           ))}
         </View>
 
         {/* ================= 3. LOG OUT BUTTON ================= */}
-        <View style={uiStyles.logoutContainer}>
-          <Text style={uiStyles.logoutText}>Log out</Text>
+        <View
+          style={[
+            styles.mt12,
+            styles.mb24,
+            styles.pdv8,
+            {
+              alignItems: 'center',
+              justifyContent: 'center',
+            },
+          ]}
+        >
+          <Text
+            style={[
+              styles.ts14,
+              {
+                fontWeight: '700',
+                color: COLORS.textMuted,
+              },
+            ]}
+          >
+            Log out
+          </Text>
         </View>
       </ScrollView>
     </View>
   );
 };
 
-const uiStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.background,
-  },
-  scrollContent: {
-    paddingTop: 12,
-    paddingBottom: 24,
-  },
-  titleContainer: {
-    marginHorizontal: 20,
-    marginBottom: 12,
-  },
-  pageTitle: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: COLORS.textDark,
-  },
-  mt6: {
-    marginTop: 6,
-  },
-
-  // 1. Profile Info Card (1:1 with Profile.js)
-  profileCard: {
-    marginHorizontal: 20,
-    marginTop: 8,
-    marginBottom: 16,
-    padding: 16,
-    backgroundColor: COLORS.cardBg,
-    borderRadius: 18,
-    borderWidth: 1.2,
-    borderColor: COLORS.border,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.04,
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  profileCardLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-  },
-  avatarWrapper: {
-    width: 62,
-    height: 62,
-    borderRadius: 31,
-    borderWidth: 2.2,
-    borderColor: COLORS.yellow,
-    overflow: 'hidden',
-    backgroundColor: '#EAE5D8',
-  },
-  userDetails: {
-    marginLeft: 12,
-    flex: 1,
-  },
-  ratingBadge: {
-    marginTop: 8,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    backgroundColor: COLORS.iconBg,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-  },
-  starIcon: {
-    fontSize: 12,
-    color: COLORS.yellowAccent,
-    marginRight: 4,
-  },
-  ratingValue: {
-    fontSize: 12,
-    fontWeight: '800',
-    color: COLORS.textDark,
-  },
-  ratingLabel: {
-    fontSize: 10.5,
-    fontWeight: '600',
-    color: COLORS.textMuted,
-    marginLeft: 4,
-  },
-  ridesStatColumn: {
-    alignItems: 'center',
-    paddingLeft: 8,
-  },
-  ridesStatLabel: {
-    marginTop: 4,
-    fontSize: 10,
-    fontWeight: '600',
-    color: COLORS.textMuted,
-    textAlign: 'center',
-  },
-
-  // 2. Menu List Card (1:1 with Profile.js)
-  menuCard: {
-    marginHorizontal: 20,
-    backgroundColor: COLORS.cardBg,
-    borderRadius: 18,
-    borderWidth: 1.2,
-    borderColor: COLORS.border,
-    overflow: 'hidden',
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.04,
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  menuRow: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  menuRowLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-  },
-  menuIconBox: {
-    width: 36,
-    height: 36,
-    borderRadius: 10,
-    backgroundColor: '#FAF6ED',
-    borderWidth: 1,
-    borderColor: '#EFEAE0',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  menuTextWrap: {
-    marginLeft: 12,
-    flex: 1,
-  },
-  menuChevron: {
-    fontSize: 18,
-    color: COLORS.textMuted,
-    fontWeight: '600',
-  },
-  menuDivider: {
-    marginHorizontal: 16,
-    height: 1,
-    backgroundColor: COLORS.divider,
-  },
-
-  // 3. Logout Button
-  logoutContainer: {
-    marginTop: 12,
-    marginBottom: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 8,
-  },
-  logoutText: {
-    fontSize: 13.5,
-    fontWeight: '700',
-    color: COLORS.textMuted,
-  },
-});
-
+export { ProfileSkeleton };
 export default ProfileSkeleton;
