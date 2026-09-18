@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import COLORS from '../../../assets/colors';
-import { WorkIcon } from '../Icons';
+import styles from '../../../assets/styles';
+import { WorkIcon } from '../../../assets/icons/Icons';
 
 /**
  * AddWork quick destination card component
@@ -14,63 +15,76 @@ const AddWork = ({
 }) => {
   return (
     <TouchableOpacity
-      style={[styles.card, style]}
+      style={[
+        styles.pdv12,
+        styles.pdh8,
+        styles.mh4,
+        {
+          flex: 1,
+          backgroundColor: COLORS.cardBg,
+          borderRadius: 14,
+          borderWidth: 1.2,
+          borderColor: COLORS.border,
+          flexDirection: 'row',
+          alignItems: 'center',
+          shadowColor: COLORS.black,
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.03,
+          shadowRadius: 5,
+          elevation: 1,
+        },
+        style,
+      ]}
       activeOpacity={0.8}
       onPress={onPress || (() => console.log('Add work'))}
     >
-      <View style={styles.iconWrap}>
+      <View
+        style={{
+          width: 34,
+          height: 34,
+          borderRadius: 10,
+          backgroundColor: COLORS.background,
+          borderWidth: 1,
+          borderColor: COLORS.border,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <WorkIcon size={19} color={COLORS.textDark} />
       </View>
-      <View style={styles.textWrap}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subtitle}>{subtitle}</Text>
+      <View
+        style={[
+          styles.ml8,
+          {
+            flex: 1,
+          },
+        ]}
+      >
+        <Text
+          style={[
+            styles.ts13,
+            {
+              fontWeight: '700',
+              color: COLORS.textDark,
+            },
+          ]}
+        >
+          {title}
+        </Text>
+        <Text
+          style={[
+            styles.ts11,
+            {
+              color: COLORS.textMuted,
+              marginTop: 1,
+            },
+          ]}
+        >
+          {subtitle}
+        </Text>
       </View>
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  card: {
-    flex: 1,
-    marginHorizontal: 3.5,
-    backgroundColor: COLORS.cardBg,
-    borderRadius: 14,
-    borderWidth: 1.2,
-    borderColor: COLORS.border,
-    paddingVertical: 10,
-    paddingHorizontal: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.03,
-    shadowRadius: 5,
-    elevation: 1,
-  },
-  iconWrap: {
-    width: 34,
-    height: 34,
-    borderRadius: 10,
-    backgroundColor: COLORS.background,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textWrap: {
-    marginLeft: 7,
-    flex: 1,
-  },
-  title: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: COLORS.textDark,
-  },
-  subtitle: {
-    fontSize: 10.5,
-    color: COLORS.textMuted,
-    marginTop: 1,
-  },
-});
 
 export default AddWork;

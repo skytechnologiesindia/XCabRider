@@ -93,15 +93,6 @@ const Profile = ({ navigation }) => {
           activeOpacity={0.7}
           onPress={() => navigation?.navigate?.('Login')}
         >
-          <Text
-            style={{
-              fontSize: 13.5,
-              fontWeight: '700',
-              color: COLORS.textMuted,
-            }}
-          >
-            Log out
-          </Text>
         </TouchableOpacity>
       </ScrollView>
 

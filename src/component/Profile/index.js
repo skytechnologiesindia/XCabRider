@@ -5,3 +5,4 @@ export { ProfileSkeleton } from './ProfileSkeleton/ProfileSkeleton';
 export * from './SavedPlace';
 export * from './EmergencyContact';
 export * from './EditProfile';
+export { default as Setting, Settings } from './Settings';

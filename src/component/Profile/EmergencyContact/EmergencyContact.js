@@ -20,111 +20,15 @@ import { AddContactView } from './AddContact';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-// 1. Vector Icon: Close Cross (X)
-const CloseIcon = ({ size = 13, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '-45deg' }],
-      }}
-    />
-  </View>
-);
+import {
+  CloseIcon,
+  PhoneIcon,
+  ShieldSosIcon,
+  MoonOrLockIcon,
+  PlusIcon,
+  TrashIcon,
+} from '../../../assets/icons/Icons';
 
-// 2. Vector Icon: Phone Receiver
-const PhoneIcon = ({ size = 15, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.72,
-        height: size * 0.72,
-        borderWidth: 1.8,
-        borderColor: color,
-        borderRadius: 3,
-        transform: [{ rotate: '15deg' }],
-      }}
-    />
-  </View>
-);
-
-// 3. Vector Icon: SOS Shield
-const ShieldSosIcon = ({ size = 20, color = '#DC2626' }) => (
-  <View
-    style={{
-      width: size,
-      height: size * 1.15,
-      backgroundColor: '#DC2626',
-      borderRadius: size * 0.35,
-      borderBottomLeftRadius: size * 0.5,
-      borderBottomRightRadius: size * 0.5,
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}
-  >
-    <Text style={{ color: '#FFFFFF', fontSize: 7.5, fontWeight: '900', letterSpacing: -0.3 }}>
-      SOS
-    </Text>
-  </View>
-);
-
-// 4. Vector Icon: Lock / Night Moon Icon
-const MoonOrLockIcon = ({ size = 15, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.7,
-        height: size * 0.7,
-        borderRadius: (size * 0.7) / 2,
-        borderWidth: 1.6,
-        borderColor: color,
-        borderLeftWidth: 0,
-        transform: [{ rotate: '-40deg' }],
-      }}
-    />
-  </View>
-);
-
-// 5. Vector Icon: Plus Icon
-const PlusIcon = ({ size = 16, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View style={{ position: 'absolute', width: size * 0.75, height: 2, backgroundColor: color, borderRadius: 1 }} />
-    <View style={{ position: 'absolute', width: 2, height: size * 0.75, backgroundColor: color, borderRadius: 1 }} />
-  </View>
-);
-
-// 6. Vector Icon: Trash / Delete Icon
-const TrashIcon = ({ size = 14, color = '#EF4444' }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View style={{ width: size * 0.65, height: 2, backgroundColor: color, borderRadius: 1 }} />
-    <View
-      style={{
-        width: size * 0.55,
-        height: size * 0.65,
-        borderWidth: 1.4,
-        borderColor: color,
-        borderTopWidth: 0,
-        borderBottomLeftRadius: 2,
-        borderBottomRightRadius: 2,
-        marginTop: 1,
-      }}
-    />
-  </View>
-);
 
 const DEFAULT_CONTACTS = [
   {

@@ -107,12 +107,18 @@ const StarRating = ({ rating = 5 }) => {
   );
 };
 
+import {
+  GreenPickupDot,
+  RedDropPin,
+  CashIcon,
+  UpiBoltIcon,
+  CheckCircleGreenIcon,
+} from '../../../assets/icons/Icons';
+
 // Vector Icon: Cash Note
 const CashBadge = () => (
   <View style={styles.cashBadgeContainer}>
-    <View style={styles.cashIconMini}>
-      <Text style={styles.cashIconSymbol}>💵</Text>
-    </View>
+    <CashIcon size={14} style={styles.cashIconMini} />
     <Text style={styles.cashBadgeText}>Paid in Cash</Text>
   </View>
 );
@@ -120,7 +126,7 @@ const CashBadge = () => (
 // Vector Icon: Online / UPI
 const UpiBadge = () => (
   <View style={styles.upiBadgeContainer}>
-    <Text style={styles.upiIconSymbol}>⚡</Text>
+    <UpiBoltIcon size={13} style={styles.upiIconMini} />
     <Text style={styles.upiBadgeText}>Paid via UPI</Text>
   </View>
 );
@@ -130,11 +136,11 @@ const RouteTimeline = ({ pickup, dropoff, metrics }) => (
   <View style={styles.routeContainer}>
     <View style={styles.routeTimelineColumn}>
       {/* Green Pickup Dot */}
-      <View style={styles.greenPickupDot} />
+      <GreenPickupDot size={10} />
       {/* Vertical Dashed Line */}
       <View style={styles.dashedLine} />
       {/* Red Drop Pin */}
-      <View style={styles.redDropPin} />
+      <RedDropPin size={12} />
     </View>
 
     <View style={styles.routeAddressesColumn}>
@@ -185,7 +191,8 @@ const SingleRideCard = ({ ride, onRebook }) => {
         {/* Status Pill Badge */}
         {isCompleted ? (
           <View style={styles.completedBadge}>
-            <Text style={styles.completedBadgeText}>Completed ✓</Text>
+            <CheckCircleGreenIcon size={11} style={{ marginRight: 4 }} />
+            <Text style={styles.completedBadgeText}>Completed</Text>
           </View>
         ) : (
           <View style={styles.cancelledBadge}>
@@ -458,6 +465,9 @@ const styles = StyleSheet.create({
     paddingVertical: 3.5,
     borderRadius: 8,
     alignSelf: 'flex-start',
+  },
+  upiIconMini: {
+    marginRight: 4,
   },
   upiIconSymbol: {
     fontSize: 11,

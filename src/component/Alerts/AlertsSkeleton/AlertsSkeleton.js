@@ -10,7 +10,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { CarBadgeIcon } from '../AlertsCards';
+import { CarBadgeIcon } from '../../../assets/icons/Icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -125,6 +125,18 @@ const AlertsSkeleton = ({ navigation }) => {
             ]}
           >
             Alerts
+          </Text>
+          <Text
+            style={[
+              styles.ts13,
+              styles.mt4,
+              {
+                color: COLORS.textMuted,
+                fontWeight: '500',
+              },
+            ]}
+          >
+            Your notifications will appear here.
           </Text>
         </View>
 

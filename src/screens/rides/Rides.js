@@ -8,14 +8,17 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../assets/colors';
 import Footer from '../../component/Footer/Footer';
-import RidesCards from '../../component/Rides/RidesCards/RidesCards';
+import RidesCards, { DEFAULT_RIDES_DATA } from '../../component/Rides/RidesCards/RidesCards';
+import RidesNoData from '../../component/Rides/NoData/RidesNoData';
 import { RidesSkeleton } from '../../component/Rides/RidesSkeleton/RidesSkeleton';
 
 const Rides = ({
   navigation,
+  initialRides = DEFAULT_RIDES_DATA,
   showHeaderFooter = false, // When mounted in App.js shell, Header and Footer are already provided
 }) => {
   const insets = useSafeAreaInsets();
+  const [ridesList, setRidesList] = useState(initialRides);
   const [isLoading, setIsLoading] = useState(true);
 
   // Simulate initial lazy loading / fetch ride history
@@ -58,6 +61,7 @@ const Rides = ({
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
+          flexGrow: 1,
           paddingTop: 12,
           paddingBottom: 28,
         }}
@@ -91,8 +95,15 @@ const Rides = ({
           </Text>
         </View>
 
-        {/* List of Ride History Cards rendered via RidesCards component */}
-        <RidesCards onRebook={handleRebook} />
+        {/* List of Ride History Cards or Empty State */}
+        {ridesList.length === 0 ? (
+          <RidesNoData
+            navigation={navigation}
+            onBookRide={() => navigation?.navigate?.('Home')}
+          />
+        ) : (
+          <RidesCards rides={ridesList} onRebook={handleRebook} />
+        )}
       </ScrollView>
 
       {/* Optional Bottom Footer if used standalone */}

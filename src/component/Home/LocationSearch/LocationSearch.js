@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { ClockIcon } from '../Icons';
+import { ClockIcon } from '../../../assets/icons/Icons';
 import PickDrop from './PickDrop';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');

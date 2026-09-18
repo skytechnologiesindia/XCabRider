@@ -3,57 +3,9 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
 
-// Mini Yellow Car Icon for Notification Badge
-export const CarBadgeIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size * 0.75, alignItems: 'center', justifyContent: 'center' }}>
-    {/* Roof */}
-    <View
-      style={{
-        width: size * 0.6,
-        height: size * 0.32,
-        backgroundColor: color,
-        borderTopLeftRadius: 3,
-        borderTopRightRadius: 3,
-      }}
-    />
-    {/* Main Body */}
-    <View
-      style={{
-        width: size,
-        height: size * 0.36,
-        backgroundColor: color,
-        borderRadius: 2.5,
-        marginTop: 1,
-      }}
-    />
-    {/* Wheels */}
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: size * 0.75,
-        marginTop: -1,
-      }}
-    >
-      <View
-        style={{
-          width: 3.5,
-          height: 2.5,
-          borderRadius: 1.2,
-          backgroundColor: COLORS.textDark,
-        }}
-      />
-      <View
-        style={{
-          width: 3.5,
-          height: 2.5,
-          borderRadius: 1.2,
-          backgroundColor: COLORS.textDark,
-        }}
-      />
-    </View>
-  </View>
-);
+import { CarBadgeIcon } from '../../assets/icons/Icons';
+export { CarBadgeIcon };
+
 
 const AlertsCards = ({
   item,

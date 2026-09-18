@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import COLORS from '../../assets/colors';
-import { SearchIcon, GpsTargetIcon } from './Icons';
+import { SearchIcon, GpsTargetIcon } from '../../assets/icons/Icons';
 
 /**
  * SearchTop component

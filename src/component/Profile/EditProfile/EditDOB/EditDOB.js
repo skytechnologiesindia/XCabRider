@@ -49,94 +49,14 @@ const MONTH_SHORT = [
 
 const WEEK_DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
-// Vector Icons
-const CloseIcon = ({ size = 12, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '-45deg' }],
-      }}
-    />
-  </View>
-);
+import {
+  CloseIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronDownIcon,
+  CalendarBadgeIcon,
+} from '../../../../assets/icons/Icons';
 
-const ChevronLeftIcon = ({ size = 10, color = COLORS.textDark }) => (
-  <View
-    style={{
-      width: size,
-      height: size,
-      borderLeftWidth: 2,
-      borderBottomWidth: 2,
-      borderColor: color,
-      transform: [{ rotate: '45deg' }],
-      marginLeft: size * 0.25,
-    }}
-  />
-);
-
-const ChevronRightIcon = ({ size = 10, color = COLORS.textDark }) => (
-  <View
-    style={{
-      width: size,
-      height: size,
-      borderTopWidth: 2,
-      borderRightWidth: 2,
-      borderColor: color,
-      transform: [{ rotate: '45deg' }],
-      marginRight: size * 0.25,
-    }}
-  />
-);
-
-const ChevronDownIcon = ({ size = 8, color = COLORS.textDark }) => (
-  <View
-    style={{
-      width: size,
-      height: size,
-      borderRightWidth: 2,
-      borderBottomWidth: 2,
-      borderColor: color,
-      transform: [{ rotate: '45deg' }],
-      marginBottom: size * 0.25,
-      marginLeft: 6,
-    }}
-  />
-);
-
-const CalendarBadgeIcon = ({ size = 16, color = COLORS.textDark }) => (
-  <View
-    style={{
-      width: size,
-      height: size * 0.9,
-      borderRadius: 3.5,
-      borderWidth: 1.5,
-      borderColor: color,
-      paddingTop: 2.5,
-      alignItems: 'center',
-    }}
-  >
-    <View style={{ width: '100%', height: 1.4, backgroundColor: color }} />
-    <View style={{ flexDirection: 'row', marginTop: 2, justifyContent: 'space-around', width: '75%' }}>
-      <View style={{ width: 2, height: 2, backgroundColor: color, borderRadius: 1 }} />
-      <View style={{ width: 2, height: 2, backgroundColor: color, borderRadius: 1 }} />
-    </View>
-  </View>
-);
 
 // Helper to parse date string like "15 Aug 1998"
 const parseDOBString = (dobStr) => {

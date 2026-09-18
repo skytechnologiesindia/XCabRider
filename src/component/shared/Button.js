@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import COLORS from '../../assets/colors';
+import { GoogleIcon } from '../../assets/icons/Icons';
 
 export function GoogleButton({ onPress }) {
   return (
@@ -19,16 +20,7 @@ export function GoogleButton({ onPress }) {
       activeOpacity={0.85}
       onPress={onPress}
     >
-      <Text
-        style={{
-          fontSize: 16,
-          fontWeight: '800',
-          color: COLORS.googleBlue,
-          marginRight: 10,
-        }}
-      >
-        G
-      </Text>
+      <GoogleIcon size={20} style={{ marginRight: 10 }} />
       <Text
         style={{
           fontSize: 15,

@@ -4,33 +4,8 @@ import images from '../../../assets/images';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 
-// Crosshair GPS Target Icon
-const CrosshairIcon = ({ size = 16, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.72,
-        height: size * 0.72,
-        borderRadius: (size * 0.72) / 2,
-        borderWidth: 1.5,
-        borderColor: color,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <View
-        style={{
-          width: 3,
-          height: 3,
-          borderRadius: 1.5,
-          backgroundColor: color,
-        }}
-      />
-    </View>
-    <View style={{ position: 'absolute', width: 1.5, height: size, backgroundColor: color }} />
-    <View style={{ position: 'absolute', width: size, height: 1.5, backgroundColor: color }} />
-  </View>
-);
+import { GpsTargetIcon as CrosshairIcon } from '../../../assets/icons/Icons';
+
 
 const TripMap = ({ image, onCenterPress }) => {
   return (

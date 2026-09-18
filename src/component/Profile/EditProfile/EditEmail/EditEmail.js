@@ -19,31 +19,8 @@ import styles from '../../../../assets/styles';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-// Close (×) Vector Icon
-const CloseIcon = ({ size = 12, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '-45deg' }],
-      }}
-    />
-  </View>
-);
+import { CloseIcon } from '../../../../assets/icons/Icons';
+
 
 
 // Clear Circle Icon

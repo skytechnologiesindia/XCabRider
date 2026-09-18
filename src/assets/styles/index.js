@@ -216,9 +216,11 @@ const styles = StyleSheet.create({
   ts23: { fontSize: 23 },
   ts24: { fontSize: 24 },
   ts25: { fontSize: 25 },
-
-
- 
+  ts26: { fontSize: 26 },
+  ts28: { fontSize: 28 },
+  ts30: { fontSize: 30 },
+  ts32: { fontSize: 32 },
+  ts36: { fontSize: 36 },
 });
 
 export default styles;

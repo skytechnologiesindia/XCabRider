@@ -17,7 +17,7 @@ import {
   RefreshIcon,
   ClockIcon,
   LocationPin,
-} from '../Icons';
+} from '../../../assets/icons/Icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 

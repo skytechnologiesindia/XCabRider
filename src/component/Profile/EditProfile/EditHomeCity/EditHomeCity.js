@@ -21,33 +21,15 @@ import styles from '../../../../assets/styles';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-// Close (×) Vector Icon
-const CloseIcon = ({ size = 12, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '-45deg' }],
-      }}
-    />
-  </View>
-);
+import {
+  CloseIcon,
+  SearchIcon as SearchVectorIcon,
+  LocationPinIcon as PinVectorIcon,
+  ChevronRightIcon,
+  CheckVectorIcon,
+} from '../../../../assets/icons/Icons';
 
-// Clear (×) Circle Icon
+// Clear (×) Circle Icon using WebP CloseIcon
 const ClearInputIcon = ({ size = 16, color = COLORS.textMuted }) => (
   <View
     style={{
@@ -60,107 +42,6 @@ const ClearInputIcon = ({ size = 16, color = COLORS.textMuted }) => (
     }}
   >
     <CloseIcon size={8} color={color} />
-  </View>
-);
-
-// Search / Magnifying Glass Vector Icon
-const SearchVectorIcon = ({ size = 16, color = COLORS.textMuted }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.72,
-        height: size * 0.72,
-        borderRadius: (size * 0.72) / 2,
-        borderWidth: 1.8,
-        borderColor: color,
-        alignSelf: 'flex-start',
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        width: size * 0.42,
-        height: 1.8,
-        backgroundColor: color,
-        borderRadius: 0.9,
-        transform: [{ rotate: '45deg' }],
-        right: 0,
-        bottom: 1.5,
-      }}
-    />
-  </View>
-);
-
-// Location Pin Vector Icon
-const PinVectorIcon = ({ size = 16, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size * 1.2, alignItems: 'center', justifyContent: 'flex-start' }}>
-    <View
-      style={{
-        width: size * 0.88,
-        height: size * 0.88,
-        borderRadius: (size * 0.88) / 2,
-        borderWidth: 1.8,
-        borderColor: color,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <View
-        style={{
-          width: size * 0.28,
-          height: size * 0.28,
-          borderRadius: (size * 0.28) / 2,
-          backgroundColor: color,
-        }}
-      />
-    </View>
-    <View
-      style={{
-        width: 0,
-        height: 0,
-        borderLeftWidth: size * 0.22,
-        borderRightWidth: size * 0.22,
-        borderTopWidth: size * 0.35,
-        borderLeftColor: 'transparent',
-        borderRightColor: 'transparent',
-        borderTopColor: color,
-        marginTop: -1.5,
-      }}
-    />
-  </View>
-);
-
-// Chevron Right (>) Vector Icon
-const ChevronRightIcon = ({ size = 12, color = COLORS.textMuted }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.55,
-        height: size * 0.55,
-        borderTopWidth: 1.8,
-        borderRightWidth: 1.8,
-        borderColor: color,
-        transform: [{ rotate: '45deg' }],
-        marginLeft: -2,
-      }}
-    />
-  </View>
-);
-
-// Checkmark Vector Icon
-const CheckVectorIcon = ({ size = 12, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.7,
-        height: size * 0.4,
-        borderLeftWidth: 2,
-        borderBottomWidth: 2,
-        borderColor: color,
-        transform: [{ rotate: '-45deg' }],
-        marginTop: -2,
-      }}
-    />
   </View>
 );
 

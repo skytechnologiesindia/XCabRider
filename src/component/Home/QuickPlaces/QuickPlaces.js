@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
+import styles from '../../../assets/styles';
 import AddHome from './AddHome';
 import AddWork from './AddWork';
 import Favorites from './Favorites';
@@ -15,22 +16,23 @@ const QuickPlaces = ({
   containerStyle,
 }) => {
   return (
-    <View style={[styles.container, containerStyle]}>
+    <View
+      style={[
+        styles.pdh20,
+        styles.mb16,
+        {
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        },
+        containerStyle,
+      ]}
+    >
       <AddHome onPress={onAddHome || (() => console.log('Add home'))} />
       <AddWork onPress={onAddWork || (() => console.log('Add work'))} />
       <Favorites onPress={onFavorites || (() => console.log('Saved places'))} />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    marginBottom: 14,
-  },
-});
 
 export { QuickPlaces };
 export default QuickPlaces;

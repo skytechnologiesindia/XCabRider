@@ -11,6 +11,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 import Footer from '../../Footer/Footer';
+import { GreenPickupDot, RedDropPin } from '../../../assets/icons/Icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -262,14 +263,7 @@ const RidesSkeleton = ({
                 ]}
               >
                 {/* Green Pickup Dot */}
-                <View
-                  style={{
-                    width: 9,
-                    height: 9,
-                    borderRadius: 4.5,
-                    backgroundColor: '#2E7D32',
-                  }}
-                />
+                <GreenPickupDot size={10} />
                 {/* Dashed Line */}
                 <View
                   style={{
@@ -280,14 +274,7 @@ const RidesSkeleton = ({
                   }}
                 />
                 {/* Red Drop Pin */}
-                <View
-                  style={{
-                    width: 9,
-                    height: 9,
-                    borderRadius: 4.5,
-                    backgroundColor: COLORS.redPin,
-                  }}
-                />
+                <RedDropPin size={12} />
               </View>
 
               <View style={{ flex: 1 }}>

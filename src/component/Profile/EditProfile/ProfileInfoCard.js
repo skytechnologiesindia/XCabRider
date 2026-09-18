@@ -4,68 +4,8 @@ import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 import images from '../../../assets/images';
 
-// Mini Camera Icon for Avatar
-const CameraIcon = ({ size = 12, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size * 0.8, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.4,
-        height: 2,
-        backgroundColor: color,
-        borderTopLeftRadius: 1,
-        borderTopRightRadius: 1,
-      }}
-    />
-    <View
-      style={{
-        width: size,
-        height: size * 0.65,
-        borderRadius: 2,
-        borderWidth: 1.4,
-        borderColor: color,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <View
-        style={{
-          width: size * 0.35,
-          height: size * 0.35,
-          borderRadius: (size * 0.35) / 2,
-          borderWidth: 1,
-          borderColor: color,
-        }}
-      />
-    </View>
-  </View>
-);
+import { CameraIcon, VerifiedBadge } from '../../../assets/icons/Icons';
 
-// Blue Checkmark Icon for Verified Name
-const VerifiedBadge = ({ size = 16 }) => (
-  <View
-    style={{
-      width: size,
-      height: size,
-      borderRadius: size / 2,
-      backgroundColor: '#2563EB',
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginLeft: 6,
-    }}
-  >
-    <View
-      style={{
-        width: size * 0.45,
-        height: size * 0.25,
-        borderLeftWidth: 1.6,
-        borderBottomWidth: 1.6,
-        borderColor: COLORS.white,
-        transform: [{ rotate: '-45deg' }],
-        marginTop: -1.5,
-      }}
-    />
-  </View>
-);
 
 const ProfileInfoCard = ({
   fullName = 'Yasir Boss',
@@ -151,7 +91,7 @@ const ProfileInfoCard = ({
           >
             {fullName}
           </Text>
-          <VerifiedBadge size={16} />
+          <VerifiedBadge size={16} style={{ marginLeft: 6 }} />
         </View>
 
         <Text

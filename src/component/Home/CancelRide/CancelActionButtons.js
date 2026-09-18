@@ -2,63 +2,8 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
+import { ChevronRight, CrossCircleIcon } from '../../../assets/icons/Icons';
 
-// Chevron Right for Cancel Button
-const ChevronRight = ({ size = 15, color = COLORS.textDark }) => (
-  <View
-    style={{
-      width: size * 0.55,
-      height: size,
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-  >
-    <View
-      style={{
-        width: size * 0.45,
-        height: size * 0.45,
-        borderTopWidth: 2.2,
-        borderRightWidth: 2.2,
-        borderColor: color,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-  </View>
-);
-
-// Circled Cross (X) Icon for Keep My Ride Button
-const CrossCircleIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View
-    style={{
-      width: size,
-      height: size,
-      borderRadius: size / 2,
-      borderWidth: 1.8,
-      borderColor: color,
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}
-  >
-    <View
-      style={{
-        position: 'absolute',
-        width: size * 0.5,
-        height: 1.6,
-        backgroundColor: color,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        width: size * 0.5,
-        height: 1.6,
-        backgroundColor: color,
-        transform: [{ rotate: '-45deg' }],
-      }}
-    />
-  </View>
-);
 
 const CancelActionButtons = ({
   onCancelRide,

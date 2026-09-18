@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
+import COLORS from '../../assets/colors';
 import FirstOnBoarding from '../../component/OnBoarding/FirstOnBoarding';
 import SecondOnBoarding from '../../component/OnBoarding/SecondOnBoarding';
 import ThirdOnBoarding from '../../component/OnBoarding/ThirdOnBoarding';
@@ -29,7 +30,7 @@ const OnBoarding = ({ navigation, onFinish }) => {
     };
 
     return (
-        <View style={localStyles.container}>
+        <View style={{ flex: 1, backgroundColor: COLORS.background }}>
             {step === 1 && (
                 <FirstOnBoarding
                     navigation={navigation}
@@ -58,12 +59,5 @@ const OnBoarding = ({ navigation, onFinish }) => {
         </View>
     );
 };
-
-const localStyles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#FAF7EE',
-    },
-});
 
 export default OnBoarding;

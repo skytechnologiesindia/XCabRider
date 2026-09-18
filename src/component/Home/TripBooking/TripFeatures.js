@@ -3,24 +3,8 @@ import { View, Text } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 
-const QuickClockIcon = ({ size = 18, color = COLORS.textDark }) => (
-    <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'flex-start' }}>
-        <View
-            style={{
-                width: size * 0.9,
-                height: size * 0.9,
-                borderRadius: (size * 0.9) / 2,
-                borderWidth: 1.6,
-                borderColor: color,
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}
-        >
-            <View style={{ width: 1.5, height: size * 0.3, backgroundColor: color, position: 'absolute', top: 2 }} />
-            <View style={{ width: size * 0.25, height: 1.5, backgroundColor: color, position: 'absolute', right: 3, top: size * 0.38 }} />
-        </View>
-    </View>
-);
+import { ClockIcon as QuickClockIcon } from '../../../assets/icons/Icons';
+
 
 const TripFeatures = () => {
     return (

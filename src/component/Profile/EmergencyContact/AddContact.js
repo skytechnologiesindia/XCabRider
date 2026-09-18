@@ -18,58 +18,8 @@ import COLORS from '../../../assets/colors';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-// 1. Vector Icon: Back Arrow
-export const BackArrowIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        position: 'absolute',
-        width: size * 0.7,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        left: 2,
-        width: size * 0.45,
-        height: size * 0.45,
-        borderLeftWidth: 2,
-        borderBottomWidth: 2,
-        borderColor: color,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-  </View>
-);
+export { BackArrowIcon, CloseIcon } from '../../../assets/icons/Icons';
 
-// 2. Vector Icon: Close Cross (X)
-export const CloseIcon = ({ size = 13, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '-45deg' }],
-      }}
-    />
-  </View>
-);
 
 const RELATION_OPTIONS = ['Dad', 'Mom', 'Spouse', 'Sister', 'Brother', 'Friend', 'Other'];
 

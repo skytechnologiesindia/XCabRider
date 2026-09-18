@@ -17,106 +17,13 @@ import COLORS from '../../../assets/colors';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-// 1. Vector Icon: Back Arrow
-export const BackArrowIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        position: 'absolute',
-        width: size * 0.7,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        left: 2,
-        width: size * 0.45,
-        height: size * 0.45,
-        borderLeftWidth: 2,
-        borderBottomWidth: 2,
-        borderColor: color,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-  </View>
-);
+export {
+  BackArrowIcon,
+  CloseIcon,
+  SearchIcon,
+  NavigationArrowIcon,
+} from '../../../assets/icons/Icons';
 
-// 2. Vector Icon: Close Cross (X)
-export const CloseIcon = ({ size = 14, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '-45deg' }],
-      }}
-    />
-  </View>
-);
-
-// 3. Vector Icon: Search Glass
-export const SearchIcon = ({ size = 18, color = COLORS.textMuted }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.65,
-        height: size * 0.65,
-        borderRadius: (size * 0.65) / 2,
-        borderWidth: 1.8,
-        borderColor: color,
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        right: 1,
-        bottom: 1,
-        width: size * 0.35,
-        height: 1.8,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-  </View>
-);
-
-// 4. Vector Icon: Navigation / Location Arrow
-export const NavigationArrowIcon = ({ size = 18, color = '#2563EB' }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: 0,
-        height: 0,
-        backgroundColor: 'transparent',
-        borderStyle: 'solid',
-        borderLeftWidth: size * 0.35,
-        borderRightWidth: size * 0.35,
-        borderBottomWidth: size * 0.75,
-        borderLeftColor: 'transparent',
-        borderRightColor: 'transparent',
-        borderBottomColor: color,
-        transform: [{ rotate: '30deg' }],
-      }}
-    />
-  </View>
-);
 
 // Pure Form View (can be rendered standalone or embedded)
 export const AddNewPlaceView = ({

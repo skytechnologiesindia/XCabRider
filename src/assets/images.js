@@ -13,5 +13,6 @@ const images = {
     onboardingRideWay: require('./image/onboarding_ride_way.png'),
     onboardingSafeRides: require('./image/onboarding_safe_rides.png'),
     onboardingLiveTracking: require('./image/onboarding_live_tracking.png'),
+    alertsEmptyBell: require('./image/alerts_empty_bell.jpg'),
 };
 export default images;

@@ -2,29 +2,8 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
+import { ChevronRight } from '../../../assets/icons/Icons';
 
-// Simple Chevron Right Icon
-const ChevronRight = ({ size = 14, color = COLORS.textDark }) => (
-  <View
-    style={{
-      width: size * 0.55,
-      height: size,
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-  >
-    <View
-      style={{
-        width: size * 0.45,
-        height: size * 0.45,
-        borderTopWidth: 2,
-        borderRightWidth: 2,
-        borderColor: color,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-  </View>
-);
 
 export const DEFAULT_REASONS = [
   { id: '1', label: 'Driver is taking too long' },

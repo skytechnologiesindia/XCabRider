@@ -2,32 +2,8 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
+import { PersonIcon } from '../../../assets/icons/Icons';
 
-// Person passenger icon
-const PersonIcon = ({ size = 11, color = COLORS.mediumGrey }) => (
-    <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-        <View
-            style={[
-                styles.mb4,
-                {
-                    width: size * 0.45,
-                    height: size * 0.45,
-                    borderRadius: (size * 0.45) / 2,
-                    backgroundColor: color,
-                },
-            ]}
-        />
-        <View
-            style={{
-                width: size * 0.85,
-                height: size * 0.4,
-                borderTopLeftRadius: size * 0.35,
-                borderTopRightRadius: size * 0.35,
-                backgroundColor: color,
-            }}
-        />
-    </View>
-);
 
 const RideCard = ({ vehicle, isSelected, onSelect }) => {
     return (

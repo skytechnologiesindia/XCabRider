@@ -13,147 +13,16 @@ import EditDOB from './EditDOB/EditDOB';
 import EditEmail from './EditEmail/EditEmail';
 import EditHomeCity from './EditHomeCity/EditHomeCity';
 
-// Circular Back Arrow Icon
-const BackArrowIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        position: 'absolute',
-        width: size * 0.75,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        left: 2,
-        width: size * 0.45,
-        height: size * 0.45,
-        borderLeftWidth: 2,
-        borderBottomWidth: 2,
-        borderColor: color,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-  </View>
-);
+import {
+  BackArrowIcon,
+  UserFieldIcon,
+  GenderFieldIcon,
+  CalendarFieldIcon,
+  PhoneFieldIcon,
+  MailFieldIcon,
+  CityFieldIcon,
+} from '../../../assets/icons/Icons';
 
-// Field Icon: User (Full Name)
-const UserFieldIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.45,
-        height: size * 0.45,
-        borderRadius: (size * 0.45) / 2,
-        borderWidth: 1.6,
-        borderColor: color,
-      }}
-    />
-    <View
-      style={{
-        width: size * 0.75,
-        height: size * 0.36,
-        borderTopLeftRadius: size * 0.36,
-        borderTopRightRadius: size * 0.36,
-        borderWidth: 1.6,
-        borderColor: color,
-        borderBottomWidth: 0,
-        marginTop: 1.5,
-      }}
-    />
-  </View>
-);
-
-// Field Icon: Gender
-const GenderFieldIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-    <View style={{ alignItems: 'center', marginRight: 2 }}>
-      <View style={{ width: 6, height: 6, borderRadius: 3, borderWidth: 1.4, borderColor: color }} />
-      <View style={{ width: 9, height: 5, borderTopLeftRadius: 3, borderTopRightRadius: 3, borderWidth: 1.4, borderColor: color, borderBottomWidth: 0, marginTop: 1 }} />
-    </View>
-    <View style={{ alignItems: 'center' }}>
-      <View style={{ width: 6, height: 6, borderRadius: 3, borderWidth: 1.4, borderColor: color }} />
-      <View style={{ width: 9, height: 5, borderTopLeftRadius: 3, borderTopRightRadius: 3, borderWidth: 1.4, borderColor: color, borderBottomWidth: 0, marginTop: 1 }} />
-    </View>
-  </View>
-);
-
-// Field Icon: Calendar (DOB)
-const CalendarFieldIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View
-    style={{
-      width: size * 0.8,
-      height: size * 0.8,
-      borderRadius: 3.5,
-      borderWidth: 1.6,
-      borderColor: color,
-      paddingTop: 3,
-      alignItems: 'center',
-    }}
-  >
-    <View style={{ width: '100%', height: 1.4, backgroundColor: color }} />
-    <View style={{ flexDirection: 'row', marginTop: 2, justifyContent: 'space-around', width: '80%' }}>
-      <View style={{ width: 2, height: 2, backgroundColor: color, borderRadius: 1 }} />
-      <View style={{ width: 2, height: 2, backgroundColor: color, borderRadius: 1 }} />
-    </View>
-  </View>
-);
-
-// Field Icon: Phone (Mobile)
-const PhoneFieldIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View
-    style={{
-      width: size * 0.72,
-      height: size * 0.72,
-      borderWidth: 1.6,
-      borderColor: color,
-      borderRadius: 4,
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}
-  >
-    <View style={{ width: size * 0.3, height: 1.4, backgroundColor: color, borderRadius: 0.7 }} />
-  </View>
-);
-
-// Field Icon: Mail (Email)
-const MailFieldIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View
-    style={{
-      width: size * 0.82,
-      height: size * 0.65,
-      borderWidth: 1.6,
-      borderColor: color,
-      borderRadius: 3,
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-    }}
-  >
-    <View
-      style={{
-        width: size * 0.45,
-        height: size * 0.28,
-        borderBottomWidth: 1.4,
-        borderRightWidth: 1.4,
-        borderColor: color,
-        transform: [{ rotate: '45deg' }],
-        marginTop: -1,
-      }}
-    />
-  </View>
-);
-
-// Field Icon: City (Skyline)
-const CityFieldIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size * 0.85, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center' }}>
-    <View style={{ width: 4.5, height: 8, borderWidth: 1.4, borderColor: color, borderBottomWidth: 0, marginRight: 1.5 }} />
-    <View style={{ width: 5.5, height: 13, borderWidth: 1.4, borderColor: color, borderBottomWidth: 0, marginRight: 1.5 }} />
-    <View style={{ width: 4.5, height: 9.5, borderWidth: 1.4, borderColor: color, borderBottomWidth: 0 }} />
-  </View>
-);
 
 const EditProfile = ({
   navigation,

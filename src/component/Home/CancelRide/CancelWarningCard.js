@@ -2,41 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
+import { CancelIconBadge } from '../../../assets/icons/Icons';
 
-// Slashed Circle / Cancel Ride Icon
-const CancelIconBadge = ({ size = 42 }) => (
-  <View
-    style={{
-      width: size,
-      height: size,
-      borderRadius: size / 2,
-      backgroundColor: COLORS.yellow,
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}
-  >
-    <View
-      style={{
-        width: size * 0.52,
-        height: size * 0.52,
-        borderRadius: (size * 0.52) / 2,
-        borderWidth: 2.2,
-        borderColor: COLORS.textDark,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <View
-        style={{
-          width: 2.2,
-          height: size * 0.52,
-          backgroundColor: COLORS.textDark,
-          transform: [{ rotate: '45deg' }],
-        }}
-      />
-    </View>
-  </View>
-);
 
 const CancelWarningCard = ({
   driverName = 'Raj Kumar',

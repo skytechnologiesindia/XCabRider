@@ -12,6 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import images from '../../assets/images';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
+import { XCabXLogo, ArrowRightIcon } from '../../assets/icons/Icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const IS_TABLET = SCREEN_WIDTH >= 600;
@@ -57,38 +58,9 @@ const ThirdOnBoarding = ({ onNext, navigation }) => {
                     ]}
                 >
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        {/* Stylized 'X' */}
-                        <View
-                            style={{
-                                width: 22,
-                                height: 24,
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                marginRight: 1,
-                            }}
-                        >
-                            <View
-                                style={{
-                                    position: 'absolute',
-                                    width: 6,
-                                    height: 24,
-                                    borderRadius: 2,
-                                    backgroundColor: COLORS.onboardingDark,
-                                    transform: [{ rotate: '-35deg' }],
-                                }}
-                            />
-                            <View
-                                style={{
-                                    position: 'absolute',
-                                    width: 6,
-                                    height: 24,
-                                    borderRadius: 2,
-                                    backgroundColor: COLORS.onboardingYellow,
-                                    transform: [{ rotate: '35deg' }],
-                                }}
-                            />
-                        </View>
+                        <XCabXLogo size={24} style={{ marginRight: 1 }} />
                         <Text
+
                             style={{
                                 fontSize: 24,
                                 fontWeight: '900',
@@ -243,15 +215,8 @@ const ThirdOnBoarding = ({ onNext, navigation }) => {
                             >
                                 Get Started
                             </Text>
-                            <Text
-                                style={{
-                                    fontSize: 18,
-                                    fontWeight: '800',
-                                    color: COLORS.onboardingDark,
-                                }}
-                            >
-                                {' '}→
-                            </Text>
+                            <ArrowRightIcon size={16} color={COLORS.onboardingDark} style={{ marginLeft: 6 }} />
+
                         </View>
                     </TouchableOpacity>
                 </View>

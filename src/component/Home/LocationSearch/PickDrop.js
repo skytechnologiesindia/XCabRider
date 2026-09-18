@@ -2,74 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
+import { DestinationPin, PickupIndicator } from '../../../assets/icons/Icons';
 
-// Destination pin component
-const DestinationPin = ({ size = 18 }) => (
-  <View style={{ width: size, height: size * 1.35, alignItems: 'center', justifyContent: 'flex-start' }}>
-    <View
-      style={{
-        width: size,
-        height: size,
-        borderRadius: size / 2,
-        backgroundColor: COLORS.redPin,
-        alignItems: 'center',
-        justifyContent: 'center',
-        shadowColor: COLORS.redPin,
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.35,
-        shadowRadius: 3,
-        elevation: 3,
-      }}
-    >
-      <View
-        style={{
-          width: size * 0.36,
-          height: size * 0.36,
-          borderRadius: (size * 0.36) / 2,
-          backgroundColor: COLORS.white,
-        }}
-      />
-    </View>
-    <View
-      style={{
-        width: 0,
-        height: 0,
-        backgroundColor: 'transparent',
-        borderStyle: 'solid',
-        borderLeftWidth: size * 0.28,
-        borderRightWidth: size * 0.28,
-        borderTopWidth: size * 0.38,
-        borderLeftColor: 'transparent',
-        borderRightColor: 'transparent',
-        borderTopColor: COLORS.redPin,
-        marginTop: -2,
-      }}
-    />
-  </View>
-);
-
-// Pickup GPS yellow circle dot
-const PickupIndicator = ({ size = 22 }) => (
-  <View
-    style={{
-      width: size,
-      height: size,
-      borderRadius: size / 2,
-      backgroundColor: COLORS.yellow,
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}
-  >
-    <View
-      style={{
-        width: size * 0.38,
-        height: size * 0.38,
-        borderRadius: (size * 0.38) / 2,
-        backgroundColor: COLORS.textDark,
-      }}
-    />
-  </View>
-);
 
 const PickDrop = ({
   pickup: initialPickup = 'Current location',

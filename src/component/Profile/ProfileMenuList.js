@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
 import {
@@ -60,100 +60,120 @@ const ProfileMenuList = ({
   containerStyle,
 }) => {
   return (
-    <View style={[styles.mh20, listStyles.card, containerStyle]}>
+    <View
+      style={[
+        styles.mh20,
+        {
+          backgroundColor: COLORS.cardBg,
+          borderRadius: 18,
+          borderWidth: 1.2,
+          borderColor: COLORS.border,
+          overflow: 'hidden',
+          shadowColor: COLORS.black,
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.04,
+          shadowRadius: 6,
+          elevation: 2,
+        },
+        containerStyle,
+      ]}
+    >
       {items.map((item, index) => (
         <React.Fragment key={item.id}>
           <TouchableOpacity
             activeOpacity={0.7}
-            style={[styles.pdh16, styles.pdv12, listStyles.row]}
+            style={[
+              styles.pdh16,
+              styles.pdv12,
+              {
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              },
+            ]}
             onPress={() => onItemPress && onItemPress(item)}
           >
-            <View style={listStyles.itemLeft}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                flex: 1,
+              }}
+            >
               {/* Icon box */}
-              <View style={listStyles.iconBox}>
+              <View
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: 10,
+                  backgroundColor: '#FAF6ED',
+                  borderWidth: 1,
+                  borderColor: '#EFEAE0',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
                 {item.icon(COLORS.textDark)}
               </View>
 
               {/* Title & Subtitle */}
               <View style={styles.ml12}>
-                <Text style={listStyles.titleText}>
+                <Text
+                  style={[
+                    styles.ts15,
+                    {
+                      fontWeight: '700',
+                      color: COLORS.textDark,
+                    },
+                  ]}
+                >
                   {item.title}
                 </Text>
-                <Text style={listStyles.subtitleText}>
+                <Text
+                  style={[
+                    styles.ts11,
+                    {
+                      color: COLORS.textMuted,
+                      marginTop: 2,
+                    },
+                  ]}
+                >
                   {item.subtitle}
                 </Text>
               </View>
             </View>
 
             {/* Right Arrow */}
-            <Text style={listStyles.arrowText}>
+            <Text
+              style={[
+                styles.ts18,
+                {
+                  color: COLORS.textMuted,
+                  fontWeight: '600',
+                },
+              ]}
+            >
               ›
             </Text>
           </TouchableOpacity>
 
           {/* Divider between rows */}
           {index < items.length - 1 && (
-            <View style={[styles.mh16, listStyles.divider]} />
+            <View
+              style={[
+                styles.mh16,
+                {
+                  height: 1,
+                  backgroundColor: COLORS.divider,
+                },
+              ]}
+            />
           )}
         </React.Fragment>
       ))}
     </View>
   );
 };
-
-const listStyles = StyleSheet.create({
-  card: {
-    backgroundColor: COLORS.cardBg,
-    borderRadius: 18,
-    borderWidth: 1.2,
-    borderColor: COLORS.border,
-    overflow: 'hidden',
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.04,
-    shadowRadius: 6,
-    elevation: 2,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  itemLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-  },
-  iconBox: {
-    width: 36,
-    height: 36,
-    borderRadius: 10,
-    backgroundColor: '#FAF6ED',
-    borderWidth: 1,
-    borderColor: '#EFEAE0',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  titleText: {
-    fontSize: 14.5,
-    fontWeight: '700',
-    color: COLORS.textDark,
-  },
-  subtitleText: {
-    fontSize: 11,
-    color: COLORS.textMuted,
-    marginTop: 2,
-  },
-  arrowText: {
-    fontSize: 18,
-    color: COLORS.textMuted,
-    fontWeight: '600',
-  },
-  divider: {
-    height: 1,
-    backgroundColor: COLORS.divider,
-  },
-});
 
 export { ProfileMenuList };
 export default ProfileMenuList;

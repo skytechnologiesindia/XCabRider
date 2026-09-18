@@ -7,11 +7,14 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../assets/colors';
+import styles from '../../assets/styles';
 import AlertsCards from '../../component/Alerts/AlertsCards';
+import AlertsNoData from '../../component/Alerts/NoData/AlertsNoData';
 import { AlertsSkeleton } from '../../component/Alerts/AlertsSkeleton/AlertsSkeleton';
 
-const Alerts = ({ navigation }) => {
+const Alerts = ({ navigation, initialNotifications = [] }) => {
   const insets = useSafeAreaInsets();
+  const [notifications, setNotifications] = useState(initialNotifications);
   const [isLoading, setIsLoading] = useState(true);
 
   // Simulate initial lazy loading / fetch notifications
@@ -39,36 +42,58 @@ const Alerts = ({ navigation }) => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          paddingTop: 12,
+          flexGrow: 1,
+          paddingTop: 14,
           paddingBottom: 24,
         }}
       >
-        {/* Section Header */}
+        {/* ================= SECTION HEADER ================= */}
         <View
-          style={{
-            paddingHorizontal: 20,
-            marginBottom: 12,
-          }}
+          style={[
+            styles.pdh20,
+            styles.mb16,
+          ]}
         >
           <Text
-            style={{
-              fontSize: 22,
-              fontWeight: '800',
-              color: COLORS.textDark,
-              letterSpacing: -0.3,
-            }}
+            style={[
+              styles.ts22,
+              {
+                fontWeight: '800',
+                color: COLORS.textDark,
+                letterSpacing: -0.3,
+              },
+            ]}
           >
             Alerts
           </Text>
+          <Text
+            style={[
+              styles.ts13,
+              styles.mt4,
+              {
+                color: COLORS.textMuted,
+                fontWeight: '500',
+              },
+            ]}
+          >
+            Your notifications will appear here.
+          </Text>
         </View>
 
-        {/* Notification Card Component */}
-        <AlertsCards
-          title="Driver Raj Kumar is arriving"
-          time="2m ago"
-          description="White Swift Dzire • JH 01 AB 4821 is 2 mins away"
-          isUnread={true}
-        />
+        {/* ================= EMPTY STATE OR CARDS ================= */}
+        {notifications.length === 0 ? (
+          <AlertsNoData />
+        ) : (
+          notifications.map((item, index) => (
+            <AlertsCards
+              key={item.id || index}
+              title={item.title}
+              time={item.time}
+              description={item.description}
+              isUnread={item.isUnread}
+            />
+          ))
+        )}
       </ScrollView>
     </View>
   );

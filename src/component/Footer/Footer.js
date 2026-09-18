@@ -8,7 +8,8 @@ import {
   CalendarRidesIcon,
   AlertsNavIcon,
   ProfileNavIcon,
-} from '../Home/Icons';
+} from '../../assets/icons/Icons';
+
 
 const Footer = ({
   activeTab = 'HOME',

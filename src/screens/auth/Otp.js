@@ -3,6 +3,7 @@ import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
+import { ClockIcon, PencilIcon } from '../../assets/icons/Icons';
 
 const RESEND_SECONDS = 30;
 
@@ -256,7 +257,7 @@ const Otp = ({ phone = '9876504821', onBack, onEditPhone, onVerify }) => {
             },
           ]}
         >
-          <Text style={[styles.ts15, styles.mr8]}>🕐</Text>
+          <ClockIcon size={16} style={styles.mr8} />
           <Text style={[styles.ts15, { fontWeight: '600', color: COLORS.textDark }]}>
             {secondsLeft > 0 ? `Resend code in ${timerLabel}` : 'Resend code'}
           </Text>
@@ -278,7 +279,7 @@ const Otp = ({ phone = '9876504821', onBack, onEditPhone, onVerify }) => {
             },
           ]}
         >
-          <Text style={[styles.ts15, styles.mr8]}>✎</Text>
+          <PencilIcon size={16} style={styles.mr8} />
           <Text style={[styles.ts15, { fontWeight: '600', color: COLORS.textDark }]}>
             Edit phone number
           </Text>

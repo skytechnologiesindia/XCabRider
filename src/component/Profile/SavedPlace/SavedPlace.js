@@ -17,111 +17,13 @@ import { AddNewPlaceView } from './AddNewPlace';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-// 1. Vector Icon: House
-const HouseIcon = ({ size = 20, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: 0,
-        height: 0,
-        backgroundColor: 'transparent',
-        borderStyle: 'solid',
-        borderLeftWidth: size * 0.46,
-        borderRightWidth: size * 0.46,
-        borderBottomWidth: size * 0.38,
-        borderLeftColor: 'transparent',
-        borderRightColor: 'transparent',
-        borderBottomColor: color,
-      }}
-    />
-    <View
-      style={{
-        width: size * 0.72,
-        height: size * 0.48,
-        backgroundColor: color,
-        borderBottomLeftRadius: 2,
-        borderBottomRightRadius: 2,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-      }}
-    >
-      <View
-        style={{
-          width: size * 0.24,
-          height: size * 0.28,
-          backgroundColor: COLORS.yellow,
-          borderTopLeftRadius: 2,
-          borderTopRightRadius: 2,
-        }}
-      />
-    </View>
-  </View>
-);
+import {
+  HomeIcon as HouseIcon,
+  WorkIcon as BriefcaseIcon,
+  PlusIcon,
+  CloseIcon,
+} from '../../../assets/icons/Icons';
 
-// 2. Vector Icon: Briefcase
-const BriefcaseIcon = ({ size = 20, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        width: size * 0.4,
-        height: size * 0.16,
-        borderWidth: 1.6,
-        borderColor: color,
-        borderBottomWidth: 0,
-        borderTopLeftRadius: 3,
-        borderTopRightRadius: 3,
-        marginBottom: 1,
-      }}
-    />
-    <View
-      style={{
-        width: size * 0.88,
-        height: size * 0.56,
-        borderWidth: 1.8,
-        borderColor: color,
-        borderRadius: 4,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <View style={{ width: '100%', height: 1.4, backgroundColor: color }} />
-    </View>
-  </View>
-);
-
-// 3. Vector Icon: Plus Sign
-const PlusIcon = ({ size = 18, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View style={{ position: 'absolute', width: size * 0.75, height: 2, backgroundColor: color, borderRadius: 1 }} />
-    <View style={{ position: 'absolute', width: 2, height: size * 0.75, backgroundColor: color, borderRadius: 1 }} />
-  </View>
-);
-
-// 4. Vector Icon: Close Cross (X)
-const CloseIcon = ({ size = 13, color = COLORS.textDark }) => (
-  <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '45deg' }],
-      }}
-    />
-    <View
-      style={{
-        position: 'absolute',
-        width: size,
-        height: 2,
-        backgroundColor: color,
-        borderRadius: 1,
-        transform: [{ rotate: '-45deg' }],
-      }}
-    />
-  </View>
-);
 
 // 5. Vector Icon: Location Pin
 const StarOrPinIcon = ({ size = 18, color = COLORS.yellowAccent }) => (
