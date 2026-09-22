@@ -4,7 +4,7 @@ import images from '../../../assets/images';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 
-import { GpsTargetIcon as CrosshairIcon } from '../../../assets/icons/Icons';
+import { GpsTargetIcon as CrosshairIcon } from '../../../assets/icons';
 
 
 const TripMap = ({ image, onCenterPress }) => {

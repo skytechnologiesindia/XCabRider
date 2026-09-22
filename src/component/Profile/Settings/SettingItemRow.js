@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { ChevronRightIcon } from './SettingIcons';
+import { ChevronRightIcon } from '../../../assets/icons';
 
 /**
  * Reusable row item for Settings screens

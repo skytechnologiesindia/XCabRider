@@ -1,6 +1,6 @@
 import React from 'react';
 import COLORS from '../../../../assets/colors';
-import { GlobeIcon } from '../SettingIcons';
+import { GlobeIcon } from '../../../../assets/icons';
 import SettingItemRow from '../SettingItemRow';
 
 const Language = ({

@@ -19,6 +19,7 @@ import Language from './Language/Language';
 import HelpSupport from './HelpSupport/HelpSupport';
 import ContactUs from './ContactUs/ContactUs';
 import About from './About/About';
+import LogOut from './LogOut';
 
 const Setting = ({
   navigation,
@@ -110,6 +111,12 @@ const Setting = ({
             showDivider={false}
           />
         </View>
+
+        {/* ================= LOGOUT BUTTON ================= */}
+        <LogOut
+          navigation={navigation}
+          onPress={onLogout}
+        />
       </ScrollView>
 
       {/* ================= FOOTER COMPONENT ================= */}

@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
 
-import { CarBadgeIcon } from '../../assets/icons/Icons';
+import { CarBadgeIcon } from '../../assets/icons';
 export { CarBadgeIcon };
 
 

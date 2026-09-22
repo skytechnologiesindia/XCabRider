@@ -22,7 +22,7 @@ export {
   CloseIcon,
   SearchIcon,
   NavigationArrowIcon,
-} from '../../../assets/icons/Icons';
+} from '../../../assets/icons';
 
 
 // Pure Form View (can be rendered standalone or embedded)

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GoogleButton, PrimaryButton } from '../../component/shared/Button';
-import { IndiaFlagIcon } from '../../assets/icons/Icons';
+import { IndiaFlagIcon } from '../../assets/icons';
 import images from '../../assets/images';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';

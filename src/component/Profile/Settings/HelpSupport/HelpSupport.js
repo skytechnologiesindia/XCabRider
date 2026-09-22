@@ -1,6 +1,6 @@
 import React from 'react';
 import COLORS from '../../../../assets/colors';
-import { HelpCircleIcon } from '../SettingIcons';
+import { HelpCircleIcon } from '../../../../assets/icons';
 import SettingItemRow from '../SettingItemRow';
 
 const HelpSupport = ({

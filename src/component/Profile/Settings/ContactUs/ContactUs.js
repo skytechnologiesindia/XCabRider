@@ -1,6 +1,6 @@
 import React from 'react';
 import COLORS from '../../../../assets/colors';
-import { MessageChatIcon } from '../SettingIcons';
+import { MessageChatIcon } from '../../../../assets/icons';
 import SettingItemRow from '../SettingItemRow';
 
 const ContactUs = ({

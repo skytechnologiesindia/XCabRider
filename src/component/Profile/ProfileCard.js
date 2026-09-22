@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
 import images from '../../assets/images';
+import icons from '../../assets/icons';
 
 /**
  * ProfileCard component
@@ -116,17 +117,11 @@ const ProfileCard = ({
               },
             ]}
           >
-            <Text
-              style={[
-                styles.ts12,
-                styles.mr4,
-                {
-                  color: COLORS.yellowAccent,
-                },
-              ]}
-            >
-              ★
-            </Text>
+            <Image
+              source={icons.starIcon}
+              style={{ width: 12, height: 12, marginRight: 4 }}
+              resizeMode="contain"
+            />
             <Text
               style={[
                 styles.ts12,

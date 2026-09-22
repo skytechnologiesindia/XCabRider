@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import COLORS from '../../assets/colors';
-import { GoogleIcon } from '../../assets/icons/Icons';
+import { GoogleIcon } from '../../assets/icons';
 
 export function GoogleButton({ onPress }) {
   return (

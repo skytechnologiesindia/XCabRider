@@ -27,7 +27,7 @@ import {
   MoonOrLockIcon,
   PlusIcon,
   TrashIcon,
-} from '../../../assets/icons/Icons';
+} from '../../../assets/icons';
 
 
 const DEFAULT_CONTACTS = [

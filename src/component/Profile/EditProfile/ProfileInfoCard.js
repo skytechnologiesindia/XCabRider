@@ -4,7 +4,7 @@ import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 import images from '../../../assets/images';
 
-import { CameraIcon, VerifiedBadge } from '../../../assets/icons/Icons';
+import { CameraIcon, VerifiedBadge, StarIcon } from '../../../assets/icons';
 
 
 const ProfileInfoCard = ({
@@ -123,15 +123,7 @@ const ProfileInfoCard = ({
             },
           ]}
         >
-          <Text
-            style={{
-              fontSize: 12,
-              color: COLORS.yellowAccent,
-              marginRight: 4,
-            }}
-          >
-            ★
-          </Text>
+          <StarIcon size={12} color={COLORS.yellowAccent} style={{ marginRight: 4 }} />
           <Text
             style={{
               fontSize: 12,

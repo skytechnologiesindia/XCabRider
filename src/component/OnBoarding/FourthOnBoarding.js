@@ -12,7 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import images from '../../assets/images';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
-import { ArrowRightIcon } from '../../assets/icons/Icons';
+import { ArrowRightIcon } from '../../assets/icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const IS_TABLET = SCREEN_WIDTH >= 600;

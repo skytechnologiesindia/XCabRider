@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { DestinationPin, PickupIndicator } from '../../../assets/icons/Icons';
+import { DestinationPin, PickupIndicator } from '../../../assets/icons';
 
 
 const PickDrop = ({

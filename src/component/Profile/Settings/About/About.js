@@ -1,6 +1,6 @@
 import React from 'react';
 import COLORS from '../../../../assets/colors';
-import { InfoCircleIcon } from '../SettingIcons';
+import { InfoCircleIcon } from '../../../../assets/icons';
 import SettingItemRow from '../SettingItemRow';
 
 const About = ({

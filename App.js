@@ -142,6 +142,7 @@ const App = () => {
               <Setting
                 navigation={navigation}
                 onBack={() => setCurrentScreen('Profile')}
+                onLogout={() => setCurrentScreen('Login')}
                 showFooter={false}
               />
             )}

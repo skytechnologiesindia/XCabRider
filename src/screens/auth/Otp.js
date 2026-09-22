@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
-import { ClockIcon, PencilIcon } from '../../assets/icons/Icons';
+import icons from '../../assets/icons';
 
 const RESEND_SECONDS = 30;
 
@@ -79,10 +79,18 @@ const Otp = ({ phone = '9876504821', onBack, onEditPhone, onVerify }) => {
               },
             ]}
           >
-            <Text style={[styles.ts18, { color: COLORS.textDark }]}>←</Text>
+            <Image
+              source={icons.backArrow}
+              style={{ width: 16, height: 16, tintColor: COLORS.textDark }}
+              resizeMode="contain"
+            />
           </TouchableOpacity>
 
-          <Text style={[styles.ts16, styles.mr4, { color: COLORS.yellow }]}>➤</Text>
+          <Image
+            source={icons.xcabXLogo}
+            style={{ width: 18, height: 18, tintColor: COLORS.yellow, marginRight: 6 }}
+            resizeMode="contain"
+          />
           <Text style={[styles.ts20, { fontWeight: '800', color: COLORS.textDark }]}>
             XCAB
           </Text>
@@ -187,7 +195,11 @@ const Otp = ({ phone = '9876504821', onBack, onEditPhone, onVerify }) => {
               },
             ]}
           >
-            <Text style={[styles.ts12, { color: COLORS.white }]}>✓</Text>
+            <Image
+              source={icons.checkMark}
+              style={{ width: 10, height: 10, tintColor: COLORS.white }}
+              resizeMode="contain"
+            />
           </View>
           <Text
             style={[
@@ -221,9 +233,11 @@ const Otp = ({ phone = '9876504821', onBack, onEditPhone, onVerify }) => {
           <Text style={[styles.ts16, { fontWeight: '700', color: COLORS.textDark }]}>
             Verify and continue
           </Text>
-          <Text style={[styles.ts18, styles.ml8, { color: COLORS.textDark }]}>
-            ›
-          </Text>
+          <Image
+            source={icons.arrowRight}
+            style={{ width: 14, height: 14, tintColor: COLORS.textDark, marginLeft: 8 }}
+            resizeMode="contain"
+          />
         </TouchableOpacity>
 
         {/* Divider */}
@@ -257,7 +271,11 @@ const Otp = ({ phone = '9876504821', onBack, onEditPhone, onVerify }) => {
             },
           ]}
         >
-          <ClockIcon size={16} style={styles.mr8} />
+          <Image
+            source={icons.clock}
+            style={[styles.mr8, { width: 16, height: 16, tintColor: COLORS.textDark }]}
+            resizeMode="contain"
+          />
           <Text style={[styles.ts15, { fontWeight: '600', color: COLORS.textDark }]}>
             {secondsLeft > 0 ? `Resend code in ${timerLabel}` : 'Resend code'}
           </Text>
@@ -279,7 +297,11 @@ const Otp = ({ phone = '9876504821', onBack, onEditPhone, onVerify }) => {
             },
           ]}
         >
-          <PencilIcon size={16} style={styles.mr8} />
+          <Image
+            source={icons.pencil}
+            style={[styles.mr8, { width: 16, height: 16, tintColor: COLORS.textDark }]}
+            resizeMode="contain"
+          />
           <Text style={[styles.ts15, { fontWeight: '600', color: COLORS.textDark }]}>
             Edit phone number
           </Text>

@@ -57,43 +57,47 @@ const Rides = ({
     >
       <StatusBar barStyle="dark-content" backgroundColor={COLORS.background} />
 
+      {/* Fixed Top Header */}
+      <View
+        style={{
+          paddingHorizontal: 20,
+          paddingTop: 4,
+          paddingBottom: 12,
+          backgroundColor: COLORS.background,
+          zIndex: 10,
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 22,
+            fontWeight: '900',
+            color: COLORS.textDark,
+            letterSpacing: -0.4,
+          }}
+        >
+          Ride History
+        </Text>
+        <Text
+          style={{
+            fontSize: 12.5,
+            fontWeight: '600',
+            color: COLORS.textMuted,
+            marginTop: 2,
+          }}
+        >
+          Past trips & activity
+        </Text>
+      </View>
+
       {/* Main Scrollable Trips List */}
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           flexGrow: 1,
-          paddingTop: 12,
+          paddingTop: 4,
           paddingBottom: 28,
         }}
       >
-        {/* Page Title & Subtitle */}
-        <View
-          style={{
-            paddingHorizontal: 20,
-            marginBottom: 14,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 22,
-              fontWeight: '900',
-              color: COLORS.textDark,
-              letterSpacing: -0.4,
-            }}
-          >
-            Ride History
-          </Text>
-          <Text
-            style={{
-              fontSize: 12.5,
-              fontWeight: '600',
-              color: COLORS.textMuted,
-              marginTop: 2,
-            }}
-          >
-            Past trips & activity
-          </Text>
-        </View>
 
         {/* List of Ride History Cards or Empty State */}
         {ridesList.length === 0 ? (

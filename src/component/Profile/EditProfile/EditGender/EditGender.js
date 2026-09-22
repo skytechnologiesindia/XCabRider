@@ -21,7 +21,7 @@ import {
   MaleIcon,
   FemaleIcon,
   OtherIcon,
-} from '../../../../assets/icons/Icons';
+} from '../../../../assets/icons';
 
 
 const GENDER_OPTIONS = [

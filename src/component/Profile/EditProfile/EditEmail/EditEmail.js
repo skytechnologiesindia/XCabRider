@@ -19,7 +19,7 @@ import styles from '../../../../assets/styles';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-import { CloseIcon } from '../../../../assets/icons/Icons';
+import { CloseIcon } from '../../../../assets/icons';
 
 
 

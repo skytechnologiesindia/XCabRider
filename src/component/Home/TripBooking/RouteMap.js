@@ -5,7 +5,7 @@ import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 
 // Crosshair target icon
-import { GpsTargetIcon as CrosshairIcon } from '../../../assets/icons/Icons';
+import { GpsTargetIcon as CrosshairIcon } from '../../../assets/icons';
 
 
 const RouteMap = ({ image, onCenterPress }) => {

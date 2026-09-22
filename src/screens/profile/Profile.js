@@ -79,21 +79,6 @@ const Profile = ({ navigation }) => {
         {/* ================= MENU LIST CARD ================= */}
         <ProfileMenuList onItemPress={handleMenuItemPress} />
 
-        {/* ================= LOGOUT BUTTON ================= */}
-        <TouchableOpacity
-          style={[
-            styles.mt12,
-            styles.mb24,
-            {
-              alignItems: 'center',
-              justifyContent: 'center',
-              paddingVertical: 8,
-            },
-          ]}
-          activeOpacity={0.7}
-          onPress={() => navigation?.navigate?.('Login')}
-        >
-        </TouchableOpacity>
       </ScrollView>
 
       {/* ================= SAVED PLACES MODAL ================= */}

@@ -8,7 +8,7 @@ import {
 import images from '../../assets/images';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
-import { GpsTargetIcon, RefreshIcon } from '../../assets/icons/Icons';
+import { GpsTargetIcon, RefreshIcon } from '../../assets/icons';
 
 /**
  * GoogleMap component

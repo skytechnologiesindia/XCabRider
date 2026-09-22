@@ -21,7 +21,7 @@ import {
   PhoneFieldIcon,
   MailFieldIcon,
   CityFieldIcon,
-} from '../../../assets/icons/Icons';
+} from '../../../assets/icons';
 
 
 const EditProfile = ({

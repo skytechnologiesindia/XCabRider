@@ -1,6 +1,6 @@
 import React from 'react';
 import COLORS from '../../../assets/colors';
-import { LocationIcon } from './SettingIcons';
+import { LocationIcon } from '../../../assets/icons';
 import SettingItemRow from './SettingItemRow';
 
 const LocationService = ({

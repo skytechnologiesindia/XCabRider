@@ -18,7 +18,7 @@ import COLORS from '../../../assets/colors';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-export { BackArrowIcon, CloseIcon } from '../../../assets/icons/Icons';
+export { BackArrowIcon, CloseIcon } from '../../../assets/icons';
 
 
 const RELATION_OPTIONS = ['Dad', 'Mom', 'Spouse', 'Sister', 'Brother', 'Friend', 'Other'];

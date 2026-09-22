@@ -10,7 +10,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { CarBadgeIcon } from '../../../assets/icons/Icons';
+import { CarBadgeIcon } from '../../../assets/icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -191,10 +191,10 @@ const AlertsSkeleton = ({ navigation }) => {
                     itemIndex === 1
                       ? '90%'
                       : itemIndex === 2
-                      ? '75%'
-                      : itemIndex === 3
-                      ? '85%'
-                      : '80%'
+                        ? '75%'
+                        : itemIndex === 3
+                          ? '85%'
+                          : '80%'
                   }
                   height={16}
                   borderRadius={6}
@@ -240,10 +240,10 @@ const AlertsSkeleton = ({ navigation }) => {
                   itemIndex === 1
                     ? '95%'
                     : itemIndex === 2
-                    ? '80%'
-                    : itemIndex === 3
-                    ? '90%'
-                    : '85%'
+                      ? '80%'
+                      : itemIndex === 3
+                        ? '90%'
+                        : '85%'
                 }
                 height={12}
                 borderRadius={5}
@@ -254,10 +254,10 @@ const AlertsSkeleton = ({ navigation }) => {
                   itemIndex === 1
                     ? '65%'
                     : itemIndex === 2
-                    ? '50%'
-                    : itemIndex === 3
-                    ? '70%'
-                    : '60%'
+                      ? '50%'
+                      : itemIndex === 3
+                        ? '70%'
+                        : '60%'
                 }
                 height={10}
                 borderRadius={4}

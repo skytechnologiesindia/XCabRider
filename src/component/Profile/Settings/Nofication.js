@@ -1,6 +1,6 @@
 import React from 'react';
 import COLORS from '../../../assets/colors';
-import { BellIcon } from './SettingIcons';
+import { BellIcon } from '../../../assets/icons';
 import SettingItemRow from './SettingItemRow';
 
 const Nofication = ({

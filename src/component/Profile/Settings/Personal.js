@@ -1,6 +1,6 @@
 import React from 'react';
 import COLORS from '../../../assets/colors';
-import { UserIcon } from './SettingIcons';
+import { UserIcon } from '../../../assets/icons';
 import SettingItemRow from './SettingItemRow';
 
 const Personal = ({

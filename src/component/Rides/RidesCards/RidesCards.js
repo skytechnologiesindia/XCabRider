@@ -87,33 +87,30 @@ export const DEFAULT_RIDES_DATA = [
   },
 ];
 
-
-// Vector Icon: Star Rating
-const StarRating = ({ rating = 5 }) => {
-  return (
-    <View style={styles.starRow}>
-      {[1, 2, 3, 4, 5].map((star) => (
-        <Text
-          key={star}
-          style={[
-            styles.starIcon,
-            { color: star <= rating ? COLORS.yellow : '#DDD8CE' },
-          ]}
-        >
-          ★
-        </Text>
-      ))}
-    </View>
-  );
-};
-
 import {
   GreenPickupDot,
   RedDropPin,
   CashIcon,
   UpiBoltIcon,
   CheckCircleGreenIcon,
-} from '../../../assets/icons/Icons';
+  StarIcon,
+} from '../../../assets/icons';
+
+// 5-Star Rating Component
+const StarRating = ({ rating = 5 }) => {
+  return (
+    <View style={styles.starsRow}>
+      {[1, 2, 3, 4, 5].map((star) => (
+        <StarIcon
+          key={star}
+          size={12}
+          color={star <= rating ? COLORS.yellow : '#DDD8CE'}
+          style={styles.starIcon}
+        />
+      ))}
+    </View>
+  );
+};
 
 // Vector Icon: Cash Note
 const CashBadge = () => (

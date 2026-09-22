@@ -27,7 +27,7 @@ import {
   LocationPinIcon as PinVectorIcon,
   ChevronRightIcon,
   CheckVectorIcon,
-} from '../../../../assets/icons/Icons';
+} from '../../../../assets/icons';
 
 // Clear (×) Circle Icon using WebP CloseIcon
 const ClearInputIcon = ({ size = 16, color = COLORS.textMuted }) => (

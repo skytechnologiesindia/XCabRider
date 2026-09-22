@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { DestinationPin, PencilIcon as EditPencilIcon, PickupIndicator } from '../../../assets/icons/Icons';
+import { DestinationPin, PencilIcon as EditPencilIcon, PickupIndicator } from '../../../assets/icons';
 
 
 

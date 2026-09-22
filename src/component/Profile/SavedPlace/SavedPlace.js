@@ -22,13 +22,8 @@ import {
   WorkIcon as BriefcaseIcon,
   PlusIcon,
   CloseIcon,
-} from '../../../assets/icons/Icons';
-
-
-// 5. Vector Icon: Location Pin
-const StarOrPinIcon = ({ size = 18, color = COLORS.yellowAccent }) => (
-  <Text style={{ fontSize: size, color }}>★</Text>
-);
+  StarIcon as StarOrPinIcon,
+} from '../../../assets/icons';
 
 const DEFAULT_SAVED_PLACES = [
   {

@@ -11,7 +11,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import images from '../../assets/images';
 import COLORS from '../../assets/colors';
-import { HeaderBell } from '../../assets/icons/Icons';
+import { HeaderBell } from '../../assets/icons';
 
 const Header = ({
   navigation,

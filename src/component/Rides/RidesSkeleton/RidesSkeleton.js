@@ -11,7 +11,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 import Footer from '../../Footer/Footer';
-import { GreenPickupDot, RedDropPin } from '../../../assets/icons/Icons';
+import { GreenPickupDot, RedDropPin, StarIcon } from '../../../assets/icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -112,36 +112,47 @@ const RidesSkeleton = ({
     >
       <StatusBar barStyle="dark-content" backgroundColor={COLORS.background} />
 
+      {/* ================= 1. FIXED PAGE TITLE & SUBTITLE ================= */}
+      <View
+        style={[
+          styles.pdh20,
+          {
+            paddingTop: 4,
+            paddingBottom: 12,
+            backgroundColor: COLORS.background,
+            zIndex: 10,
+          },
+        ]}
+      >
+        <Text
+          style={[
+            styles.ts22,
+            {
+              fontWeight: '800',
+              color: COLORS.textDark,
+              letterSpacing: -0.3,
+            },
+          ]}
+        >
+          Ride History
+        </Text>
+        <Text
+          style={[
+            styles.ts13,
+            {
+              color: COLORS.textMuted,
+              marginTop: 2,
+            },
+          ]}
+        >
+          Past trips & activity
+        </Text>
+      </View>
+
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[styles.pdt16, styles.pdb28]}
+        contentContainerStyle={[styles.pdb28, { paddingTop: 4 }]}
       >
-        {/* ================= 1. PAGE TITLE & SUBTITLE ================= */}
-        <View style={[styles.pdh20, styles.mb16]}>
-          <Text
-            style={[
-              styles.ts22,
-              {
-                fontWeight: '800',
-                color: COLORS.textDark,
-                letterSpacing: -0.3,
-              },
-            ]}
-          >
-            Ride History
-          </Text>
-          <Text
-            style={[
-              styles.ts13,
-              {
-                color: COLORS.textMuted,
-                marginTop: 2,
-              },
-            ]}
-          >
-            Past trips & activity
-          </Text>
-        </View>
 
         {/* ================= 2. SKELETON RIDE CARDS (Matches RidesCards.js 1:1) ================= */}
         {[1, 2, 3].map((cardId) => (
@@ -366,18 +377,12 @@ const RidesSkeleton = ({
                 />
                 <View style={[styles.mt4, { flexDirection: 'row' }]}>
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <Text
+                    <StarIcon
                       key={star}
-                      style={[
-                        styles.mr4,
-                        styles.ts14,
-                        {
-                          color: COLORS.border,
-                        },
-                      ]}
-                    >
-                      ★
-                    </Text>
+                      size={12}
+                      color={COLORS.border}
+                      style={styles.mr4}
+                    />
                   ))}
                 </View>
               </View>

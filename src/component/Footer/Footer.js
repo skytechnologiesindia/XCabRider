@@ -8,7 +8,7 @@ import {
   CalendarRidesIcon,
   AlertsNavIcon,
   ProfileNavIcon,
-} from '../../assets/icons/Icons';
+} from '../../assets/icons';
 
 
 const Footer = ({
@@ -64,11 +64,11 @@ const Footer = ({
         },
         isAbsolute
           ? {
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              right: 0,
-            }
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+          }
           : null,
         style,
       ]}
@@ -90,12 +90,12 @@ const Footer = ({
           style={
             isTab1Active
               ? [
-                  styles.pdh12,
-                  styles.pdv4,
-                  {
-                    borderRadius: 12,
-                  },
-                ]
+                styles.pdh12,
+                styles.pdv4,
+                {
+                  borderRadius: 12,
+                },
+              ]
               : null
           }
         >

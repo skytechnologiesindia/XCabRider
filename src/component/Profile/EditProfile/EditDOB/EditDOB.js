@@ -55,7 +55,7 @@ import {
   ChevronRightIcon,
   ChevronDownIcon,
   CalendarBadgeIcon,
-} from '../../../../assets/icons/Icons';
+} from '../../../../assets/icons';
 
 
 // Helper to parse date string like "15 Aug 1998"

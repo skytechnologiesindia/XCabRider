@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 
-import { ClockIcon as QuickClockIcon } from '../../../assets/icons/Icons';
+import { ClockIcon as QuickClockIcon } from '../../../assets/icons';
 
 
 const TripFeatures = () => {

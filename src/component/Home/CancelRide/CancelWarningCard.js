@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { CancelIconBadge } from '../../../assets/icons/Icons';
+import { CancelIconBadge } from '../../../assets/icons';
 
 
 const CancelWarningCard = ({

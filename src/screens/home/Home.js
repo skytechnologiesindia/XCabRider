@@ -5,7 +5,6 @@ import {
   StatusBar,
 } from 'react-native';
 import COLORS from '../../assets/colors';
-import QuickPlaces from '../../component/Home/QuickPlaces';
 import GoogleMap from '../../component/Home/GoogleMap';
 import PlaceNear from '../../component/Home/PlaceNear';
 import SearchTop from '../../component/Home/searchTop';
@@ -124,9 +123,6 @@ const Home = ({ navigation, route, initialParams }) => {
         <SearchTop
           onPress={() => setIsLocationModalVisible(true)}
         />
-
-        {/* ================= QUICK DESTINATIONS ================= */}
-        <QuickPlaces />
 
         {/* ================= CURRENT LOCATION MAP CARD ================= */}
         <GoogleMap />

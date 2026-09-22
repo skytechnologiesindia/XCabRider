@@ -9,7 +9,7 @@ import {
   EmergencyIcon,
   HelpIcon,
   SettingsIcon,
-} from './Icons';
+} from '../../assets/icons';
 
 export const DEFAULT_MENU_ITEMS = [
   {

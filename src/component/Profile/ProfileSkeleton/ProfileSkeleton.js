@@ -17,7 +17,8 @@ import {
   EmergencyIcon,
   HelpIcon,
   SettingsIcon,
-} from '../Icons';
+  StarIcon,
+} from '../../../assets/icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -220,7 +221,7 @@ const ProfileSkeleton = () => {
                   },
                 ]}
               >
-                <Text style={[styles.ts12, { color: COLORS.yellowAccent, marginRight: 4 }]}>★</Text>
+                <StarIcon size={12} color={COLORS.yellowAccent} style={{ marginRight: 4 }} />
                 <Text style={[styles.ts12, { fontWeight: '800', color: COLORS.textDark }]}>4.9</Text>
                 <Text style={[styles.ts11, styles.ml4, { fontWeight: '600', color: COLORS.textMuted }]}>Rating</Text>
               </View>
@@ -353,30 +354,6 @@ const ProfileSkeleton = () => {
           ))}
         </View>
 
-        {/* ================= 3. LOG OUT BUTTON ================= */}
-        <View
-          style={[
-            styles.mt12,
-            styles.mb24,
-            styles.pdv8,
-            {
-              alignItems: 'center',
-              justifyContent: 'center',
-            },
-          ]}
-        >
-          <Text
-            style={[
-              styles.ts14,
-              {
-                fontWeight: '700',
-                color: COLORS.textMuted,
-              },
-            ]}
-          >
-            Log out
-          </Text>
-        </View>
       </ScrollView>
     </View>
   );

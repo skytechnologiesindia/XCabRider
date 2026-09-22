@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { PersonIcon } from '../../../assets/icons/Icons';
+import { PersonIcon } from '../../../assets/icons';
 
 
 const RideCard = ({ vehicle, isSelected, onSelect }) => {

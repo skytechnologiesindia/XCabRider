@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 
-import { LockIcon } from '../../../assets/icons/Icons';
+import { LockIcon } from '../../../assets/icons';
 
 
 const PrivacyNote = ({
