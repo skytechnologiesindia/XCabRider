@@ -18,7 +18,7 @@ const Rides = ({
   showHeaderFooter = false, // When mounted in App.js shell, Header and Footer are already provided
 }) => {
   const insets = useSafeAreaInsets();
-  const [ridesList, setRidesList] = useState(initialRides);
+  const [ridesList] = useState(initialRides);
   const [isLoading, setIsLoading] = useState(true);
 
   // Simulate initial lazy loading / fetch ride history

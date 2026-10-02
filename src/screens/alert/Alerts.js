@@ -14,7 +14,7 @@ import { AlertsSkeleton } from '../../component/Alerts/AlertsSkeleton/AlertsSkel
 
 const Alerts = ({ navigation, initialNotifications = [] }) => {
   const insets = useSafeAreaInsets();
-  const [notifications, setNotifications] = useState(initialNotifications);
+  const [notifications] = useState(initialNotifications);
   const [isLoading, setIsLoading] = useState(true);
 
   // Simulate initial lazy loading / fetch notifications

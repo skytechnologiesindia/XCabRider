@@ -21,22 +21,6 @@ const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 import icons from '../../../../assets/icons';
 
-// Clear (×) Circle Icon using WebP CloseIcon
-const ClearInputIcon = ({ size = 16, color = COLORS.textMuted }) => (
-  <View
-    style={{
-      width: size,
-      height: size,
-      borderRadius: size / 2,
-      backgroundColor: '#EAE5D9',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}
-  >
-    <Image source={icons.closeX} style={{ width: 8, height: 8, tintColor: color }} resizeMode="contain" />
-  </View>
-);
-
 // Comprehensive Indian Cities Dataset for Instant Offline & Live Places API Match
 const INDIAN_CITIES = [
   { id: '1', city: 'Mumbai', state: 'Maharashtra', country: 'India' },

@@ -21,22 +21,6 @@ import icons from '../../../../assets/icons';
 
 
 
-// Clear Circle Icon
-const ClearInputIcon = ({ size = 16, color = COLORS.textMuted }) => (
-  <View
-    style={{
-      width: size,
-      height: size,
-      borderRadius: size / 2,
-      backgroundColor: '#EAE5D9',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}
-  >
-    <Image source={icons.closeX} style={{ width: 8, height: 8, tintColor: color }} resizeMode="contain" />
-  </View>
-);
-
 const EditEmail = ({
   visible = false,
   currentEmail = 'yasir.boss@email.com',
@@ -354,7 +338,7 @@ const EditEmail = ({
                   onPress={() => setEmail('')}
                   style={{ padding: 4 }}
                 >
-                  <ClearInputIcon size={18} color={COLORS.textMuted} />
+                  <Image source={icons.closeX} style={{ width: 18, height: 18, tintColor: COLORS.textMuted }} resizeMode="contain" />
                 </TouchableOpacity>
               )}
             </TouchableOpacity>
