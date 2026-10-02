@@ -1,0 +1,152 @@
+import React from 'react';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import COLORS from '../../../assets/colors';
+import styles from '../../../assets/styles';
+import images from '../../../assets/images';
+
+import icons from '../../../assets/icons';
+
+
+const ProfileInfoCard = ({
+  fullName = 'Yasir Boss',
+  phone = '+91 98••• 4821',
+  rating = '4.9',
+  avatarSource = images.avatar,
+  onCameraPress,
+}) => {
+  return (
+    <View
+      style={[
+        styles.mh20,
+        styles.mt8,
+        styles.mb16,
+        styles.p16,
+        {
+          backgroundColor: COLORS.cardBg,
+          borderRadius: 18,
+          borderWidth: 1.2,
+          borderColor: COLORS.border,
+          flexDirection: 'row',
+          alignItems: 'center',
+          shadowColor: COLORS.black,
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.04,
+          shadowRadius: 6,
+          elevation: 2,
+        },
+      ]}
+    >
+      {/* Avatar with yellow ring & camera badge */}
+      <View style={{ position: 'relative' }}>
+        <View
+          style={{
+            width: 66,
+            height: 66,
+            borderRadius: 33,
+            borderWidth: 2.5,
+            borderColor: COLORS.yellow,
+            overflow: 'hidden',
+            backgroundColor: '#EAE5D8',
+          }}
+        >
+          <Image
+            source={avatarSource}
+            style={{ width: '100%', height: '100%' }}
+            resizeMode="cover"
+          />
+        </View>
+
+        {/* Camera badge */}
+        <TouchableOpacity
+          style={{
+            position: 'absolute',
+            bottom: -1,
+            right: -2,
+            width: 24,
+            height: 24,
+            borderRadius: 12,
+            backgroundColor: COLORS.yellow,
+            borderWidth: 2,
+            borderColor: COLORS.white,
+            alignItems: 'center',
+            justifyContent: 'center',
+            elevation: 3,
+          }}
+          activeOpacity={0.8}
+          onPress={onCameraPress}
+        >
+          <Image source={icons.cameraIcon} style={[{ width: 16, height: 16 }, { tintColor: COLORS.textDark }]} resizeMode="contain" />
+        </TouchableOpacity>
+      </View>
+
+      {/* User Details */}
+      <View style={[styles.ml16, { flex: 1 }]}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Text
+            style={{
+              fontSize: 17,
+              fontWeight: '800',
+              color: COLORS.textDark,
+            }}
+          >
+            {fullName}
+          </Text>
+          <Image source={icons.verifiedBadge} style={[{ width: 16, height: 16 }, { marginLeft: 6 }]} resizeMode="contain" />
+        </View>
+
+        <Text
+          style={[
+            styles.mt4,
+            {
+              fontSize: 13,
+              color: COLORS.textMuted,
+            },
+          ]}
+        >
+          {phone}
+        </Text>
+
+        {/* Rating Badge */}
+        <View
+          style={[
+            styles.mt8,
+            styles.pdh8,
+            styles.pdv4,
+            {
+              backgroundColor: COLORS.iconBg,
+              borderRadius: 8,
+              borderWidth: 1,
+              borderColor: COLORS.border,
+              flexDirection: 'row',
+              alignItems: 'center',
+              alignSelf: 'flex-start',
+            },
+          ]}
+        >
+          <Image source={icons.starIcon} style={[{ width: 12, height: 12, tintColor: COLORS.yellowAccent }, { marginRight: 4 }]} resizeMode="contain" />
+          <Text
+            style={{
+              fontSize: 12,
+              fontWeight: '800',
+              color: COLORS.textDark,
+            }}
+          >
+            {rating}
+          </Text>
+          <Text
+            style={{
+              fontSize: 10.5,
+              fontWeight: '600',
+              color: COLORS.textMuted,
+              marginLeft: 4,
+            }}
+          >
+            Rating
+          </Text>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export default ProfileInfoCard;

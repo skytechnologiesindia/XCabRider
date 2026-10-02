@@ -1,0 +1,78 @@
+import React from 'react';
+import { Image, View, Text } from 'react-native';
+import COLORS from '../../../assets/colors';
+import styles from '../../../assets/styles';
+import icons from '../../../assets/icons';
+
+
+const CancelWarningCard = ({
+  driverName = 'Raj Kumar',
+  feeWarning = 'A cancellation fee may apply.',
+}) => {
+  return (
+    <View
+      style={[
+        styles.mh20,
+        styles.mt8,
+        styles.pdh16,
+        styles.pdv16,
+        {
+          backgroundColor: COLORS.warningCardBg,
+          borderRadius: 18,
+          borderWidth: 1.2,
+          borderColor: COLORS.warningBorder,
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+        },
+      ]}
+    >
+      {/* Warning Icon Badge */}
+      <Image source={icons.cancelWarning} style={{ width: 42, height: 42 }} resizeMode="contain" />
+
+      {/* Texts */}
+      <View style={[styles.ml12, { flex: 1 }]}>
+        <Text
+          style={{
+            fontSize: 10.5,
+            fontWeight: '800',
+            color: COLORS.warningTag,
+            letterSpacing: 0.8,
+            textTransform: 'uppercase',
+          }}
+        >
+          DRIVER MATCHED
+        </Text>
+
+        <Text
+          style={[
+            styles.mt4,
+            {
+              fontSize: 21,
+              fontWeight: '800',
+              color: COLORS.textDark,
+              letterSpacing: -0.3,
+            },
+          ]}
+        >
+          Cancel this ride?
+        </Text>
+
+        <Text
+          style={[
+            styles.mt4,
+            {
+              fontSize: 12.5,
+              fontWeight: '500',
+              color: COLORS.mediumGrey,
+              lineHeight: 17,
+            },
+          ]}
+        >
+          {driverName} is on the way. {feeWarning}
+        </Text>
+      </View>
+    </View>
+  );
+};
+
+export default CancelWarningCard;

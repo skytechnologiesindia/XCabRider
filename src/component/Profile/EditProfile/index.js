@@ -1,0 +1,13 @@
+export { default } from './EditProfile';
+export { default as EditProfile } from './EditProfile';
+export { default as ProfileInfoCard } from './ProfileInfoCard';
+export { default as ProfileFieldList } from './ProfileFieldList';
+export { default as ProfileField } from './ProfileField';
+export { default as SaveChangesButton } from './SaveChangesButton';
+export { default as PrivacyNote } from './PrivacyNote';
+export { default as EditName } from './EditName/EditName';
+export { default as EditGender } from './EditGender/EditGender';
+export { default as EditDOB } from './EditDOB/EditDOB';
+export { default as EditEmail } from './EditEmail/EditEmail';
+export { default as EditHomeCity } from './EditHomeCity/EditHomeCity';
+

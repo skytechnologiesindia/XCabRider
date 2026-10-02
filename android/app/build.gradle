@@ -84,6 +84,16 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        // Workaround: CMake's implicit-link-library detection drops libc++_shared
+        // on this machine (the space in the Windows user profile path breaks its
+        // compiler-output parsing), causing "undefined symbol" errors for every
+        // libc++ symbol when linking autolinked native modules. Force it in.
+        externalNativeBuild {
+            cmake {
+                arguments "-DCMAKE_SHARED_LINKER_FLAGS=-lc++_shared"
+            }
+        }
     }
     signingConfigs {
         debug {
