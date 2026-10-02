@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  Modal,
+import { Image, Modal,
   View,
   Text,
   TextInput,
@@ -11,15 +10,14 @@ import {
   Keyboard,
   Platform,
   Dimensions,
-  StyleSheet,
-} from 'react-native';
+  StyleSheet, } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../../assets/colors';
 import styles from '../../../../assets/styles';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-import { CloseIcon } from '../../../../assets/icons';
+import icons from '../../../../assets/icons';
 
 
 
@@ -35,7 +33,7 @@ const ClearInputIcon = ({ size = 16, color = COLORS.textMuted }) => (
       justifyContent: 'center',
     }}
   >
-    <CloseIcon size={8} color={color} />
+    <Image source={icons.closeX} style={{ width: 8, height: 8, tintColor: color }} resizeMode="contain" />
   </View>
 );
 
@@ -280,7 +278,7 @@ const EditEmail = ({
                 activeOpacity={0.7}
                 onPress={() => handleClose()}
               >
-                <CloseIcon size={12} color={COLORS.textDark} />
+                <Image source={icons.closeX} style={{ width: 12, height: 12, tintColor: COLORS.textDark }} resizeMode="contain" />
               </TouchableOpacity>
             </View>
 

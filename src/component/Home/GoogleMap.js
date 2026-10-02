@@ -8,7 +8,7 @@ import {
 import images from '../../assets/images';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
-import { GpsTargetIcon, RefreshIcon } from '../../assets/icons';
+import icons from '../../assets/icons';
 
 /**
  * GoogleMap component
@@ -79,7 +79,7 @@ const GoogleMap = ({
               justifyContent: 'center',
             }}
           >
-            <GpsTargetIcon size={17} color={COLORS.textDark} />
+            <Image source={icons.gpsTarget} style={{ width: 17, height: 17, tintColor: COLORS.textDark }} resizeMode="contain" />
           </View>
           <View style={styles.ml12}>
             <Text
@@ -123,7 +123,7 @@ const GoogleMap = ({
           activeOpacity={0.7}
           onPress={handleUpdate}
         >
-          <RefreshIcon size={12} color={COLORS.textDark} />
+          <Image source={icons.refreshIcon} style={{ width: 12, height: 12, tintColor: COLORS.textDark }} resizeMode="contain" />
           <Text
             style={[
               styles.ts11,

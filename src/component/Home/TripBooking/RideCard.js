@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { PersonIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 const RideCard = ({ vehicle, isSelected, onSelect }) => {
@@ -104,7 +104,7 @@ const RideCard = ({ vehicle, isSelected, onSelect }) => {
                     {vehicle.name}
                 </Text>
                 <Text style={[styles.ts10, styles.mh4, { color: COLORS.textMuted }]}>•</Text>
-                <PersonIcon size={10} color={COLORS.mediumGrey} />
+                <Image source={icons.person} style={{ width: 10, height: 10, tintColor: COLORS.mediumGrey }} resizeMode="contain" />
                 <Text
                     style={[
                         styles.ts11,

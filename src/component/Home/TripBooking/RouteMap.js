@@ -5,7 +5,7 @@ import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 
 // Crosshair target icon
-import { GpsTargetIcon as CrosshairIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 const RouteMap = ({ image, onCenterPress }) => {
@@ -54,7 +54,7 @@ const RouteMap = ({ image, onCenterPress }) => {
                 activeOpacity={0.8}
                 onPress={onCenterPress}
             >
-                <CrosshairIcon size={16} color={COLORS.textDark} />
+                <Image source={icons.gpsTarget} style={{ width: 16, height: 16, tintColor: COLORS.textDark }} resizeMode="contain" />
             </TouchableOpacity>
         </View>
     );

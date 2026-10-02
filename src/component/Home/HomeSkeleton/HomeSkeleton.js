@@ -1,20 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import {
-  View,
+import { Image, View,
   Text,
   ScrollView,
   Animated,
-  Dimensions,
-} from 'react-native';
+  Dimensions, } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import {
-  SearchIcon,
-  GpsTargetIcon,
-  RefreshIcon,
-  ClockIcon,
-  LocationPin,
-} from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -131,7 +123,7 @@ const HomeSkeleton = () => {
           >
             {/* Search Icon */}
             <View style={{ width: 24, alignItems: 'center', justifyContent: 'center' }}>
-              <SearchIcon size={19} color={COLORS.textLight} />
+              <Image source={icons.search} style={{ width: 19, height: 19, tintColor: COLORS.textLight }} resizeMode="contain" />
             </View>
 
             {/* Input placeholder line */}
@@ -157,7 +149,7 @@ const HomeSkeleton = () => {
                 justifyContent: 'center',
               }}
             >
-              <GpsTargetIcon size={18} color={COLORS.textLight} />
+              <Image source={icons.gpsTarget} style={{ width: 18, height: 18, tintColor: COLORS.textLight }} resizeMode="contain" />
             </View>
           </View>
         </View>
@@ -207,7 +199,7 @@ const HomeSkeleton = () => {
                   justifyContent: 'center',
                 }}
               >
-                <GpsTargetIcon size={17} color={COLORS.textDark} />
+                <Image source={icons.gpsTarget} style={{ width: 17, height: 17, tintColor: COLORS.textDark }} resizeMode="contain" />
               </View>
               <View style={styles.ml12}>
                 <Text style={[styles.ts14, { fontWeight: '700', color: COLORS.textDark }]}>
@@ -238,7 +230,7 @@ const HomeSkeleton = () => {
                 },
               ]}
             >
-              <RefreshIcon size={12} color={COLORS.textDark} />
+              <Image source={icons.refreshIcon} style={{ width: 12, height: 12, tintColor: COLORS.textDark }} resizeMode="contain" />
               <Text
                 style={[
                   styles.ml4,
@@ -309,7 +301,7 @@ const HomeSkeleton = () => {
                   opacity: pulseAnim,
                 }}
               >
-                <LocationPin size={22} color={COLORS.redPin} />
+                <Image source={icons.locationPin} style={{ width: 22, height: 22, tintColor: COLORS.redPin }} resizeMode="contain" />
               </Animated.View>
             </View>
           </View>
@@ -380,7 +372,7 @@ const HomeSkeleton = () => {
                       justifyContent: 'center',
                     }}
                   >
-                    <ClockIcon size={15} color={COLORS.textLight} />
+                    <Image source={icons.clock} style={{ width: 15, height: 15, tintColor: COLORS.textLight }} resizeMode="contain" />
                   </View>
 
                   {/* Place text placeholders */}

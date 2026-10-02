@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Image, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import COLORS from '../../assets/colors';
-import { SearchIcon, GpsTargetIcon } from '../../assets/icons';
+import icons from '../../assets/icons';
 
 /**
  * SearchTop component
@@ -21,7 +21,7 @@ const SearchTop = ({
         onPress={onPress}
         style={styles.searchBar}
       >
-        <SearchIcon size={19} color={COLORS.iconDark} />
+        <Image source={icons.search} style={{ width: 19, height: 19, tintColor: COLORS.iconDark }} resizeMode="contain" />
         <View style={styles.textContainer}>
           <Text
             style={[
@@ -39,7 +39,7 @@ const SearchTop = ({
           activeOpacity={0.7}
           onPress={onGpsPress || onPress}
         >
-          <GpsTargetIcon size={18} color={COLORS.iconDark} />
+          <Image source={icons.gpsTarget} style={{ width: 18, height: 18, tintColor: COLORS.iconDark }} resizeMode="contain" />
         </TouchableOpacity>
       </TouchableOpacity>
     </View>

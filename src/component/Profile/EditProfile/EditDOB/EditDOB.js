@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  Modal,
+import { Image, Modal,
   View,
   Text,
   TouchableOpacity,
@@ -9,8 +8,7 @@ import {
   PanResponder,
   Dimensions,
   ScrollView,
-  StyleSheet,
-} from 'react-native';
+  StyleSheet, } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../../assets/colors';
 import styles from '../../../../assets/styles';
@@ -49,13 +47,7 @@ const MONTH_SHORT = [
 
 const WEEK_DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
-import {
-  CloseIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronDownIcon,
-  CalendarBadgeIcon,
-} from '../../../../assets/icons';
+import icons from '../../../../assets/icons';
 
 
 // Helper to parse date string like "15 Aug 1998"
@@ -339,7 +331,7 @@ const EditDOB = ({
               activeOpacity={0.7}
               onPress={() => handleClose()}
             >
-              <CloseIcon size={12} color={COLORS.textDark} />
+              <Image source={icons.closeX} style={{ width: 12, height: 12, tintColor: COLORS.textDark }} resizeMode="contain" />
             </TouchableOpacity>
           </View>
 
@@ -389,7 +381,7 @@ const EditDOB = ({
               activeOpacity={0.7}
               onPress={handlePrevMonth}
             >
-              <ChevronLeftIcon size={8} color={COLORS.textDark} />
+              <Image source={icons.chevronLeft} style={{ width: 8, height: 8, tintColor: COLORS.textDark }} resizeMode="contain" />
             </TouchableOpacity>
 
             {/* Month & Year Title Dropdown Toggle */}
@@ -416,7 +408,7 @@ const EditDOB = ({
               >
                 {MONTH_NAMES[viewMonth]} {viewYear}
               </Text>
-              <ChevronDownIcon size={7} color={COLORS.textDark} />
+              <Image source={icons.chevronDown} style={{ width: 7, height: 7, tintColor: COLORS.textDark }} resizeMode="contain" />
             </TouchableOpacity>
 
             {/* Next Month Button */}
@@ -434,7 +426,7 @@ const EditDOB = ({
               activeOpacity={0.7}
               onPress={handleNextMonth}
             >
-              <ChevronRightIcon size={8} color={COLORS.textDark} />
+              <Image source={icons.chevronRight} style={{ width: 8, height: 8, tintColor: COLORS.textDark }} resizeMode="contain" />
             </TouchableOpacity>
           </View>
 
@@ -717,7 +709,7 @@ const EditDOB = ({
                   marginRight: 10,
                 }}
               >
-                <CalendarBadgeIcon size={16} color={COLORS.textDark} />
+                <Image source={icons.calendarField} style={{ width: 16, height: 16, tintColor: COLORS.textDark }} resizeMode="contain" />
               </View>
               <View>
                 <Text style={{ fontSize: 11, color: COLORS.textMuted, fontWeight: '600' }}>

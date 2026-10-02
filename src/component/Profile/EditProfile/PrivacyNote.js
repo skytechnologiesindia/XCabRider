@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Image, View, Text } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 
-import { LockIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 const PrivacyNote = ({
@@ -21,7 +21,7 @@ const PrivacyNote = ({
         },
       ]}
     >
-      <LockIcon size={14} color={COLORS.textMuted} />
+      <Image source={icons.lockPrivacy} style={{ width: 14, height: 14, tintColor: COLORS.textMuted }} resizeMode="contain" />
       <Text
         style={[
           styles.ml8,

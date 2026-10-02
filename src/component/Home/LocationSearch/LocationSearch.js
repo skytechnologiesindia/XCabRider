@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState, useMemo, useCallback } from 'react';
-import {
-  Modal,
+import { Image, Modal,
   View,
   Text,
   ScrollView,
@@ -9,11 +8,10 @@ import {
   Dimensions,
   Animated,
   PanResponder,
-  StyleSheet,
-} from 'react-native';
+  StyleSheet, } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { ClockIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 import PickDrop from './PickDrop';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -547,7 +545,7 @@ const LocationSearch = ({
                     {place.categoryIcon ? (
                       <Text style={{ fontSize: 18 }}>{place.categoryIcon}</Text>
                     ) : (
-                      <ClockIcon size={19} color={COLORS.iconDark} />
+                      <Image source={icons.clock} style={{ width: 19, height: 19, tintColor: COLORS.iconDark }} resizeMode="contain" />
                     )}
                   </View>
 
@@ -638,7 +636,7 @@ const LocationSearch = ({
                       marginRight: 14,
                     }}
                   >
-                    <ClockIcon size={19} color={COLORS.iconDark} />
+                    <Image source={icons.clock} style={{ width: 19, height: 19, tintColor: COLORS.iconDark }} resizeMode="contain" />
                   </View>
 
                   {/* Title & Subtitle */}

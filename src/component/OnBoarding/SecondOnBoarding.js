@@ -12,7 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import images from '../../assets/images';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
-import { XCabXLogo, ArrowRightIcon } from '../../assets/icons';
+import icons from '../../assets/icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const IS_TABLET = SCREEN_WIDTH >= 600;
@@ -66,7 +66,7 @@ const SecondOnBoarding = ({ onNext, onSkip, navigation }) => {
                     ]}
                 >
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <XCabXLogo size={24} style={{ marginRight: 1 }} />
+                        <Image source={icons.xcabXLogo} style={[{ width: 24, height: 24 }, { marginRight: 1 }]} resizeMode="contain" />
                         <Text
                             style={{
                                 fontSize: 24,
@@ -221,7 +221,7 @@ const SecondOnBoarding = ({ onNext, onSkip, navigation }) => {
                             >
                                 Get Started
                             </Text>
-                            <ArrowRightIcon size={16} color={COLORS.onboardingDark} style={{ marginLeft: 6 }} />
+                            <Image source={icons.arrowRight} style={[{ width: 14, height: 14 }, styles.ml8]} resizeMode="contain" />
 
                         </View>
                     </TouchableOpacity>

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GoogleButton, PrimaryButton } from '../../component/shared/Button';
-import { IndiaFlagIcon } from '../../assets/icons';
+import icons from '../../assets/icons';
 import images from '../../assets/images';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
@@ -118,7 +118,7 @@ const Login = ({ onContinue }) => {
               },
             ]}
           >
-            <IndiaFlagIcon size={22} style={styles.mr8} />
+            <Image source={icons.indiaFlag} style={[{ width: 22, height: 22 }, styles.mr8]} resizeMode="contain" />
             <Text style={[styles.ts16, { fontWeight: '600', color: COLORS.textDark }]}>
               +91
             </Text>

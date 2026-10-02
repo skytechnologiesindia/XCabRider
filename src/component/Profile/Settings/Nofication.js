@@ -1,6 +1,7 @@
+import { Image } from 'react-native';
 import React from 'react';
 import COLORS from '../../../assets/colors';
-import { BellIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 import SettingItemRow from './SettingItemRow';
 
 const Nofication = ({
@@ -12,7 +13,7 @@ const Nofication = ({
 }) => {
   return (
     <SettingItemRow
-      icon={<BellIcon size={18} color={COLORS.textDark} />}
+      icon={<Image source={icons.bellIcon} style={{ width: 18, height: 18, tintColor: COLORS.textDark }} resizeMode="contain" />}
       title={title}
       subtitle={subtitle}
       onPress={onPress}

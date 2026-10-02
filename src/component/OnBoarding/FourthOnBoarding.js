@@ -12,7 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import images from '../../assets/images';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
-import { ArrowRightIcon } from '../../assets/icons';
+import icons from '../../assets/icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const IS_TABLET = SCREEN_WIDTH >= 600;
@@ -190,7 +190,7 @@ const FourthOnBoarding = ({ onNext, navigation }) => {
                             >
                                 Get Started
                             </Text>
-                            <ArrowRightIcon size={16} color={COLORS.onboardingDark} style={{ marginLeft: 6 }} />
+                            <Image source={icons.arrowRight} style={[{ width: 16, height: 16 }, { marginLeft: 10 }]} resizeMode="contain" />
 
                         </View>
                     </TouchableOpacity>

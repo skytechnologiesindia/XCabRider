@@ -1,34 +1,24 @@
 import React, { useEffect, useRef } from 'react';
-import {
-  View,
+import { Image, View,
   Text,
   ScrollView,
   Animated,
   StatusBar,
-  Dimensions,
-} from 'react-native';
+  Dimensions, } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import {
-  UserIcon,
-  LocationPinIcon,
-  ReceiptIcon,
-  EmergencyIcon,
-  HelpIcon,
-  SettingsIcon,
-  StarIcon,
-} from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const SKELETON_MENU_ITEMS = [
-  { id: '1', titleWidth: 115, icon: <UserIcon size={18} color={COLORS.textLight} /> },
-  { id: '2', titleWidth: 95, icon: <LocationPinIcon size={18} color={COLORS.textLight} /> },
-  { id: '3', titleWidth: 135, icon: <ReceiptIcon size={18} color={COLORS.textLight} /> },
-  { id: '4', titleWidth: 145, icon: <EmergencyIcon size={18} color={COLORS.textLight} /> },
-  { id: '5', titleWidth: 100, icon: <HelpIcon size={18} color={COLORS.textLight} /> },
-  { id: '6', titleWidth: 70, icon: <SettingsIcon size={18} color={COLORS.textLight} /> },
+  { id: '1', titleWidth: 115, icon: <Image source={icons.userIcon} style={{ width: 18, height: 18, tintColor: COLORS.textLight }} resizeMode="contain" /> },
+  { id: '2', titleWidth: 95, icon: <Image source={icons.locationPin} style={{ width: 18, height: 18, tintColor: COLORS.textLight }} resizeMode="contain" /> },
+  { id: '3', titleWidth: 135, icon: <Image source={icons.receiptIcon} style={{ width: 18, height: 18, tintColor: COLORS.textLight }} resizeMode="contain" /> },
+  { id: '4', titleWidth: 145, icon: <Image source={icons.emergencyShield} style={{ width: 18, height: 18, tintColor: COLORS.textLight }} resizeMode="contain" /> },
+  { id: '5', titleWidth: 100, icon: <Image source={icons.helpSafety} style={{ width: 18, height: 18, tintColor: COLORS.textLight }} resizeMode="contain" /> },
+  { id: '6', titleWidth: 70, icon: <Image source={icons.settingsGear} style={{ width: 18, height: 18, tintColor: COLORS.textLight }} resizeMode="contain" /> },
 ];
 
 /**
@@ -221,7 +211,7 @@ const ProfileSkeleton = () => {
                   },
                 ]}
               >
-                <StarIcon size={12} color={COLORS.yellowAccent} style={{ marginRight: 4 }} />
+                <Image source={icons.starIcon} style={[{ width: 12, height: 12, tintColor: COLORS.yellowAccent }, { marginRight: 4 }]} resizeMode="contain" />
                 <Text style={[styles.ts12, { fontWeight: '800', color: COLORS.textDark }]}>4.9</Text>
                 <Text style={[styles.ts11, styles.ml4, { fontWeight: '600', color: COLORS.textMuted }]}>Rating</Text>
               </View>

@@ -1,17 +1,15 @@
 import React, { useEffect, useRef } from 'react';
-import {
-  View,
+import { Image, View,
   Text,
   ScrollView,
   Animated,
   StatusBar,
-  Dimensions,
-} from 'react-native';
+  Dimensions, } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 import Footer from '../../Footer/Footer';
-import { GreenPickupDot, RedDropPin, StarIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -274,7 +272,7 @@ const RidesSkeleton = ({
                 ]}
               >
                 {/* Green Pickup Dot */}
-                <GreenPickupDot size={10} />
+                <Image source={icons.greenPickupDot} style={{ width: 10, height: 10 }} resizeMode="contain" />
                 {/* Dashed Line */}
                 <View
                   style={{
@@ -285,7 +283,7 @@ const RidesSkeleton = ({
                   }}
                 />
                 {/* Red Drop Pin */}
-                <RedDropPin size={12} />
+                <Image source={icons.redDropPin} style={{ width: 12, height: 12 }} resizeMode="contain" />
               </View>
 
               <View style={{ flex: 1 }}>
@@ -377,12 +375,7 @@ const RidesSkeleton = ({
                 />
                 <View style={[styles.mt4, { flexDirection: 'row' }]}>
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <StarIcon
-                      key={star}
-                      size={12}
-                      color={COLORS.border}
-                      style={styles.mr4}
-                    />
+                    <Image source={icons.starIcon} style={[{ width: 12, height: 12, tintColor: COLORS.border }, styles.mr4]} resizeMode="contain" />
                   ))}
                 </View>
               </View>

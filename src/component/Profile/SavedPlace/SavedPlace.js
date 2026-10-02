@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  Modal,
+import { Image, Modal,
   View,
   Text,
   TouchableOpacity,
@@ -10,20 +9,13 @@ import {
   Dimensions,
   StyleSheet,
   Platform,
-  Keyboard,
-} from 'react-native';
+  Keyboard, } from 'react-native';
 import COLORS from '../../../assets/colors';
 import { AddNewPlaceView } from './AddNewPlace';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-import {
-  HomeIcon as HouseIcon,
-  WorkIcon as BriefcaseIcon,
-  PlusIcon,
-  CloseIcon,
-  StarIcon as StarOrPinIcon,
-} from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 const DEFAULT_SAVED_PLACES = [
   {
@@ -234,7 +226,7 @@ const SavedPlace = ({
                   activeOpacity={0.7}
                   onPress={() => handleClose()}
                 >
-                  <CloseIcon size={12} color={COLORS.textDark} />
+                  <Image source={icons.closeX} style={{ width: 12, height: 12, tintColor: COLORS.textDark }} resizeMode="contain" />
                 </TouchableOpacity>
               </View>
 
@@ -259,7 +251,7 @@ const SavedPlace = ({
                         onPress={() => handlePlacePress(homeItem)}
                       >
                         <View style={modalStyles.homeBadge}>
-                          <HouseIcon size={20} color={COLORS.textDark} />
+                          <Image source={icons.homeIcon} style={{ width: 20, height: 20, tintColor: COLORS.textDark }} resizeMode="contain" />
                         </View>
                         <View style={modalStyles.placeTextContainer}>
                           <Text style={modalStyles.placeTitle}>{homeItem.title}</Text>
@@ -287,7 +279,7 @@ const SavedPlace = ({
                         onPress={() => handlePlacePress(workItem)}
                       >
                         <View style={modalStyles.workBadge}>
-                          <BriefcaseIcon size={20} color={COLORS.textDark} />
+                          <Image source={icons.workIcon} style={{ width: 20, height: 20, tintColor: COLORS.textDark }} resizeMode="contain" />
                         </View>
                         <View style={modalStyles.placeTextContainer}>
                           <Text style={modalStyles.placeTitle}>{workItem.title}</Text>
@@ -315,7 +307,7 @@ const SavedPlace = ({
                         onPress={() => handlePlacePress(otherItem)}
                       >
                         <View style={modalStyles.otherBadge}>
-                          <StarOrPinIcon size={18} color={COLORS.yellowAccent} />
+                          <Image source={icons.starIcon} style={{ width: 18, height: 18, tintColor: COLORS.yellowAccent }} resizeMode="contain" />
                         </View>
                         <View style={modalStyles.placeTextContainer}>
                           <Text style={modalStyles.placeTitle}>{otherItem.title}</Text>
@@ -336,7 +328,7 @@ const SavedPlace = ({
                   onPress={handleOpenAddForm}
                 >
                   <View style={modalStyles.addBadge}>
-                    <PlusIcon size={18} color={COLORS.textDark} />
+                    <Image source={icons.plusIcon} style={{ width: 18, height: 18, tintColor: COLORS.textDark }} resizeMode="contain" />
                   </View>
                   <View style={modalStyles.placeTextContainer}>
                     <Text style={modalStyles.placeTitle}>Add New Place</Text>

@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Image, View, Text, TouchableOpacity } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { ChevronRight, CrossCircleIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 const CancelActionButtons = ({
@@ -44,7 +44,7 @@ const CancelActionButtons = ({
         >
           Cancel Ride
         </Text>
-        <ChevronRight size={15} color={COLORS.textDark} />
+        <Image source={icons.chevronRight} style={{ width: 15, height: 15, tintColor: COLORS.textDark }} resizeMode="contain" />
       </TouchableOpacity>
 
       {/* Secondary: Keep My Ride */}

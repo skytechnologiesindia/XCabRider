@@ -1,13 +1,11 @@
 import React from 'react';
-import {
-    View,
+import { Image, View,
     Text,
     TouchableOpacity,
     StyleSheet,
-    Alert,
-} from 'react-native';
+    Alert, } from 'react-native';
 import COLORS from '../../../assets/colors';
-import { LogoutIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 /**
  * LogOut button component for Settings screen
@@ -53,7 +51,7 @@ const LogOut = ({
             style={[styles.button, style]}
         >
             <View style={styles.iconContainer}>
-                <LogoutIcon size={18} color={COLORS.cancelRed || '#FF4D4D'} />
+                <Image source={icons.logoutIcon} style={{ width: 18, height: 18, tintColor: COLORS.cancelRed || '#FF4D4D' }} resizeMode="contain" />
             </View>
             <Text style={styles.title}>{title}</Text>
         </TouchableOpacity>

@@ -4,7 +4,7 @@ import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 import images from '../../../assets/images';
 
-import { CameraIcon, VerifiedBadge, StarIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 const ProfileInfoCard = ({
@@ -75,7 +75,7 @@ const ProfileInfoCard = ({
           activeOpacity={0.8}
           onPress={onCameraPress}
         >
-          <CameraIcon size={12} color={COLORS.textDark} />
+          <Image source={icons.cameraIcon} style={[{ width: 16, height: 16 }, { tintColor: COLORS.textDark }]} resizeMode="contain" />
         </TouchableOpacity>
       </View>
 
@@ -91,7 +91,7 @@ const ProfileInfoCard = ({
           >
             {fullName}
           </Text>
-          <VerifiedBadge size={16} style={{ marginLeft: 6 }} />
+          <Image source={icons.verifiedBadge} style={[{ width: 16, height: 16 }, { marginLeft: 6 }]} resizeMode="contain" />
         </View>
 
         <Text
@@ -123,7 +123,7 @@ const ProfileInfoCard = ({
             },
           ]}
         >
-          <StarIcon size={12} color={COLORS.yellowAccent} style={{ marginRight: 4 }} />
+          <Image source={icons.starIcon} style={[{ width: 12, height: 12, tintColor: COLORS.yellowAccent }, { marginRight: 4 }]} resizeMode="contain" />
           <Text
             style={{
               fontSize: 12,

@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  Modal,
+import { Image, Modal,
   View,
   Text,
   TouchableOpacity,
@@ -13,21 +12,13 @@ import {
   Keyboard,
   Switch,
   Linking,
-  Alert,
-} from 'react-native';
+  Alert, } from 'react-native';
 import COLORS from '../../../assets/colors';
 import { AddContactView } from './AddContact';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-import {
-  CloseIcon,
-  PhoneIcon,
-  ShieldSosIcon,
-  MoonOrLockIcon,
-  PlusIcon,
-  TrashIcon,
-} from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 const DEFAULT_CONTACTS = [
@@ -220,7 +211,7 @@ const EmergencyContact = ({
                   activeOpacity={0.7}
                   onPress={() => handleClose()}
                 >
-                  <CloseIcon size={12} color={COLORS.textDark} />
+                  <Image source={icons.closeX} style={{ width: 12, height: 12, tintColor: COLORS.textDark }} resizeMode="contain" />
                 </TouchableOpacity>
               </View>
 
@@ -234,7 +225,7 @@ const EmergencyContact = ({
                 {/* 1. Safety Notice Banner */}
                 <View style={styles.safetyBanner}>
                   <View style={styles.safetyIconWrap}>
-                    <ShieldSosIcon size={20} />
+                    <Image source={icons.emergencyShield} style={{ width: 20, height: 20 }} resizeMode="contain" />
                   </View>
                   <View style={styles.safetyTextWrap}>
                     <Text style={styles.safetyBannerText}>
@@ -253,7 +244,7 @@ const EmergencyContact = ({
                       activeOpacity={0.7}
                       onPress={() => handleCall(contact.phone)}
                     >
-                      <PhoneIcon size={16} color={COLORS.textDark} />
+                      <Image source={icons.phoneIcon} style={{ width: 16, height: 16, tintColor: COLORS.textDark }} resizeMode="contain" />
                     </TouchableOpacity>
 
                     {/* Middle: Details */}
@@ -278,7 +269,7 @@ const EmergencyContact = ({
                         activeOpacity={0.75}
                         onPress={() => handleCall(contact.phone)}
                       >
-                        <PhoneIcon size={13} color={COLORS.textDark} />
+                        <Image source={icons.phoneIcon} style={{ width: 13, height: 13, tintColor: COLORS.textDark }} resizeMode="contain" />
                       </TouchableOpacity>
 
                       {!contact.isPrimary ? (
@@ -296,7 +287,7 @@ const EmergencyContact = ({
                         activeOpacity={0.7}
                         onPress={() => handleDeleteContact(contact.id)}
                       >
-                        <TrashIcon size={13} color="#EF4444" />
+                        <Image source={icons.trashIcon} style={{ width: 13, height: 13 }} resizeMode="contain" />
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -310,7 +301,7 @@ const EmergencyContact = ({
                     onPress={() => setIsAddingNew(true)}
                   >
                     <View style={styles.addIconCircle}>
-                      <PlusIcon size={15} color={COLORS.textDark} />
+                      <Image source={icons.plusIcon} style={{ width: 15, height: 15, tintColor: COLORS.textDark }} resizeMode="contain" />
                     </View>
                     <View style={{ marginLeft: 12, flex: 1 }}>
                       <Text style={styles.addCardTitle}>+ Add Emergency Contact</Text>
@@ -322,7 +313,7 @@ const EmergencyContact = ({
                 {/* 3. Auto-share night trips toggle */}
                 <View style={styles.nightShareRow}>
                   <View style={styles.nightIconWrap}>
-                    <MoonOrLockIcon size={16} color={COLORS.textDark} />
+                    <Image source={icons.nightLock} style={{ width: 16, height: 16, tintColor: COLORS.textDark }} resizeMode="contain" />
                   </View>
                   <Text style={styles.nightShareText}>
                     Auto-share night trips (after 10 PM)

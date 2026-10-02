@@ -1,16 +1,14 @@
 import React, { useEffect, useRef } from 'react';
-import {
-  View,
+import { Image, View,
   Text,
   ScrollView,
   Animated,
   StatusBar,
-  Dimensions,
-} from 'react-native';
+  Dimensions, } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { CarBadgeIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -181,7 +179,7 @@ const AlertsSkeleton = ({ navigation }) => {
                   justifyContent: 'center',
                 }}
               >
-                <CarBadgeIcon size={18} color={COLORS.textDark} />
+                <Image source={icons.carBadge} style={{ width: 18, height: 18, tintColor: COLORS.textDark }} resizeMode="contain" />
               </View>
 
               {/* Notification Title Shimmer */}

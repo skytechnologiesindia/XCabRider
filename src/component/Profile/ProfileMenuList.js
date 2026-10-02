@@ -1,52 +1,45 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Image, View, Text, TouchableOpacity } from 'react-native';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
-import {
-  UserIcon,
-  LocationPinIcon,
-  ReceiptIcon,
-  EmergencyIcon,
-  HelpIcon,
-  SettingsIcon,
-} from '../../assets/icons';
+import icons from '../../assets/icons';
 
 export const DEFAULT_MENU_ITEMS = [
   {
     id: 'personal_details',
     title: 'Personal details',
     subtitle: 'Personal details',
-    icon: (color) => <UserIcon size={18} color={color} />,
+    icon: (color) => <Image source={icons.userIcon} style={{ width: 18, height: 18, tintColor: color }} resizeMode="contain" />,
   },
   {
     id: 'saved_places',
     title: 'Saved places',
     subtitle: 'Saved places',
-    icon: (color) => <LocationPinIcon size={18} color={color} />,
+    icon: (color) => <Image source={icons.locationPin} style={{ width: 18, height: 18, tintColor: color }} resizeMode="contain" />,
   },
   {
     id: 'receipts_invoices',
     title: 'Receipts & invoices',
     subtitle: 'Receipts & invoices',
-    icon: (color) => <ReceiptIcon size={18} color={color} />,
+    icon: (color) => <Image source={icons.receiptIcon} style={{ width: 18, height: 18, tintColor: color }} resizeMode="contain" />,
   },
   {
     id: 'emergency_contacts',
     title: 'Emergency contacts',
     subtitle: 'Emergency contacts',
-    icon: (color) => <EmergencyIcon size={18} color={color} />,
+    icon: (color) => <Image source={icons.emergencyShield} style={{ width: 18, height: 18, tintColor: color }} resizeMode="contain" />,
   },
   {
     id: 'help_safety',
     title: 'Help & safety',
     subtitle: 'Help & safety',
-    icon: (color) => <HelpIcon size={18} color={color} />,
+    icon: (color) => <Image source={icons.helpSafety} style={{ width: 18, height: 18, tintColor: color }} resizeMode="contain" />,
   },
   {
     id: 'settings',
     title: 'Settings',
     subtitle: 'Settings',
-    icon: (color) => <SettingsIcon size={18} color={color} />,
+    icon: (color) => <Image source={icons.settingsGear} style={{ width: 18, height: 18, tintColor: color }} resizeMode="contain" />,
   },
 ];
 

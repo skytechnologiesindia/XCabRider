@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Image, View, Text, TouchableOpacity } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { ChevronRight } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 export const DEFAULT_REASONS = [
@@ -106,10 +106,7 @@ const CancellationReasons = ({
             </Text>
 
             {/* Right Chevron */}
-            <ChevronRight
-              size={14}
-              color={isSelected ? COLORS.textDark : COLORS.textLight}
-            />
+            <Image source={icons.chevronRight} style={{ width: 14, height: 14, tintColor: isSelected ? COLORS.textDark : COLORS.textLight }} resizeMode="contain" />
           </TouchableOpacity>
         );
       })}

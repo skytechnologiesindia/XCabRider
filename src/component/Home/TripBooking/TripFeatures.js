@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Image, View, Text } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 
-import { ClockIcon as QuickClockIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 const TripFeatures = () => {
@@ -70,7 +70,7 @@ const TripFeatures = () => {
                         backgroundColor: COLORS.grey50,
                     }}
                 >
-                    <QuickClockIcon size={15} color={COLORS.textDark} />
+                    <Image source={icons.clock} style={{ width: 15, height: 15, tintColor: COLORS.textDark }} resizeMode="contain" />
                 </View>
                 <View style={[styles.ml8, { flex: 1 }]}>
                     <Text style={[styles.ts11, { fontWeight: '700', color: COLORS.textDark }]}>

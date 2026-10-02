@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StatusBar, Platform } from 'react-native';
+import { Image, View, Text, TouchableOpacity, ScrollView, StatusBar, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../assets/colors';
 import images from '../../../assets/images';
@@ -13,15 +13,7 @@ import EditDOB from './EditDOB/EditDOB';
 import EditEmail from './EditEmail/EditEmail';
 import EditHomeCity from './EditHomeCity/EditHomeCity';
 
-import {
-  BackArrowIcon,
-  UserFieldIcon,
-  GenderFieldIcon,
-  CalendarFieldIcon,
-  PhoneFieldIcon,
-  MailFieldIcon,
-  CityFieldIcon,
-} from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 const EditProfile = ({
@@ -71,19 +63,19 @@ const EditProfile = ({
       id: 'name',
       label: 'Full Name',
       value: profileData.fullName,
-      icon: (color) => <UserFieldIcon size={18} color={color} />,
+      icon: (color) => <Image source={icons.userIcon} style={{ width: 18, height: 18, tintColor: color }} resizeMode="contain" />,
     },
     {
       id: 'gender',
       label: 'Gender',
       value: profileData.gender,
-      icon: (color) => <GenderFieldIcon size={18} color={color} />,
+      icon: (color) => <Image source={icons.genderIcon} style={{ width: 18, height: 18, tintColor: color }} resizeMode="contain" />,
     },
     {
       id: 'dob',
       label: 'Date of Birth',
       value: profileData.dob,
-      icon: (color) => <CalendarFieldIcon size={18} color={color} />,
+      icon: (color) => <Image source={icons.calendarField} style={{ width: 18, height: 18, tintColor: color }} resizeMode="contain" />,
     },
     {
       id: 'phone',
@@ -91,19 +83,19 @@ const EditProfile = ({
       value: profileData.phone,
       isVerified: true,
       isFixed: true,
-      icon: (color) => <PhoneFieldIcon size={18} color={color} />,
+      icon: (color) => <Image source={icons.phoneIcon} style={{ width: 18, height: 18, tintColor: color }} resizeMode="contain" />,
     },
     {
       id: 'email',
       label: 'Email Address',
       value: profileData.email,
-      icon: (color) => <MailFieldIcon size={18} color={color} />,
+      icon: (color) => <Image source={icons.mailIcon} style={{ width: 18, height: 18, tintColor: color }} resizeMode="contain" />,
     },
     {
       id: 'city',
       label: 'Home City',
       value: profileData.city,
-      icon: (color) => <CityFieldIcon size={18} color={color} />,
+      icon: (color) => <Image source={icons.cityIcon} style={{ width: 18, height: 18, tintColor: color }} resizeMode="contain" />,
     },
   ];
 
@@ -154,7 +146,7 @@ const EditProfile = ({
           activeOpacity={0.7}
           onPress={handleBack}
         >
-          <BackArrowIcon size={16} color={COLORS.textDark} />
+          <Image source={icons.backArrow} style={{ width: 16, height: 16, tintColor: COLORS.textDark }} resizeMode="contain" />
         </TouchableOpacity>
 
         <Text

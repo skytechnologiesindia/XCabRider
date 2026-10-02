@@ -1,6 +1,7 @@
+import { Image } from 'react-native';
 import React from 'react';
 import COLORS from '../../../../assets/colors';
-import { HelpCircleIcon } from '../../../../assets/icons';
+import icons from '../../../../assets/icons';
 import SettingItemRow from '../SettingItemRow';
 
 const HelpSupport = ({
@@ -12,7 +13,7 @@ const HelpSupport = ({
 }) => {
   return (
     <SettingItemRow
-      icon={<HelpCircleIcon size={18} color={COLORS.textDark} />}
+      icon={<Image source={icons.helpCircle} style={{ width: 18, height: 18, tintColor: COLORS.textDark }} resizeMode="contain" />}
       title={title}
       subtitle={subtitle}
       onPress={onPress}

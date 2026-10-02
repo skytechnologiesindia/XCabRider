@@ -1,7 +1,7 @@
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { Image, TouchableOpacity, Text } from 'react-native';
 import COLORS from '../../assets/colors';
-import { GoogleIcon } from '../../assets/icons';
+import icons from '../../assets/icons';
 
 export function GoogleButton({ onPress }) {
   return (
@@ -20,7 +20,7 @@ export function GoogleButton({ onPress }) {
       activeOpacity={0.85}
       onPress={onPress}
     >
-      <GoogleIcon size={20} style={{ marginRight: 10 }} />
+      <Image source={icons.google} style={[{ width: 20, height: 20 }, { marginRight: 10 }]} resizeMode="contain" />
       <Text
         style={{
           fontSize: 15,

@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Image, View, Text, TouchableOpacity } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { DestinationPin as RedPin } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 const TripLocations = ({
@@ -125,7 +125,7 @@ const TripLocations = ({
         onPress={onDropPress}
       >
         <View style={{ alignItems: 'center', width: 28 }}>
-          <RedPin size={18} />
+          <Image source={icons.destinationPin} style={{ width: 18, height: 18 }} resizeMode="contain" />
           <Text style={{ fontSize: 10, color: COLORS.textMuted, marginTop: -2 }}>
             ⌄
           </Text>

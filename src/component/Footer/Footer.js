@@ -1,14 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Image, View, Text, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
-import {
-  CarNavIcon,
-  CalendarRidesIcon,
-  AlertsNavIcon,
-  ProfileNavIcon,
-} from '../../assets/icons';
+import icons from '../../assets/icons';
 
 
 const Footer = ({
@@ -99,10 +94,7 @@ const Footer = ({
               : null
           }
         >
-          <CarNavIcon
-            size={23}
-            color={isTab1Active ? COLORS.yellow : COLORS.navMuted}
-          />
+          <Image source={icons.carNav} style={{ width: 23, height: 23, tintColor: isTab1Active ? COLORS.yellow : COLORS.navMuted }} resizeMode="contain" />
         </View>
         <Text
           style={[
@@ -141,10 +133,7 @@ const Footer = ({
         activeOpacity={0.8}
         onPress={() => handleTabPress('RIDES')}
       >
-        <CalendarRidesIcon
-          size={21}
-          color={isTab2Active ? COLORS.yellow : COLORS.navMuted}
-        />
+        <Image source={icons.calendarRides} style={{ width: 21, height: 21, tintColor: isTab2Active ? COLORS.yellow : COLORS.navMuted }} resizeMode="contain" />
         <Text
           style={[
             styles.mt4,
@@ -182,11 +171,7 @@ const Footer = ({
         activeOpacity={0.8}
         onPress={() => handleTabPress('ALERTS')}
       >
-        <AlertsNavIcon
-          size={21}
-          color={isTab3Active ? COLORS.yellow : COLORS.navMuted}
-          badge={alertsBadge}
-        />
+        <Image source={icons.alertsNav} style={{ width: 21, height: 21, tintColor: isTab3Active ? COLORS.yellow : COLORS.navMuted }} resizeMode="contain" />
         <Text
           style={[
             styles.mt4,
@@ -224,10 +209,7 @@ const Footer = ({
         activeOpacity={0.8}
         onPress={() => handleTabPress('PROFILE')}
       >
-        <ProfileNavIcon
-          size={21}
-          color={isTab4Active ? COLORS.yellow : COLORS.navMuted}
-        />
+        <Image source={icons.profileNav} style={{ width: 21, height: 21, tintColor: isTab4Active ? COLORS.yellow : COLORS.navMuted }} resizeMode="contain" />
         <Text
           style={[
             styles.mt4,

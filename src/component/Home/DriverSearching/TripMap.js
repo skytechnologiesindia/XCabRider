@@ -4,7 +4,7 @@ import images from '../../../assets/images';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
 
-import { GpsTargetIcon as CrosshairIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 const TripMap = ({ image, onCenterPress }) => {
@@ -53,7 +53,7 @@ const TripMap = ({ image, onCenterPress }) => {
         activeOpacity={0.8}
         onPress={onCenterPress}
       >
-        <CrosshairIcon size={16} color={COLORS.textDark} />
+        <Image source={icons.gpsTarget} style={{ width: 16, height: 16, tintColor: COLORS.textDark }} resizeMode="contain" />
       </TouchableOpacity>
     </View>
   );

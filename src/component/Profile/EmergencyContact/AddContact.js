@@ -1,6 +1,6 @@
+import icons from '../../../assets/icons';
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  Modal,
+import { Image, Modal,
   View,
   Text,
   TextInput,
@@ -12,13 +12,12 @@ import {
   StyleSheet,
   Platform,
   Keyboard,
-  Alert,
-} from 'react-native';
+  Alert, } from 'react-native';
 import COLORS from '../../../assets/colors';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-export { BackArrowIcon, CloseIcon } from '../../../assets/icons';
+
 
 
 const RELATION_OPTIONS = ['Dad', 'Mom', 'Spouse', 'Sister', 'Brother', 'Friend', 'Other'];
@@ -83,7 +82,7 @@ export const AddContactView = ({
             onBack?.();
           }}
         >
-          <BackArrowIcon size={16} color={COLORS.textDark} />
+          <Image source={icons.backArrow} style={{ width: 16, height: 16, tintColor: COLORS.textDark }} resizeMode="contain" />
         </TouchableOpacity>
 
         <Text style={styles.headerTitle}>Add Contact</Text>
@@ -96,7 +95,7 @@ export const AddContactView = ({
             onClose?.();
           }}
         >
-          <CloseIcon size={12} color={COLORS.textDark} />
+          <Image source={icons.closeX} style={{ width: 12, height: 12, tintColor: COLORS.textDark }} resizeMode="contain" />
         </TouchableOpacity>
       </View>
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Image, View, Text } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { CancelIconBadge } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 const CancelWarningCard = ({
@@ -27,7 +27,7 @@ const CancelWarningCard = ({
       ]}
     >
       {/* Warning Icon Badge */}
-      <CancelIconBadge size={42} />
+      <Image source={icons.cancelWarning} style={{ width: 42, height: 42 }} resizeMode="contain" />
 
       {/* Texts */}
       <View style={[styles.ml12, { flex: 1 }]}>

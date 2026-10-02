@@ -87,26 +87,14 @@ export const DEFAULT_RIDES_DATA = [
   },
 ];
 
-import {
-  GreenPickupDot,
-  RedDropPin,
-  CashIcon,
-  UpiBoltIcon,
-  CheckCircleGreenIcon,
-  StarIcon,
-} from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 // 5-Star Rating Component
 const StarRating = ({ rating = 5 }) => {
   return (
     <View style={styles.starsRow}>
       {[1, 2, 3, 4, 5].map((star) => (
-        <StarIcon
-          key={star}
-          size={12}
-          color={star <= rating ? COLORS.yellow : '#DDD8CE'}
-          style={styles.starIcon}
-        />
+        <Image source={icons.starIcon} style={[{ width: 12, height: 12, tintColor: star <= rating ? COLORS.yellow : '#DDD8CE' }, styles.starIcon]} resizeMode="contain" />
       ))}
     </View>
   );
@@ -115,7 +103,7 @@ const StarRating = ({ rating = 5 }) => {
 // Vector Icon: Cash Note
 const CashBadge = () => (
   <View style={styles.cashBadgeContainer}>
-    <CashIcon size={14} style={styles.cashIconMini} />
+    <Image source={icons.cashIcon} style={[{ width: 14, height: 14 }, styles.cashIconMini]} resizeMode="contain" />
     <Text style={styles.cashBadgeText}>Paid in Cash</Text>
   </View>
 );
@@ -123,7 +111,7 @@ const CashBadge = () => (
 // Vector Icon: Online / UPI
 const UpiBadge = () => (
   <View style={styles.upiBadgeContainer}>
-    <UpiBoltIcon size={13} style={styles.upiIconMini} />
+    <Image source={icons.upiBolt} style={[{ width: 13, height: 13 }, styles.upiIconMini]} resizeMode="contain" />
     <Text style={styles.upiBadgeText}>Paid via UPI</Text>
   </View>
 );
@@ -133,11 +121,11 @@ const RouteTimeline = ({ pickup, dropoff, metrics }) => (
   <View style={styles.routeContainer}>
     <View style={styles.routeTimelineColumn}>
       {/* Green Pickup Dot */}
-      <GreenPickupDot size={10} />
+      <Image source={icons.greenPickupDot} style={{ width: 10, height: 10 }} resizeMode="contain" />
       {/* Vertical Dashed Line */}
       <View style={styles.dashedLine} />
       {/* Red Drop Pin */}
-      <RedDropPin size={12} />
+      <Image source={icons.redDropPin} style={{ width: 12, height: 12 }} resizeMode="contain" />
     </View>
 
     <View style={styles.routeAddressesColumn}>
@@ -188,7 +176,7 @@ const SingleRideCard = ({ ride, onRebook }) => {
         {/* Status Pill Badge */}
         {isCompleted ? (
           <View style={styles.completedBadge}>
-            <CheckCircleGreenIcon size={11} style={{ marginRight: 4 }} />
+            <Image source={icons.checkCircleGreen} style={[{ width: 11, height: 11 }, { marginRight: 4 }]} resizeMode="contain" />
             <Text style={styles.completedBadgeText}>Completed</Text>
           </View>
         ) : (

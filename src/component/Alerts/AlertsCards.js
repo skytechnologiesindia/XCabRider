@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Image, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
 
-import { CarBadgeIcon } from '../../assets/icons';
-export { CarBadgeIcon };
+import icons from '../../assets/icons';
+
 
 
 const AlertsCards = ({
@@ -39,7 +39,7 @@ const AlertsCards = ({
       <View style={cardStyles.topRow}>
         {/* Yellow Badge Icon */}
         <View style={cardStyles.iconBadge}>
-          {icon ? icon : <CarBadgeIcon size={18} color={COLORS.textDark} />}
+          {icon ? icon : <Image source={icons.carBadge} style={{ width: 18, height: 18, tintColor: COLORS.textDark }} resizeMode="contain" />}
         </View>
 
         {/* Title */}

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  Modal,
+import { Image, Modal,
   View,
   Text,
   TextInput,
@@ -11,15 +10,14 @@ import {
   Animated,
   PanResponder,
   Dimensions,
-  StyleSheet,
-} from 'react-native';
+  StyleSheet, } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../../assets/colors';
 import styles from '../../../../assets/styles';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-import { CloseIcon } from '../../../../assets/icons';
+import icons from '../../../../assets/icons';
 
 
 const EditName = ({
@@ -274,7 +272,7 @@ const EditName = ({
                 activeOpacity={0.7}
                 onPress={() => handleClose()}
               >
-                <CloseIcon size={12} color={COLORS.textDark} />
+                <Image source={icons.closeX} style={{ width: 12, height: 12, tintColor: COLORS.textDark }} resizeMode="contain" />
               </TouchableOpacity>
             </View>
 

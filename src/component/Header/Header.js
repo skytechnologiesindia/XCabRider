@@ -11,7 +11,7 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import images from '../../assets/images';
 import COLORS from '../../assets/colors';
-import { HeaderBell } from '../../assets/icons';
+import icons from '../../assets/icons';
 
 const Header = ({
   navigation,
@@ -103,7 +103,7 @@ const Header = ({
               activeOpacity={0.7}
               onPress={handleNotificationPress}
             >
-              <HeaderBell size={21} color={COLORS.textDark} hasBadge={hasNotificationBadge} />
+              <Image source={icons.bellIcon} style={{ width: 21, height: 21, tintColor: COLORS.textDark }} resizeMode="contain" />
             </TouchableOpacity>
           )}
 

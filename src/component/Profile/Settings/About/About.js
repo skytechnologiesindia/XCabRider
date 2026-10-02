@@ -1,6 +1,7 @@
+import { Image } from 'react-native';
 import React from 'react';
 import COLORS from '../../../../assets/colors';
-import { InfoCircleIcon } from '../../../../assets/icons';
+import icons from '../../../../assets/icons';
 import SettingItemRow from '../SettingItemRow';
 
 const About = ({
@@ -12,7 +13,7 @@ const About = ({
 }) => {
   return (
     <SettingItemRow
-      icon={<InfoCircleIcon size={18} color={COLORS.textDark} />}
+      icon={<Image source={icons.infoCircle} style={{ width: 18, height: 18, tintColor: COLORS.textDark }} resizeMode="contain" />}
       title={title}
       subtitle={subtitle}
       onPress={onPress}

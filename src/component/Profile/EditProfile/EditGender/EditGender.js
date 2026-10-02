@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  Modal,
+import { Image, Modal,
   View,
   Text,
   TouchableOpacity,
@@ -8,37 +7,31 @@ import {
   Animated,
   PanResponder,
   Dimensions,
-  StyleSheet,
-} from 'react-native';
+  StyleSheet, } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../../assets/colors';
 import styles from '../../../../assets/styles';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-import {
-  CloseIcon,
-  MaleIcon,
-  FemaleIcon,
-  OtherIcon,
-} from '../../../../assets/icons';
+import icons from '../../../../assets/icons';
 
 
 const GENDER_OPTIONS = [
   {
     id: 'Male',
     label: 'Male',
-    renderIcon: (color) => <MaleIcon size={20} color={color} />,
+    renderIcon: (color) => <Image source={icons.maleIcon} style={{ width: 20, height: 20, tintColor: color }} resizeMode="contain" />,
   },
   {
     id: 'Female',
     label: 'Female',
-    renderIcon: (color) => <FemaleIcon size={20} color={color} />,
+    renderIcon: (color) => <Image source={icons.femaleIcon} style={{ width: 20, height: 20, tintColor: color }} resizeMode="contain" />,
   },
   {
     id: 'Other',
     label: 'Other / Prefer not to say',
-    renderIcon: (color) => <OtherIcon size={20} color={color} />,
+    renderIcon: (color) => <Image source={icons.otherGenderIcon} style={{ width: 20, height: 20, tintColor: color }} resizeMode="contain" />,
   },
 ];
 
@@ -226,7 +219,7 @@ const EditGender = ({
               activeOpacity={0.7}
               onPress={() => handleClose()}
             >
-              <CloseIcon size={12} color={COLORS.textDark} />
+              <Image source={icons.closeX} style={{ width: 12, height: 12, tintColor: COLORS.textDark }} resizeMode="contain" />
             </TouchableOpacity>
           </View>
 

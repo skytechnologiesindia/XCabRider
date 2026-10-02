@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { Image, View, Text, TouchableOpacity, TextInput } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { DestinationPin, PickupIndicator } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 const PickDrop = ({
@@ -86,7 +86,7 @@ const PickDrop = ({
           },
         ]}
       >
-        <PickupIndicator size={22} />
+        <Image source={icons.greenPickupDot} style={{ width: 22, height: 22 }} resizeMode="contain" />
         <View style={[styles.ml12, { flex: 1 }]}>
           <Text
             style={[
@@ -190,7 +190,7 @@ const PickDrop = ({
           },
         ]}
       >
-        <DestinationPin size={18} />
+        <Image source={icons.destinationPin} style={{ width: 18, height: 18 }} resizeMode="contain" />
         <View style={[styles.ml12, { flex: 1 }]}>
           <Text
             style={[

@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Image, View, Text, TouchableOpacity } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { DestinationPin, PencilIcon as EditPencilIcon, PickupIndicator } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 
 
@@ -75,7 +75,7 @@ const LocationDetails = ({
 
             {/* Row 1: Pickup Location */}
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <PickupIndicator size={22} />
+                <Image source={icons.greenPickupDot} style={{ width: 22, height: 22 }} resizeMode="contain" />
                 <View style={[styles.ml12, styles.pdr8, { flex: 1 }]}>
                     <Text style={[styles.ts12, { color: COLORS.textMuted, fontWeight: '500' }]}>
                         Pickup location
@@ -122,7 +122,7 @@ const LocationDetails = ({
                     activeOpacity={0.7}
                     onPress={onEditPickup}
                 >
-                    <EditPencilIcon size={13} color={COLORS.textDark} />
+                    <Image source={icons.pencil} style={{ width: 13, height: 13, tintColor: COLORS.textDark }} resizeMode="contain" />
                 </TouchableOpacity>
             </View>
 
@@ -140,7 +140,7 @@ const LocationDetails = ({
 
             {/* Row 2: Drop Location */}
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <DestinationPin size={18} />
+                <Image source={icons.destinationPin} style={{ width: 18, height: 18 }} resizeMode="contain" />
                 <View style={[styles.ml12, styles.pdr8, { flex: 1 }]}>
                     <Text style={[styles.ts12, { color: COLORS.textMuted, fontWeight: '500' }]}>
                         Drop location
@@ -187,7 +187,7 @@ const LocationDetails = ({
                     activeOpacity={0.7}
                     onPress={onEditDestination}
                 >
-                    <EditPencilIcon size={13} color={COLORS.textDark} />
+                    <Image source={icons.pencil} style={{ width: 13, height: 13, tintColor: COLORS.textDark }} resizeMode="contain" />
                 </TouchableOpacity>
             </View>
         </View>

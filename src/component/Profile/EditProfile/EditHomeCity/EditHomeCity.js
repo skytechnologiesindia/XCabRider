@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import {
-  Modal,
+import { Image, Modal,
   View,
   Text,
   TextInput,
@@ -13,21 +12,14 @@ import {
   Platform,
   Dimensions,
   StyleSheet,
-  ActivityIndicator,
-} from 'react-native';
+  ActivityIndicator, } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import COLORS from '../../../../assets/colors';
 import styles from '../../../../assets/styles';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-import {
-  CloseIcon,
-  SearchIcon as SearchVectorIcon,
-  LocationPinIcon as PinVectorIcon,
-  ChevronRightIcon,
-  CheckVectorIcon,
-} from '../../../../assets/icons';
+import icons from '../../../../assets/icons';
 
 // Clear (×) Circle Icon using WebP CloseIcon
 const ClearInputIcon = ({ size = 16, color = COLORS.textMuted }) => (
@@ -41,7 +33,7 @@ const ClearInputIcon = ({ size = 16, color = COLORS.textMuted }) => (
       justifyContent: 'center',
     }}
   >
-    <CloseIcon size={8} color={color} />
+    <Image source={icons.closeX} style={{ width: 8, height: 8, tintColor: color }} resizeMode="contain" />
   </View>
 );
 
@@ -374,7 +366,7 @@ const EditHomeCity = ({
                 activeOpacity={0.7}
                 onPress={() => handleClose()}
               >
-                <CloseIcon size={12} color={COLORS.textDark} />
+                <Image source={icons.closeX} style={{ width: 12, height: 12, tintColor: COLORS.textDark }} resizeMode="contain" />
               </TouchableOpacity>
             </View>
 
@@ -398,7 +390,7 @@ const EditHomeCity = ({
             >
               {/* Search Icon */}
               <View style={{ marginRight: 12 }}>
-                <SearchVectorIcon size={17} color={isFocused ? COLORS.yellowAccent : COLORS.textMuted} />
+                <Image source={icons.search} style={{ width: 17, height: 17, tintColor: isFocused ? COLORS.yellowAccent : COLORS.textMuted }} resizeMode="contain" />
               </View>
 
               {/* TextInput */}
@@ -435,7 +427,7 @@ const EditHomeCity = ({
                   onPress={() => setSearchQuery('')}
                   style={{ padding: 4 }}
                 >
-                  <ClearInputIcon size={18} color={COLORS.textMuted} />
+                  <Image source={icons.closeX} style={{ width: 18, height: 18, tintColor: COLORS.textMuted }} resizeMode="contain" />
                 </TouchableOpacity>
               ) : null}
             </TouchableOpacity>
@@ -444,7 +436,7 @@ const EditHomeCity = ({
             <View style={{ maxHeight: 220, marginBottom: 12 }}>
               {filteredCities.length === 0 ? (
                 <View style={{ paddingVertical: 24, alignItems: 'center' }}>
-                  <PinVectorIcon size={24} color={COLORS.textMuted} />
+                  <Image source={icons.locationPin} style={{ width: 24, height: 24, tintColor: COLORS.textMuted }} resizeMode="contain" />
                   <Text style={{ marginTop: 8, fontSize: 13, color: COLORS.textMuted }}>
                     No matching cities found via Map API
                   </Text>
@@ -486,10 +478,7 @@ const EditHomeCity = ({
                             marginRight: 12,
                           }}
                         >
-                          <PinVectorIcon
-                            size={16}
-                            color={isSelected ? COLORS.yellowAccent : COLORS.mediumGrey}
-                          />
+                          <Image source={icons.locationPin} style={{ width: 16, height: 16, tintColor: isSelected ? COLORS.yellowAccent : COLORS.mediumGrey }} resizeMode="contain" />
                         </View>
 
                         {/* City Details */}
@@ -526,10 +515,10 @@ const EditHomeCity = ({
                               justifyContent: 'center',
                             }}
                           >
-                            <CheckVectorIcon size={12} color={COLORS.textDark} />
+                            <Image source={icons.checkMark} style={{ width: 12, height: 12, tintColor: COLORS.textDark }} resizeMode="contain" />
                           </View>
                         ) : (
-                          <ChevronRightIcon size={13} color={COLORS.textLight} />
+                          <Image source={icons.chevronRight} style={{ width: 13, height: 13, tintColor: COLORS.textLight }} resizeMode="contain" />
                         )}
                       </TouchableOpacity>
                     );

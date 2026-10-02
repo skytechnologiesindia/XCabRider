@@ -1,6 +1,6 @@
+import icons from '../../../assets/icons';
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  Modal,
+import { Image, Modal,
   View,
   Text,
   TextInput,
@@ -11,18 +11,12 @@ import {
   Dimensions,
   StyleSheet,
   Platform,
-  Keyboard,
-} from 'react-native';
+  Keyboard, } from 'react-native';
 import COLORS from '../../../assets/colors';
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-export {
-  BackArrowIcon,
-  CloseIcon,
-  SearchIcon,
-  NavigationArrowIcon,
-} from '../../../assets/icons';
+
 
 
 // Pure Form View (can be rendered standalone or embedded)
@@ -89,7 +83,7 @@ export const AddNewPlaceView = ({
             onBack?.();
           }}
         >
-          <BackArrowIcon size={16} color={COLORS.textDark} />
+          <Image source={icons.backArrow} style={{ width: 16, height: 16, tintColor: COLORS.textDark }} resizeMode="contain" />
         </TouchableOpacity>
 
         <Text style={styles.headerTitle}>Add New Place</Text>
@@ -102,7 +96,7 @@ export const AddNewPlaceView = ({
             onClose?.();
           }}
         >
-          <CloseIcon size={13} color={COLORS.textDark} />
+          <Image source={icons.closeX} style={{ width: 13, height: 13, tintColor: COLORS.textDark }} resizeMode="contain" />
         </TouchableOpacity>
       </View>
 
@@ -135,7 +129,7 @@ export const AddNewPlaceView = ({
         <View style={styles.fieldSection}>
           <Text style={styles.fieldLabel}>Address</Text>
           <View style={styles.searchInputContainer}>
-            <SearchIcon size={18} color={COLORS.textMuted} />
+            <Image source={icons.search} style={{ width: 18, height: 18, tintColor: COLORS.textMuted }} resizeMode="contain" />
             <TextInput
               ref={addressInputRef}
               style={styles.searchTextInput}
@@ -156,7 +150,7 @@ export const AddNewPlaceView = ({
           onPress={handleUseCurrentLocation}
         >
           <View style={styles.locationIconBox}>
-            <NavigationArrowIcon size={18} color="#2563EB" />
+            <Image source={icons.navigationArrow} style={{ width: 18, height: 18 }} resizeMode="contain" />
           </View>
           <View style={styles.locationTextWrap}>
             <Text style={styles.locationTitle}>Use Current Location</Text>

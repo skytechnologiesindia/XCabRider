@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Image, View, Text, TouchableOpacity } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { ChevronRightIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 /**
  * Reusable row item for Settings screens
@@ -77,7 +77,7 @@ const SettingItemRow = ({
         </View>
 
         {/* Right Chevron */}
-        <ChevronRightIcon size={14} color="#C4BEB2" />
+        <Image source={icons.chevronRight} style={{ width: 14, height: 14 }} resizeMode="contain" />
       </TouchableOpacity>
 
       {/* Divider line between items */}

@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Image, View, Text, TouchableOpacity } from 'react-native';
 import COLORS from '../../../assets/colors';
 import styles from '../../../assets/styles';
-import { BackArrowIcon } from '../../../assets/icons';
+import icons from '../../../assets/icons';
 
 const SettingsHeader = ({
   title = 'Settings',
@@ -43,7 +43,7 @@ const SettingsHeader = ({
           },
         ]}
       >
-        <BackArrowIcon size={16} color={COLORS.textDark} />
+        <Image source={icons.backArrow} style={{ width: 16, height: 16, tintColor: COLORS.textDark }} resizeMode="contain" />
       </TouchableOpacity>
 
       {/* Page Title */}
