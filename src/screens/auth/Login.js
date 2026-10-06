@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   Dimensions,
+  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GoogleButton, PrimaryButton } from '../../component/shared/Button';
@@ -14,12 +15,36 @@ import icons from '../../assets/icons';
 import images from '../../assets/images';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
+import { post } from '../../utils/requestBuilder'
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const IS_TABLET = SCREEN_WIDTH >= 600;
 
 const Login = ({ onContinue }) => {
   const [phone, setPhone] = useState('');
+
+  const handleSendOtp = async () => {
+    if (!phone || phone.trim().length === 0) {
+      Alert.alert('Error', 'Please enter your mobile number.');
+      return;
+    }
+
+    const url = "auth/send-otp";
+    const data = { phone };
+    try {
+      const response = await post(url, data);
+      console.log('Send OTP Response:', response);
+      onContinue?.(phone);
+    } catch (error) {
+      const errorMessage =
+        error?.response?.data?.message ||
+        error?.response?.data?.error ||
+        error?.message ||
+        'Failed to send OTP. Please try again.';
+      console.error('Send OTP Error:', errorMessage);
+      Alert.alert('Error', errorMessage);
+    }
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.cream }}>
@@ -157,7 +182,7 @@ const Login = ({ onContinue }) => {
         {/* Continue button */}
         <PrimaryButton
           title="Continue"
-          onPress={() => onContinue?.(phone)}
+          onPress={handleSendOtp}
         />
 
         {/* Divider */}
