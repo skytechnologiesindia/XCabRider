@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, StatusBar } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StatusBar, ActivityIndicator } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import COLORS from './src/assets/colors';
 import Header from './src/component/Header/Header';
@@ -7,17 +7,43 @@ import Footer from './src/component/Footer/Footer';
 import OnBoarding from './src/screens/onboarding/OnBoarding';
 import Login from './src/screens/auth/Login';
 import Otp from './src/screens/auth/Otp';
+import ProfileSetup from './src/screens/auth/ProfileSetup';
 import Home from './src/screens/home/Home';
 import Rides from './src/screens/rides/Rides';
 import Alerts from './src/screens/alert/Alerts';
 import Profile from './src/screens/profile/Profile';
 import EditProfile from './src/component/Profile/EditProfile/EditProfile';
 import Setting from './src/component/Profile/Settings/Setting';
+import { storage, STORAGE_KEYS, clearAuthData, getStoredAuthData } from './src/utils/storage';
 
 const App = () => {
   const [currentScreen, setCurrentScreen] = useState('OnBoarding');
   const [screenParams, setScreenParams] = useState(null);
   const [phone, setPhone] = useState('');
+  const [otpData, setOtpData] = useState(null);
+  const [isInitializing, setIsInitializing] = useState(true);
+
+  // Check persisted session on app startup
+  useEffect(() => {
+    const checkPersistedAuth = async () => {
+      try {
+        const authData = await getStoredAuthData();
+        if (authData?.isLoggedIn) {
+          if (authData?.rider && authData?.rider?.isProfileComplete === false) {
+            setCurrentScreen('ProfileSetup');
+          } else {
+            setCurrentScreen('Home');
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load persisted auth state:', err);
+      } finally {
+        setIsInitializing(false);
+      }
+    };
+
+    checkPersistedAuth();
+  }, []);
 
   const navigation = {
     navigate: (screenName, params = null) => {
@@ -35,6 +61,7 @@ const App = () => {
       else if (currentScreen === 'EditProfile' || currentScreen === 'Setting') setCurrentScreen('Profile');
       else if (currentScreen === 'Profile') setCurrentScreen('Home');
       else if (currentScreen === 'Home') setCurrentScreen('Otp');
+      else if (currentScreen === 'ProfileSetup') setCurrentScreen('Otp');
       else if (currentScreen === 'Otp') setCurrentScreen('Login');
       else if (currentScreen === 'Login') setCurrentScreen('OnBoarding');
     },
@@ -44,9 +71,10 @@ const App = () => {
     currentScreen === 'OnBoarding' ||
     currentScreen === 'FirstOnBoarding' ||
     currentScreen === 'Login' ||
-    currentScreen === 'Otp';
+    currentScreen === 'Otp' ||
+    currentScreen === 'ProfileSetup';
 
-  const getActiveTab = screen => {
+  const getActiveTab = (screen) => {
     switch (screen) {
       case 'Home':
         return 'HOME';
@@ -62,6 +90,15 @@ const App = () => {
         return 'HOME';
     }
   };
+
+  if (isInitializing) {
+    return (
+      <View style={{ flex: 1, backgroundColor: COLORS.cream, justifyContent: 'center', alignItems: 'center' }}>
+        <StatusBar barStyle="dark-content" backgroundColor={COLORS.statusBar} />
+        <ActivityIndicator size="large" color={COLORS.yellow} />
+      </View>
+    );
+  }
 
   return (
     <SafeAreaProvider>
@@ -81,8 +118,10 @@ const App = () => {
 
           {currentScreen === 'Login' && (
             <Login
-              onContinue={enteredPhone => {
-                if (enteredPhone) setPhone(enteredPhone);
+              onContinue={(params) => {
+                const phoneNumber = typeof params === 'string' ? params : params?.phoneNumber;
+                if (phoneNumber) setPhone(phoneNumber);
+                if (typeof params === 'object') setOtpData(params);
                 setCurrentScreen('Otp');
               }}
               navigation={navigation}
@@ -91,11 +130,27 @@ const App = () => {
 
           {currentScreen === 'Otp' && (
             <Otp
-              phone={phone || '9876504821'}
+              phone={otpData?.phoneNumber || phone || '+919477172214'}
+              expiresInSeconds={otpData?.expiresInSeconds ?? 300}
+              resendAfterSeconds={otpData?.resendAfterSeconds ?? 30}
               onBack={() => setCurrentScreen('Login')}
               onEditPhone={() => setCurrentScreen('Login')}
-              onVerify={() => setCurrentScreen('Home')}
+              onVerify={(rider) => {
+                if (rider && rider.isProfileComplete === false) {
+                  setCurrentScreen('ProfileSetup');
+                } else {
+                  setCurrentScreen('Home');
+                }
+              }}
               navigation={navigation}
+              route={{ params: otpData }}
+            />
+          )}
+
+          {currentScreen === 'ProfileSetup' && (
+            <ProfileSetup
+              navigation={navigation}
+              onComplete={() => setCurrentScreen('Home')}
             />
           )}
         </>
@@ -142,7 +197,11 @@ const App = () => {
               <Setting
                 navigation={navigation}
                 onBack={() => setCurrentScreen('Profile')}
-                onLogout={() => setCurrentScreen('Login')}
+                onLogout={async () => {
+                  await storage.clearAuth();
+                  setOtpData(null);
+                  setCurrentScreen('Login');
+                }}
                 showFooter={false}
               />
             )}
@@ -151,7 +210,7 @@ const App = () => {
           {/* ================= FIXED STATIC FOOTER ================= */}
           <Footer
             activeTab={getActiveTab(currentScreen)}
-            onTabPress={tab => {
+            onTabPress={(tab) => {
               setScreenParams(null);
               if (tab === 'HOME' || tab === 'BOOK') {
                 setCurrentScreen('Home');

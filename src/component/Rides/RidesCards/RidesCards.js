@@ -59,7 +59,7 @@ export const DEFAULT_RIDES_DATA = [
     id: 'ride_4',
     status: 'COMPLETED',
     date: '09 Sep, 08:15 PM',
-    carName: 'XCAB Auto',
+    carName: 'Treeps Auto',
     carType: 'Auto Rickshaw',
     carImage: images.carMini,
     pickup: 'Main Road, Overbridge',

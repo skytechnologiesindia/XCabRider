@@ -9,7 +9,7 @@ import styles from '../../../assets/styles';
  */
 const RidesNoData = ({
   title = "No ride history yet",
-  subtitle = "You haven’t taken any rides with XCab yet.\nYour completed trips will appear here.",
+  subtitle = "You haven’t taken any rides with treeps yet.\nYour completed trips will appear here.",
   onBookRide,
   navigation,
   style,

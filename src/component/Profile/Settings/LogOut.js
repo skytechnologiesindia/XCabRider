@@ -1,11 +1,14 @@
 import React from 'react';
-import { Image, View,
+import {
+    Image, View,
     Text,
     TouchableOpacity,
     StyleSheet,
-    Alert, } from 'react-native';
+    Alert,
+} from 'react-native';
 import COLORS from '../../../assets/colors';
 import icons from '../../../assets/icons';
+import { storage } from '../../../utils/storage';
 
 /**
  * LogOut button component for Settings screen
@@ -22,6 +25,7 @@ const LogOut = ({
             if (onPress) {
                 onPress();
             } else if (navigation?.navigate) {
+                storage.clearAuth();
                 navigation.navigate('Login');
             }
         };

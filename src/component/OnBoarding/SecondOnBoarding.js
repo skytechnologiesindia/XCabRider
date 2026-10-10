@@ -66,18 +66,17 @@ const SecondOnBoarding = ({ onNext, onSkip, navigation }) => {
                     ]}
                 >
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <Image source={icons.xcabXLogo} style={[{ width: 24, height: 24 }, { marginRight: 1 }]} resizeMode="contain" />
+                        <Image source={icons.xcabXLogo} style={[{ width: 22, height: 22 }, { marginRight: 6 }]} resizeMode="contain" />
                         <Text
                             style={{
                                 fontSize: 24,
                                 fontWeight: '900',
                                 color: COLORS.onboardingDark,
                                 letterSpacing: 0.5,
-                                marginLeft: 2,
                                 includeFontPadding: false,
                             }}
                         >
-                            CAB
+                            TREEPS
                         </Text>
                     </View>
                 </View>

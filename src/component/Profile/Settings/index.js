@@ -9,7 +9,7 @@ export { default as LocationService, LocationServices } from './LocationService'
 export { default as Language } from './Language/Language';
 export { default as HelpSupport } from './HelpSupport/HelpSupport';
 export { default as ContactUs } from './ContactUs/ContactUs';
-export { default as About, AboutXcab } from './About/About';
+export { default as About, AboutTreeps, AboutXcab } from './About/About';
 export { default as LogOut } from './LogOut';
 
 export { default as SettingItemRow } from './SettingItemRow';

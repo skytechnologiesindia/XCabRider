@@ -8,6 +8,7 @@ import {
   ScrollView,
   Dimensions,
   Alert,
+  Linking,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GoogleButton, PrimaryButton } from '../../component/shared/Button';
@@ -15,34 +16,64 @@ import icons from '../../assets/icons';
 import images from '../../assets/images';
 import COLORS from '../../assets/colors';
 import styles from '../../assets/styles';
-import { post } from '../../utils/requestBuilder'
+import { post, extractErrorMessage } from '../../utils/requestBuilder';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const IS_TABLET = SCREEN_WIDTH >= 600;
 
-const Login = ({ onContinue }) => {
+export const formatIndianPhone = (rawPhone) => {
+  if (!rawPhone) return '';
+  const digits = rawPhone.replace(/\D/g, '');
+  const tenDigits = digits.length >= 10 ? digits.slice(-10) : digits;
+  return tenDigits ? `+91${tenDigits}` : '';
+};
+
+const Login = ({ onContinue, navigation }) => {
   const [phone, setPhone] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleOpenTerms = () => {
+    Linking.openURL('https://treeps.in/terms').catch(() => {
+      Alert.alert('Terms of Service', 'By continuing, you agree to treeps Terms of Service.');
+    });
+  };
+
+  const handleOpenPrivacy = () => {
+    Linking.openURL('https://treeps.in/privacy').catch(() => {
+      Alert.alert('Privacy Policy', 'By continuing, you agree to treeps Privacy Policy.');
+    });
+  };
 
   const handleSendOtp = async () => {
-    if (!phone || phone.trim().length === 0) {
-      Alert.alert('Error', 'Please enter your mobile number.');
-      return;
-    }
-
-    const url = "auth/send-otp";
-    const data = { phone };
+    if (isLoading) return;
+    const url = 'rider/auth/send-otp';
+    const data = { phoneNumber: formatIndianPhone(phone), };
+    setIsLoading(true);
     try {
       const response = await post(url, data);
-      console.log('Send OTP Response:', response);
-      onContinue?.(phone);
+      console.log('Send OTP Success Response:', response);
+
+      const expiresInSeconds = response?.data?.expiresInSeconds ?? 300;
+      const resendAfterSeconds = response?.data?.resendAfterSeconds ?? 30;
+
+      const otpParams = {
+        phoneNumber: formatIndianPhone(phone),
+        phone: formatIndianPhone(phone),
+        expiresInSeconds,
+        resendAfterSeconds,
+      };
+
+      if (onContinue) {
+        onContinue(otpParams);
+      } else if (navigation?.navigate) {
+        navigation.navigate('Otp', otpParams);
+      }
     } catch (error) {
-      const errorMessage =
-        error?.response?.data?.message ||
-        error?.response?.data?.error ||
-        error?.message ||
-        'Failed to send OTP. Please try again.';
+      const errorMessage = extractErrorMessage(error);
       console.error('Send OTP Error:', errorMessage);
       Alert.alert('Error', errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -130,6 +161,7 @@ const Login = ({ onContinue }) => {
               borderRadius: 14,
               backgroundColor: COLORS.inputBg,
               minHeight: 56,
+              opacity: isLoading ? 0.7 : 1,
             },
           ]}
         >
@@ -162,10 +194,14 @@ const Login = ({ onContinue }) => {
 
           <TextInput
             value={phone}
-            onChangeText={setPhone}
+            onChangeText={(text) => {
+              const digitsOnly = text.replace(/\D/g, '').slice(0, 10);
+              setPhone(digitsOnly);
+            }}
             placeholder="Enter your mobile number"
             placeholderTextColor={COLORS.placeholder}
             keyboardType="phone-pad"
+            editable={!isLoading}
             style={[
               styles.ts16,
               styles.pdv12,
@@ -175,7 +211,7 @@ const Login = ({ onContinue }) => {
                 color: COLORS.textDark,
               },
             ]}
-            maxLength={15}
+            maxLength={10}
           />
         </View>
 
@@ -183,6 +219,8 @@ const Login = ({ onContinue }) => {
         <PrimaryButton
           title="Continue"
           onPress={handleSendOtp}
+          disabled={isLoading || phone.replace(/\D/g, '').length !== 10}
+          loading={isLoading}
         />
 
         {/* Divider */}
@@ -200,7 +238,10 @@ const Login = ({ onContinue }) => {
         </View>
 
         {/* Google button */}
-        <GoogleButton onPress={() => console.log('Google button pressed')} />
+        <GoogleButton
+          onPress={() => console.log('Google button pressed')}
+          disabled={isLoading}
+        />
 
         {/* Footer */}
         <Text
@@ -215,14 +256,21 @@ const Login = ({ onContinue }) => {
             },
           ]}
         >
-          By continuing, you agree to XCAB's{' '}
-          <Text style={{ color: COLORS.textDark, textDecorationLine: 'underline' }}>
-            Terms
+          By continuing, you agree to our{' '}
+          <Text
+            onPress={handleOpenTerms}
+            style={{ color: COLORS.textDark, textDecorationLine: 'underline' }}
+          >
+            Terms of Service
           </Text>{' '}
           and{' '}
-          <Text style={{ color: COLORS.textDark, textDecorationLine: 'underline' }}>
+          <Text
+            onPress={handleOpenPrivacy}
+            style={{ color: COLORS.textDark, textDecorationLine: 'underline' }}
+          >
             Privacy Policy
           </Text>
+          .
         </Text>
       </ScrollView>
     </SafeAreaView>

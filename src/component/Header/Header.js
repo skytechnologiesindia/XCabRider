@@ -23,7 +23,7 @@ const Header = ({
   onNotificationPress,
   hasNotificationBadge = true,
   showLogo = true,
-  logoText = 'XCAB',
+  logoText = 'TREEPS',
   leftComponent,
   rightComponent,
   safeAreaTop = true,

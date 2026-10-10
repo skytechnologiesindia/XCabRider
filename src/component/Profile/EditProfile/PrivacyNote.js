@@ -7,7 +7,7 @@ import icons from '../../../assets/icons';
 
 
 const PrivacyNote = ({
-  text = 'Your information stays private and is used only to manage your XCAB account.',
+  text = 'Your information stays private and is used only to manage your treeps account.',
 }) => {
   return (
     <View

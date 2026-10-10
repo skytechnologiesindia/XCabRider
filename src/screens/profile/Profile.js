@@ -16,6 +16,9 @@ import {
   ProfileCard,
   ProfileMenuList,
 } from '../../component/Profile';
+import { getStoredAuthData, storage } from '../../utils/storage';
+
+
 
 const Profile = ({ navigation }) => {
   const insets = useSafeAreaInsets();

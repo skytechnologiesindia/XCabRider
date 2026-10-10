@@ -229,7 +229,7 @@ const EmergencyContact = ({
                   </View>
                   <View style={styles.safetyTextWrap}>
                     <Text style={styles.safetyBannerText}>
-                      In case of emergency, XCab can automatically share your live ride location with
+                      In case of emergency, treeps can automatically share your live ride location with
                       your trusted contacts.
                     </Text>
                   </View>

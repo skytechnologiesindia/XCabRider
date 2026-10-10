@@ -23,5 +23,6 @@ const About = ({
   );
 };
 
+export const AboutTreeps = About;
 export const AboutXcab = About;
 export default About;
